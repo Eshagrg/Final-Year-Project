@@ -1,0 +1,58 @@
+﻿.card-hover.card-purple:hover {
+    background-color: #e48634;
+    color: white;
+    cursor: pointer;
+}
+
+.vendor-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.vendor-name {
+    margin-top: 10px;
+}
+
+.transactions {
+    color: #888;
+    margin-top: -5px;
+}
+
+.modal-title {
+    color: purple;
+}
+
+.contact-info {
+    font-weight: bold;
+}
+.card-footer {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.dropdown-menu{
+    z-index: 9999;
+}
+
+/*.chart-container {
+    height: 280px;
+    width: 300px;
+}*/
+
+.product-item {
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.cus-add{
+    height:400px;
+}
+
