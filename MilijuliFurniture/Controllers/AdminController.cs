@@ -1,7 +1,9 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Site.DataAccess.Domain;
 using Site.DataAccess.Interface;
+using System.Text;
 
 namespace MilijuliFurniture.Controllers
 {
@@ -34,5 +36,51 @@ namespace MilijuliFurniture.Controllers
 
             return LocalRedirect(returnUrl);
         }
+
+        //Staff Index
+
+        public IActionResult StaffIndex()
+        {
+            IEnumerable<Portal_User> obj = _userAuth.GetStaffList();
+            return View(obj);
+        }
+
+        public IActionResult AddStaff()
+        {
+            AddStaff_VM obj = new AddStaff_VM();
+            return View(obj);
+        }
+
+        [HttpPost]
+        public IActionResult AddStaff(AddStaff_VM obj)
+        {
+
+            AddStaff_VM vm = new AddStaff_VM();
+            vm.FullName = obj.FullName;
+            vm.PhoneNo = obj.PhoneNo;
+            vm.Email = obj.Email;
+            vm.Password = EncryptPassword(obj.Password);
+            string output = _userAuth.SaveStaffData(vm);
+            if (output == "SUCCESS")
+            {
+                return RedirectToAction("UserIndex");
+            }
+            return View();
+        }
+
+        public static string EncryptPassword(string password)
+        {
+            if (string.IsNullOrEmpty(password))
+            {
+                return null;
+            }
+            else
+            {
+                byte[] storePassword = Encoding.UTF8.GetBytes(password);
+                string encryptedPassword = Convert.ToBase64String(storePassword);
+                return encryptedPassword;
+            }
+        }
+
     }
 }

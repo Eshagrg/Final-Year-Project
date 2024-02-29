@@ -28,5 +28,7 @@ namespace Site.DataAccess.Interface
         string VerifyMemberDetail(int id);
         string DisableMemberDetail(int id);
         string SaveMemberData(AddMember_VM obj);
+
+        IEnumerable<Portal_User> GetStaffList();
     }
 }

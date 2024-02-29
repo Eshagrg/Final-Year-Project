@@ -282,5 +282,22 @@ namespace Site.DataAccess.Repository
                 throw;
             }
         }
+
+        public IEnumerable<Portal_User> GetStaffList()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    IEnumerable<Portal_User> output = conn.Query<Portal_User>("USP_GetStaffList", commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+
+            }
+        }
     }
 }

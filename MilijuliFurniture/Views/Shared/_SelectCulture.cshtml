@@ -42,6 +42,7 @@
     }
 </style>
 
+ @* Access localiztion change *@
 <form id="selectLanguage" asp-controller="Admin"
       asp-action="SetCulture" asp-route-culture="@currentCulture" asp-route-returnUrl="@responseUrl"
       method="POST" role="form">
@@ -77,3 +78,5 @@
         document.getElementById('selectLanguage').submit();
     }
 </script>
+
+

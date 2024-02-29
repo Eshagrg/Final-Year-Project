@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Site.DataAccess.Domain;
 using Site.DataAccess.Interface;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Text;
 
 namespace MilijuliFurniture.Controllers
@@ -101,6 +102,26 @@ namespace MilijuliFurniture.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            if (User!.Identity!.IsAuthenticated)
+            {
+                IPrincipal iPrincipalUser = User;
+                var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value ?? "";
+                if (userId != string.Empty)
+                {
+                    Portal_User usr = _userAuth.GetUserDetail(int.Parse(userId));
+                    if (usr.Id > 0)
+                    {
+                        if (usr.RoleName == "Admin" || usr.RoleName == "Staff")
+                        {
+                            return RedirectToAction("Index", "Admin");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Dashboard", "Home");
+                        }
+                    }
+                }
+            }
             Login_VM obj = new Login_VM();
             return View(obj);
         }
