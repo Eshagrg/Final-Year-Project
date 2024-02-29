@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> locOptions
+
+@{
+    var currentCulture = Context.Features.Get<IRequestCultureFeature>()!.RequestCulture.UICulture.Name;
+    var cultureItems = locOptions!.Value!.SupportedUICultures!
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+
+    var responseUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+
+    // temp fix for culture fetching wrong resource
+    currentCulture = currentCulture == "en-US" ? "np-NP" : currentCulture == "np-NP" ? "en-US" : currentCulture;
+    cultureItems!.Find((item) => item.Value == "en-US")!.Text = "np-NP";
+    cultureItems!.Find((item) => item.Value == "np-NP")!.Text = "en-US";
+}
+
+<style>
+    .language-ddl {
+        background: transparent;
+        color: #fff;
+        border: none;
+        font-size: 11pt;
+    }
+
+        .language-ddl > option {
+            color: #000;
+            margin: 5px !important;
+            padding: 5px !important;
+        }
+
+    .culture-img {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+</style>
+
+<form id="selectLanguage" asp-controller="Home"
+      asp-action="SetCulture" asp-route-culture="@currentCulture" asp-route-returnUrl="@responseUrl"
+      method="POST" role="form">
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle dropdown-toggle-lang nav-link-lg nav-link-user">
+            @currentCulture
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-lang dropdown-menu-right">
+            @foreach (var item in cultureItems)
+            {
+                var img = item.Text == "np-NP" ? "/img/flag/nepal-flag.png" : "/img/flag/usa-flag.png";
+                <a class="dropdown-item" onclick="cultureSwitch('@item.Text', '@currentCulture')" href="#" data-culture="@item.Value">
+                    <img src="@img" class="culture-img">
+                    @item.Text
+                </a>
+                if (cultureItems.IndexOf(item) < cultureItems.Count)
+                {
+                    <div class="dropdown-divider"></div>
+                }
+            }
+        </div>
+    </li>
+</form>

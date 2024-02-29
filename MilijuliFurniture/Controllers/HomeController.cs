@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using MilijuliFurniture.Models;
 using System.Diagnostics;
 
@@ -6,14 +8,28 @@ namespace MilijuliFurniture.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
+        private readonly IStringLocalizer<HomeController>? _localizer;
+        private readonly ILogger<HomeController> _logger;
+        public HomeController(IStringLocalizer<HomeController>? localizer, ILogger<HomeController> logger)
+        {
+            _localizer = localizer;
+            _logger = logger;
+        }
 
-		public HomeController(ILogger<HomeController> logger)
-		{
-			_logger = logger;
-		}
+  
+        [HttpPost]
+        public IActionResult SetCulture(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
 
-		public IActionResult Index()
+            return LocalRedirect(returnUrl);
+        }
+
+        public IActionResult Index()
 		{
 			return View();
 		}
