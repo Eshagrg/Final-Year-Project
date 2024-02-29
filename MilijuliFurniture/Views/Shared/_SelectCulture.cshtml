@@ -42,13 +42,15 @@
     }
 </style>
 
-<form id="selectLanguage" asp-controller="Home"
+<form id="selectLanguage" asp-controller="Admin"
       asp-action="SetCulture" asp-route-culture="@currentCulture" asp-route-returnUrl="@responseUrl"
       method="POST" role="form">
     <li class="dropdown">
         <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle dropdown-toggle-lang nav-link-lg nav-link-user">
             @currentCulture
         </a>
+        <input type="hidden" id="selectedCulture" name="selectedCulture" />
+
 
         <div class="dropdown-menu dropdown-menu-lang dropdown-menu-right">
             @foreach (var item in cultureItems)
@@ -66,3 +68,12 @@
         </div>
     </li>
 </form>
+<script>
+    function cultureSwitch(newCulture, currentCulture) {
+        // Update a hidden input field with the new culture
+        document.getElementById('selectedCulture').value = newCulture;
+
+        // Submit the form
+        document.getElementById('selectLanguage').submit();
+    }
+</script>
