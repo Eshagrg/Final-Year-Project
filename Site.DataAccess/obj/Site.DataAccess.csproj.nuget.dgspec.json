@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rumrail\\source\\repos\\MilijuliFurniture\\Site.DataAccess\\Site.DataAccess.csproj": {}
+    "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\Site.DataAccess\\Site.DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rumrail\\source\\repos\\MilijuliFurniture\\Site.DataAccess\\Site.DataAccess.csproj": {
+    "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\Site.DataAccess\\Site.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rumrail\\source\\repos\\MilijuliFurniture\\Site.DataAccess\\Site.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\Site.DataAccess\\Site.DataAccess.csproj",
         "projectName": "Site.DataAccess",
-        "projectPath": "C:\\Users\\Rumrail\\source\\repos\\MilijuliFurniture\\Site.DataAccess\\Site.DataAccess.csproj",
+        "projectPath": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\Site.DataAccess\\Site.DataAccess.csproj",
         "packagesPath": "C:\\Users\\Rumrail\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rumrail\\source\\repos\\MilijuliFurniture\\Site.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\Site.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,6 +44,20 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.28, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
