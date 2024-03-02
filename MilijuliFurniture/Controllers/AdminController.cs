@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Site.DataAccess.Domain;
@@ -7,6 +8,7 @@ using System.Text;
 
 namespace MilijuliFurniture.Controllers
 {
+    [Authorize(Policy = "MustBelongToAdminStaff")]
     public class AdminController : Controller
     {
         private readonly IUserAuth _userAuth;
@@ -85,14 +87,48 @@ namespace MilijuliFurniture.Controllers
             }
             else
             {
+                //string folder = "wwwroot/uploadfiles/";
+                //string fileurl = "/uploadfiles/";
+                //string guid = Guid.NewGuid().ToString();
+                //fileurl += guid + "staff.png";
+                //folder += guid + "staff.png";
+                //string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
+
+                //obj.UploadImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+                //AddStaff vm = new AddStaff();
+                //vm.FullName = obj.FullName;
+                //vm.PhoneNo = obj.PhoneNo;
+                //vm.Email = obj.Email;
+                //vm.Password = EncryptPassword(obj.Password);
+                //vm.UploadImage = fileurl;
+                //string output = _userAuth.SaveStaffData(vm);
+                //if (output == "SUCCESS")
+                //{
+                //    return RedirectToAction("StaffIndex");
+                //}
                 string folder = "wwwroot/uploadfiles/";
                 string fileurl = "/uploadfiles/";
                 string guid = Guid.NewGuid().ToString();
-                fileurl += guid + "staff.png";
-                folder += guid + "staff.png";
-                string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
+                string output = "";
 
-                //obj.UploadImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                if (obj.UploadImage != null && obj.UploadImage.Length > 0)
+                {
+                    // If obj.UploadImage is not null and has data, proceed with uploading the image
+                    fileurl += guid + "staff.png";
+                    folder += guid + "staff.png";
+                    string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
+
+                    using (var fileStream = new FileStream(serverFolder, FileMode.Create))
+                    {
+                        obj.UploadImage.CopyToAsync(fileStream);
+                    }
+                }
+                else
+                {
+                    // If obj.UploadImage is null or empty, upload a default image instead
+                    fileurl += "staff.png";
+                }
 
                 AddStaff vm = new AddStaff();
                 vm.FullName = obj.FullName;
@@ -100,11 +136,14 @@ namespace MilijuliFurniture.Controllers
                 vm.Email = obj.Email;
                 vm.Password = EncryptPassword(obj.Password);
                 vm.UploadImage = fileurl;
-                string output = _userAuth.SaveStaffData(vm);
+
+                output = _userAuth.SaveStaffData(vm);
+
                 if (output == "SUCCESS")
                 {
                     return RedirectToAction("StaffIndex");
                 }
+
             }
             return View();
         }
