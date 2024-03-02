@@ -121,21 +121,6 @@
                                                 <span class="btn-group">
                                                     <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white" hidden>View</a>
                                                 </span>
-                                            }
-                                            else
-                                            {
-                                                <span class="btn-group">
-                                                    <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white">View</a>
-                                                </span>
-                                            }
-                                            @*  <span class="btn-group">
-                                        <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white">View</a>
-                                        </span>*@
-
-                                        </td>
-                                        <td scope="col">
-                                            @if (item.RoleName == "Staff" && @User.FindFirst("Role").Value == "Staff")
-                                            {
                                                 <span class="btn-group">
                                                     <a asp-controller="Admin" asp-action="UpdateStaff" asp-route-id=@item.Id class="btn btn-primary text-white" hidden>View</a>
                                                 </span>
@@ -143,10 +128,18 @@
                                             else
                                             {
                                                 <span class="btn-group">
+                                                    <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white">View</a>
+                                                </span>
+                                                <span class="btn-group">
                                                     <a asp-controller="Admin" asp-action="Updatestaff" asp-route-id=@item.Id class="btn btn-primary text-white">View</a>
                                                 </span>
                                             }
+                                            @*  <span class="btn-group">
+                                        <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white">View</a>
+                                        </span>*@
+
                                         </td>
+                                   
                                         <td scope="col">
 
                                             <span class="btn-group">
