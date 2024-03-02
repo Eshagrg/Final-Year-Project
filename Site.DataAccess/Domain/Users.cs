@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Site.DataAccess.Domain
 {
@@ -47,12 +48,26 @@ namespace Site.DataAccess.Domain
         public string Email { get; set; }
         [Required]
         public string PhoneNo { get; set; }
+        public IFormFile UploadImage { get; set; }
         [Required]
         public string Password { get; set; }
         [Required]
         public string ConfirmPassword { get; set; }
     }
-
+    public class AddStaff
+    {
+        
+        public string FullName { get; set; }
+    
+        public string Email { get; set; }
+   
+        public string PhoneNo { get; set; }
+        public string UploadImage { get; set; }
+      
+        public string Password { get; set; }
+        
+        public string ConfirmPassword { get; set; }
+    }
     public class AddMember_VM
     {
         [Required]
@@ -84,5 +99,8 @@ namespace Site.DataAccess.Domain
         public string PhoneNo { get; set; }
         public string RoleName { get; set; }
         public bool Status { get; set; }
+
+        public string UploadImage { get; set; }
+
     }
 }

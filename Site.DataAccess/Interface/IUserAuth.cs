@@ -16,10 +16,11 @@ namespace Site.DataAccess.Interface
         string SaveUserData(Save_PortalUser obj);
         IEnumerable<Portal_User> GetUserList();
         Portal_User GetUserDetail(int id);
-
+        Portal_User GetStaffDetailsById(int id);
+        string UpdateStaffDetail(Portal_User obj);
         string VerifyUserDetail(int id);
         string DisableUserDetail(int id);
-        string SaveStaffData(AddStaff_VM obj);
+        string SaveStaffData(AddStaff obj);
 
 
         IEnumerable<Portal_User> GetMemberList();

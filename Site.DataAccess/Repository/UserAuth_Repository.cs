@@ -183,7 +183,7 @@ namespace Site.DataAccess.Repository
             }
         }
 
-        public string SaveStaffData(AddStaff_VM obj)
+        public string SaveStaffData(AddStaff obj)
         {
             try
             {
@@ -195,6 +195,7 @@ namespace Site.DataAccess.Repository
                     param.Add("@Password", obj.Password);
                     param.Add("@PhoneNo", obj.PhoneNo);
                     param.Add("@RoleId", 2);
+                    param.Add("@UploadFile", obj.UploadImage);
                     string output = conn.ExecuteScalar<string>("USP_SaveStaffDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
@@ -297,6 +298,44 @@ namespace Site.DataAccess.Repository
             {
                 throw;
 
+            }
+        }
+
+        public Portal_User GetStaffDetailsById(int id)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@Id", id);
+                    Portal_User output = conn.QueryFirstOrDefault<Portal_User>("USP_GetStaffDetailById", param, commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public string UpdateStaffDetail(Portal_User obj)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@FullName", obj.FullName);
+                    param.Add("@Email", obj.Email);
+                    param.Add("@PhoneNo", obj.PhoneNo);
+                    string output = conn.ExecuteScalar<string>("USP_UpdateStaffDetails", param, commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }

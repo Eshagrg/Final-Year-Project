@@ -18781,6 +18781,14 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\ebc1a239-8bb0-4f62-bd19-c2241da643c0staff.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\ebc1a239-8bb0-4f62-bd19-c2241da643c0staff.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\staff.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\staff.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\base\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\vendors\\base\\bootstrap.min.js.map"
     },

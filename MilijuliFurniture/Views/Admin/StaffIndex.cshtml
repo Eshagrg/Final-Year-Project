@@ -67,6 +67,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">Full Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Phone No</th>
@@ -85,16 +86,31 @@
                                 {
                                     <tr>
                                         <td scope="col">@sn</td>
+                                        <td><img alt="image" src="@item.UploadImage" class="img-fluid"></td>
                                         <td scope="col">@item.FullName</td>
                                         <td scope="col">@item.Email</td>
                                         <td scope="col">@item.PhoneNo</td>
-                                        @if (@item.Status == true)
+                                        @if (item.RoleName == "Staff" && @User.FindFirst("Role").Value == "Staff")
                                         {
-                                            <td scope="col"><span class="badge badge-success">Active</span></td>
+                                            @if (@item.Status == true)
+                                            {
+                                                <td scope="col"><span class="badge badge-success">Active</span></td>
+                                            }
+                                            else
+                                            {
+                                                <td scope="col"><span class="badge badge-danger">InActive</span></td>
+                                            }
                                         }
                                         else
                                         {
-                                            <td scope="col"><span class="badge badge-danger">InActive</span></td>
+                                            @if (@item.Status == true)
+                                            {
+                                                <td scope="col" contenteditable="false"><span class="badge badge-success">Active</span></td>
+                                            }
+                                            else
+                                            {
+                                                <td scope="col" contenteditable="false"><span class="badge badge-danger">InActive</span></td>
+                                            }
                                         }
 
                                         <td scope="col">@item.RoleName</td>
@@ -116,6 +132,20 @@
                                         <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white">View</a>
                                         </span>*@
 
+                                        </td>
+                                        <td scope="col">
+                                            @if (item.RoleName == "Staff" && @User.FindFirst("Role").Value == "Staff")
+                                            {
+                                                <span class="btn-group">
+                                                    <a asp-controller="Admin" asp-action="UpdateStaff" asp-route-id=@item.Id class="btn btn-primary text-white" hidden>View</a>
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="btn-group">
+                                                    <a asp-controller="Admin" asp-action="Updatestaff" asp-route-id=@item.Id class="btn btn-primary text-white">View</a>
+                                                </span>
+                                            }
                                         </td>
                                         <td scope="col">
 

@@ -38,7 +38,10 @@
                                 <label>Confirm Passowrd</label>
                                 <input type="password" asp-for="ConfirmPassword" class="form-control" required>
                             </div>
-
+                            <div class="form-group">
+                                <label>Upload Image</label>
+                                <input asp-for="UploadImage" class="form-control" required>
+                            </div>
                             <div class="card-footer">
                                 <a asp-controller="Admin" asp-action="UserIndex" class="btn btn-primary text-white">Back to List</a>
                                 <button type="submit" class="btn btn-primary text-white">Add Staff</button>

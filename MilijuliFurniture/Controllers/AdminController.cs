@@ -47,27 +47,104 @@ namespace MilijuliFurniture.Controllers
 
         public IActionResult AddStaff()
         {
-            AddStaff_VM obj = new AddStaff_VM();
+            return View(new AddStaff_VM());
+        }
+
+            public IActionResult ViewUserDetail(int id)
+        {
+            Portal_User obj = _userAuth.GetUserDetail(id);
             return View(obj);
         }
 
         [HttpPost]
         public IActionResult AddStaff(AddStaff_VM obj)
         {
-
-            AddStaff_VM vm = new AddStaff_VM();
-            vm.FullName = obj.FullName;
-            vm.PhoneNo = obj.PhoneNo;
-            vm.Email = obj.Email;
-            vm.Password = EncryptPassword(obj.Password);
-            string output = _userAuth.SaveStaffData(vm);
-            if (output == "SUCCESS")
+            if (obj.UploadImage != null)
             {
-                return RedirectToAction("UserIndex");
+                //Upload File
+                string folder = "wwwroot/uploadfiles/";
+                string fileurl = "/uploadfiles/";
+                string guid = Guid.NewGuid().ToString();
+                fileurl += guid + obj.UploadImage.FileName;
+                folder += guid + obj.UploadImage.FileName;
+                string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
+
+                obj.UploadImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+                AddStaff vm = new AddStaff();
+                vm.FullName = obj.FullName;
+                vm.PhoneNo = obj.PhoneNo;
+                vm.Email = obj.Email;
+                vm.Password = EncryptPassword(obj.Password);
+                vm.UploadImage = fileurl;
+                string output = _userAuth.SaveStaffData(vm);
+                if (output == "SUCCESS")
+                {
+                    return RedirectToAction("StaffIndex");
+                }
+            }
+            else
+            {
+                string folder = "wwwroot/uploadfiles/";
+                string fileurl = "/uploadfiles/";
+                string guid = Guid.NewGuid().ToString();
+                fileurl += guid + "staff.png";
+                folder += guid + "staff.png";
+                string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
+
+                //obj.UploadImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+                AddStaff vm = new AddStaff();
+                vm.FullName = obj.FullName;
+                vm.PhoneNo = obj.PhoneNo;
+                vm.Email = obj.Email;
+                vm.Password = EncryptPassword(obj.Password);
+                vm.UploadImage = fileurl;
+                string output = _userAuth.SaveStaffData(vm);
+                if (output == "SUCCESS")
+                {
+                    return RedirectToAction("StaffIndex");
+                }
             }
             return View();
         }
 
+        public IActionResult UpdateStaff(int id)
+        {
+            Portal_User obj = _userAuth.GetStaffDetailsById(id);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UpdateStaff(Portal_User obj)
+        {
+            string output = _userAuth.UpdateStaffDetail(obj);
+            if (output == "SUCCESS")
+            {
+                return RedirectToAction("StaffIndex");
+            }
+            return View();
+        }
+
+        public IActionResult VerifyUserDetail(int id)
+        {
+            string output = _userAuth.VerifyUserDetail(id);
+            if (output == "SUCCESS")
+            {
+                return RedirectToAction("StaffIndex");
+            }
+            return View();
+        }
+
+        public IActionResult DisableUserDetail(int id)
+        {
+            string output = _userAuth.DisableUserDetail(id);
+            if (output == "SUCCESS")
+            {
+                return RedirectToAction("StaffIndex");
+            }
+            return View();
+        }
         public static string EncryptPassword(string password)
         {
             if (string.IsNullOrEmpty(password))
