@@ -22,7 +22,9 @@ namespace Site.DataAccess.Interface
         string DisableUserDetail(int id);
         string SaveStaffData(AddStaff obj);
 
+        string GetUserHashedPassword(int userid);
 
+        bool UpdateUserPassword(int userid, string newHashedPassword);
         IEnumerable<Portal_User> GetMemberList();
         Portal_User GetMemberDetail(int id);
 

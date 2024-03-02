@@ -339,5 +339,37 @@ namespace Site.DataAccess.Repository
                 throw;
             }
         }
+
+        public string GetUserHashedPassword(int userid)
+        {
+            using (var conn = new SqlConnection(_connection.DbConnection))
+            {
+                conn.Open();
+
+                string query = "SELECT User_Password FROM Portal_Users WHERE Id = @Id";
+                return conn.ExecuteScalar<string>(query, new { Id = userid });
+            }
+        }
+
+        public bool UpdateUserPassword(int userid, string newHashedPassword)
+        {
+            using (var connection = new SqlConnection(_connection.DbConnection))
+            {
+                connection.Open();
+
+                var parameters = new
+                {
+                    ProfileId = userid,
+                    NewHashedPassword = newHashedPassword
+                };
+
+                // Call the stored procedure using Dapper's Execute method
+                int rowsAffected = connection.Execute("dbo.USP_UpdateUserPassword", parameters, commandType: CommandType.StoredProcedure);
+
+                // Check if the update was successful
+                return rowsAffected > 0;
+            }
+        }
+
     }
 }

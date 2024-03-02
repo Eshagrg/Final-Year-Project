@@ -159,5 +159,54 @@ namespace MilijuliFurniture.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+        //Change Password Featre
+
+        [HttpPost]
+        public IActionResult ChangePassword(int userId, string newPassword, string confirmNewPassword)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                // Retrieve the user's hashed password from the database using the userId
+                string hashedPassword = _userAuth.GetUserHashedPassword(userId);
+
+                // Validate the new password and confirm new password
+                if (newPassword == confirmNewPassword)
+                {
+                    // Hash the new password before storing it in the database
+                    string newHashedPassword = EncryptPassword(newPassword);
+
+                    // Call the repository method to update the user's password
+                    bool success = _userAuth.UpdateUserPassword(userId, newHashedPassword);
+
+                    if (success)
+                    {
+                        _toastNotificationHero.Success("Pssword Succesfully Changed");
+                        // Password changed successfully
+                        return Json(new { success = true, message = "Password changed successfully." });
+                    }
+                    else
+                    {
+                        _toastNotificationHero.Error("Failed to change password. Please try again.");
+                        return Json(new { success = false, message = "Failed to change password. Please try again." });
+                    }
+                }
+                else
+                {
+                    _toastNotificationHero.Information("New password and confirm password do not match.");
+                    return Json(new { success = false, message = "New password and confirm password do not match." });
+                }
+            }
+            else
+            {
+                // Unauthorized access or not an admin
+                return Json(new { success = false, message = "Unauthorized access." });
+            }
+        }
+
     }
 }
