@@ -326,6 +326,7 @@ namespace Site.DataAccess.Repository
                 using (var conn = new SqlConnection(_connection.DbConnection))
                 {
                     DynamicParameters param = new DynamicParameters();
+                    param.Add("@Id", obj.Id);
                     param.Add("@FullName", obj.FullName);
                     param.Add("@Email", obj.Email);
                     param.Add("@PhoneNo", obj.PhoneNo);

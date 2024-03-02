@@ -112,7 +112,7 @@ namespace MilijuliFurniture.Controllers
         public IActionResult UpdateStaff(int id)
         {
             Portal_User obj = _userAuth.GetStaffDetailsById(id);
-            return View();
+            return View(obj);
         }
 
         [HttpPost]
