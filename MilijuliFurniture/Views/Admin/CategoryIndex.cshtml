@@ -16,7 +16,7 @@
                 <form id="changePasswordForm">
                     <div class="form-group">
                         <label for="newPassword">New Category:</label>
-                        <input type="password" id="newPassword" name="newPassword" class="form-control" required>
+                        <input type="text" id="newPassword" name="newPassword" class="form-control" required>
                     </div>
                 @*     <div class="form-group">
                         <label for="confirmNewPassword">Confirm New Password:</label>
@@ -132,7 +132,6 @@
 @section Script {
     <script>
         function openChangePasswordModal(){
-            console.log("hello")
             // Show the change password modal
             $('#changePasswordModal').modal('show');
         }
@@ -143,7 +142,7 @@
 
             // Get the form data
             var formData = {
-                newPassword: $('#newPassword').val(),
+                categoryname: $('#newPassword').val(),
             };
             // Send the form data to the server using AJAX
             $.ajax({
