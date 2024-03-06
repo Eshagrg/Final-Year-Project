@@ -2,11 +2,17 @@
 @{
     Layout = "AdminLayout/_AdminLoginLayout";
 }
+<style>
+    .login-brand img {
+        max-width: 300px;
+        max-height: 150px;
+    }
+</style>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+        <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 ">
             <div class="login-brand">
-                Library Management System
+                <img src="~/img/logomilijuli.png" alt="Milijuli Furniture Logo">@*  Milijuli Furniture *@
             </div>
 
             <div class="card card-primary">
@@ -26,7 +32,7 @@
                             <div class="d-block">
                                 <label for="password" class="control-label">Password</label>
                                 <div class="float-right">
-                                    <a asp-controller="User" asp-action="Signup">Signup</a>
+                                    @* <a asp-controller="User" asp-action="Signup">Signup</a> *@
                                 </div>
                             </div>
                             <input id="password" asp-for="Password" type="password" class="form-control" name="password" tabindex="2" required>
@@ -50,7 +56,7 @@
             </div>
 
             <div class="simple-footer">
-                Copyright &copy; Libraray Management System
+                Copyright &copy; Esha Gurung
             </div>
         </div>
     </div>

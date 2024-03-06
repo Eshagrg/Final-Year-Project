@@ -18549,6 +18549,14 @@
       "PackagePath": "staticwebassets\\img\\flag\\usa-flag.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\logomilijuli.png",
+      "PackagePath": "staticwebassets\\img\\logomilijuli.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\milijuliLogo.png",
+      "PackagePath": "staticwebassets\\img\\milijuliLogo.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
