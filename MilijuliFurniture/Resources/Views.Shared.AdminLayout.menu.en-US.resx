@@ -123,6 +123,9 @@
   <data name="Applied Vacancy" xml:space="preserve">
     <value>आवेदन गरिएको रिक्तता</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>श्रेणी</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>ड्यासबोर्ड</value>
   </data>

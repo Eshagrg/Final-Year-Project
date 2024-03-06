@@ -123,6 +123,9 @@
   <data name="Applied Vacancy" xml:space="preserve">
     <value>Applied Vacancy</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>

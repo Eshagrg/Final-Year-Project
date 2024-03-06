@@ -19,19 +19,19 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Full Name</label>
-                            <input asp-for="FullName" class="form-control">
+                            <input asp-for="FullName" class="form-control"readonly>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input asp-for="Email" class="form-control">
+                            <input asp-for="Email" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <input asp-for="PhoneNo" class="form-control">
+                            <input asp-for="PhoneNo" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <label>User Type</label>
-                            <input asp-for="RoleName" class="form-control">
+                            <input asp-for="RoleName" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                  
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a asp-controller="Admin" asp-action="UserIndex" class="btn btn-primary text-white">Back to List</a>
+                        <a asp-controller="Admin" asp-action="StaffIndex" class="btn btn-primary text-white">Back to List</a>
                         @if (Model.Status)
                         {
                             <a asp-controller="Admin" asp-action="DisableUserDetail" asp-route-id="@Model.Id" class="btn btn-primary text-white">Disable</a>

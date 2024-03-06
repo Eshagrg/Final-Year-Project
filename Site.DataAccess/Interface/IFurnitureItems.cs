@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Site.DataAccess.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace Site.DataAccess.Interface
 {
 	public interface IFurnitureItems
 	{
-	}
+        IEnumerable<Category> GetCategorylist();
+
+        bool AddCategory(string categoryName,string createdBy);
+    }
 }

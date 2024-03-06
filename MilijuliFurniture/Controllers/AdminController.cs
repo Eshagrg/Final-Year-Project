@@ -87,26 +87,7 @@ namespace MilijuliFurniture.Controllers
             }
             else
             {
-                //string folder = "wwwroot/uploadfiles/";
-                //string fileurl = "/uploadfiles/";
-                //string guid = Guid.NewGuid().ToString();
-                //fileurl += guid + "staff.png";
-                //folder += guid + "staff.png";
-                //string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
-
-                //obj.UploadImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-
-                //AddStaff vm = new AddStaff();
-                //vm.FullName = obj.FullName;
-                //vm.PhoneNo = obj.PhoneNo;
-                //vm.Email = obj.Email;
-                //vm.Password = EncryptPassword(obj.Password);
-                //vm.UploadImage = fileurl;
-                //string output = _userAuth.SaveStaffData(vm);
-                //if (output == "SUCCESS")
-                //{
-                //    return RedirectToAction("StaffIndex");
-                //}
+                
                 string folder = "wwwroot/uploadfiles/";
                 string fileurl = "/uploadfiles/";
                 string guid = Guid.NewGuid().ToString();
@@ -203,7 +184,7 @@ namespace MilijuliFurniture.Controllers
         {
             return View();
         }
-        //Change Password Featre
+        //Change Password Feature
 
         [HttpPost]
         public IActionResult ChangePassword(int userId, string newPassword, string confirmNewPassword)
@@ -245,6 +226,43 @@ namespace MilijuliFurniture.Controllers
                 // Unauthorized access or not an admin
                 return Json(new { success = false, message = "Unauthorized access." });
             }
+        }
+
+
+        //Category and Product
+
+        public IActionResult CategoryIndex()
+        {
+            IEnumerable<Category> obj = _furnitureItems.GetCategorylist();
+            return View(obj);
+        }
+
+        [HttpPost]
+        public IActionResult AddCategory(string categoryname)
+        {
+            if(categoryname != "")
+            {
+                string creadtedBy = User.Identity.Name;
+                bool success = _furnitureItems.AddCategory(categoryname,creadtedBy);
+                if (success)
+                {
+                    _toastNotificationHero.Success("Category Added Succesfully");
+                    // Password changed successfully
+                    return Json(new { success = true, message = "Password changed successfully." });
+                }
+                else
+                {
+                    _toastNotificationHero.Error("Failed to change password. Please try again.");
+                    return Json(new { success = false, message = "Failed to change password. Please try again." });
+                }
+            }
+            else
+            {
+
+                _toastNotificationHero.Error("Failed to add category. Please try again.");
+                return Json(new { success = false, message = "Failed to change password. Please try again." });
+            }
+         
         }
 
     }
