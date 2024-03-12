@@ -272,8 +272,7 @@ namespace MilijuliFurniture.Controllers
             string output = _furnitureItems.UpdateCategoryDetail(obj,id);
             if (output == "SUCCESS")
             {
-                _toastNotificationHero.Success("Category Updated Succesfully");
-                return View();
+                return RedirectToAction("CategoryIndex");
             }
             return View();
         }
