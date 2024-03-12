@@ -76,16 +76,15 @@ namespace Site.DataAccess.Repository
             }
         }
 
-        public string UpdateCategoryDetail(Category obj)
+        public string UpdateCategoryDetail(string obj, int id)
         {
             try
             {
                 using (var conn = new SqlConnection(_connection.DbConnection))
                 {
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@Id", obj.Id);
-                    param.Add("@CategoryName", obj.Name);
-                    param.Add("@Status", obj.Status);
+                    param.Add("@Id", id);
+                    param.Add("@CategoryName", obj);
                     string output = conn.ExecuteScalar<string>("USP_UpdateCategoryDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }

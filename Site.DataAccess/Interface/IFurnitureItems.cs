@@ -13,7 +13,7 @@ namespace Site.DataAccess.Interface
 
         bool AddCategory(string categoryName,string createdBy);
 
-        string UpdateCategoryDetail(Category obj);
+        string UpdateCategoryDetail(string obj,int id);
         string DeleteCategoryDetail(int id);
     }
 }

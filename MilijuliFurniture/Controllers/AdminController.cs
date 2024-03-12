@@ -267,12 +267,13 @@ namespace MilijuliFurniture.Controllers
 
 
         [HttpPost]
-        public IActionResult UpdateCategory(Category obj)
+        public IActionResult UpdateCategory(string obj,int id)
         {
-            string output = _furnitureItems.UpdateCategoryDetail(obj);
+            string output = _furnitureItems.UpdateCategoryDetail(obj,id);
             if (output == "SUCCESS")
             {
-                return RedirectToAction("CategoryIndex");
+                _toastNotificationHero.Success("Category Updated Succesfully");
+                return View();
             }
             return View();
         }
