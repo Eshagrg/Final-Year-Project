@@ -267,7 +267,7 @@ namespace MilijuliFurniture.Controllers
 
 
         [HttpPost]
-        public IActionResult UpdateCar(Category obj)
+        public IActionResult UpdateCategory(Category obj)
         {
             string output = _furnitureItems.UpdateCategoryDetail(obj);
             if (output == "SUCCESS")
@@ -277,7 +277,7 @@ namespace MilijuliFurniture.Controllers
             return View();
         }
 
-        public IActionResult DeleteCar(int id)
+        public IActionResult DeleteCategory(int id)
         {
             string output = _furnitureItems.DeleteCategoryDetail(id);
             if (output == "SUCCESS")

@@ -50,7 +50,7 @@ namespace Site.DataAccess.Repository
                 {
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@Id", id);
-                    string output = conn.ExecuteScalar<string>("USP_DeleteCatrgoryDetails", param, commandType: CommandType.StoredProcedure);
+                    string output = conn.ExecuteScalar<string>("USP_DeleteCategoryDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
             }
