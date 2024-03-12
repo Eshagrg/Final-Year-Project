@@ -265,5 +265,28 @@ namespace MilijuliFurniture.Controllers
          
         }
 
+
+        [HttpPost]
+        public IActionResult UpdateCar(Category obj)
+        {
+            string output = _furnitureItems.UpdateCategoryDetail(obj);
+            if (output == "SUCCESS")
+            {
+                return RedirectToAction("CategoryIndex");
+            }
+            return View();
+        }
+
+        public IActionResult DeleteCar(int id)
+        {
+            string output = _furnitureItems.DeleteCategoryDetail(id);
+            if (output == "SUCCESS")
+            {
+                return RedirectToAction("CategoryIndex");
+            }
+            return RedirectToAction("CategoryIndex");
+        }
+
+
     }
 }

@@ -12,5 +12,8 @@ namespace Site.DataAccess.Interface
         IEnumerable<Category> GetCategorylist();
 
         bool AddCategory(string categoryName,string createdBy);
+
+        string UpdateCategoryDetail(Category obj);
+        string DeleteCategoryDetail(int id);
     }
 }

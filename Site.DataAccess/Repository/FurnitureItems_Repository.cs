@@ -42,6 +42,24 @@ namespace Site.DataAccess.Repository
             }
         }
 
+        public string DeleteCategoryDetail(int id)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@Id", id);
+                    string output = conn.ExecuteScalar<string>("USP_DeleteCatrgoryDetails", param, commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public IEnumerable<Category> GetCategorylist()
         {
             try
@@ -49,6 +67,26 @@ namespace Site.DataAccess.Repository
                 using (var conn = new SqlConnection(_connection.DbConnection))
                 {
                     IEnumerable<Category> output = conn.Query<Category>("USP_GetCategoryList", commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public string UpdateCategoryDetail(Category obj)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@Id", obj.Id);
+                    param.Add("@CategoryName", obj.Name);
+                    param.Add("@Status", obj.Status);
+                    string output = conn.ExecuteScalar<string>("USP_UpdateCategoryDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
             }
