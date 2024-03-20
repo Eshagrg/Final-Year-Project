@@ -1,0 +1,231 @@
+﻿@model IEnumerable<Site.DataAccess.Domain.Product_VM>;
+@{
+    Layout = "AdminLayout/_AdminLayout";
+
+}
+
+
+<section class="section">
+    <div class="section-header">
+        <h1>Add Product</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+            <div class="breadcrumb-item">Products</div>
+        </div>
+    </div>
+
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+
+                        @if (@User.FindFirst("Role").Value == "Staff")
+                        {
+                            <a asp-controller="Admin" asp-action="AddProduct" class="btn btn-primary text-white" hidden>Add Product</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Admin" asp-action="AddProduct" class="btn btn-primary text-white">Add Product</a>
+                        }
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="display table" id="example">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int sn = 1;
+                                }
+
+                                @foreach (var @item in Model)
+                                {
+                                    <tr>
+                                        <td scope="col">@sn</td>
+                                        <td scope="col" style="max-width:10px; max-height: 10px;"><img alt="image" src="@item.UploadImage" class="img-fluid"></td>
+
+                                        <td scope="col">@item.Price</td>
+
+                                        @if (@User.FindFirst("Role").Value == "Staff")
+                                        {
+                                            @if (@item.Status == true)
+                                            {
+                                                <td scope="col"><span class="badge badge-success">Active</span></td>
+                                            }
+                                            else
+                                            {
+                                                <td scope="col"><span class="badge badge-danger">InActive</span></td>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            @if (@item.Status == true)
+                                            {
+                                                <td scope="col" contenteditable="false"><span class="badge badge-success">Active</span></td>
+                                            }
+                                            else
+                                            {
+                                                <td scope="col" contenteditable="false"><span class="badge badge-danger">InActive</span></td>
+                                            }
+                                        }
+
+
+                                        <td scope="col">
+                                            @if (@User.FindFirst("Role").Value == "Staff")
+                                            {
+                                                <span class="btn-group">
+                                                    <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white" hidden>View</a>
+                                                </span>
+                                                <span class="btn-group">
+                                                    <a asp-controller="Admin" asp-action="UpdateStaff" asp-route-id=@item.Id class="btn btn-primary text-white" hidden>Update</a>
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="btn-group">
+                                                    <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white">View</a>
+                                                </span>
+                                                <span class="btn-group">
+                                                    <a asp-controller="Admin" asp-action="Updatestaff" asp-route-id=@item.Id class="btn btn-primary text-white">Update</a>
+                                                </span>
+                                            }
+                                           
+
+                                        </td>
+
+                                       
+                                    </tr>
+                                    sn++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Script {
+    <script>
+        function openChangePasswordModal(userId, userName, email) {
+            // Set the user ID and name in the respective spans of the modal
+            $('#userId').val(userId);
+            $('#userIdDisplay').text(userId);
+            $('#userNameDisplay').text(userName);
+            $('#userEmailDisplay').text(email)
+
+            // Show the change password modal
+            $('#changePasswordModal').modal('show');
+        }
+
+        // Submit the form within the modal using AJAX
+        $('#changePasswordForm').submit(function (e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+
+            // Get the form data
+            var formData = {
+                userId: $('#userId').val(),
+                newPassword: $('#newPassword').val(),
+                confirmNewPassword: $('#confirmNewPassword').val()
+            };
+
+            // Check if the new password and confirm new password match
+            if (formData.newPassword !== formData.confirmNewPassword) {
+                alert('New password and Confirm new password do not match. Please try again.');
+                return;
+            }
+
+            // Send the form data to the server using AJAX
+            $.ajax({
+                url: '/Admin/ChangePassword', // Update the URL to match the correct controller action
+                method: 'POST',
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        alert('Password changed successfully!');
+                        // Close the modal after successful password change
+                        $('#changePasswordModal').modal('hide');
+                    } else {
+                        alert('Failed to change password. Please check your current password.');
+                    }
+                },
+                error: function () {
+                    alert('An error occurred while changing password. Please try again later.');
+                }
+            });
+        });
+
+        $(function () {
+            $('#example thead tr')
+                //.clone(true)
+                .addClass('filters')
+                .appendTo('#example thead');
+
+            var table = $('#example').DataTable({
+                scrollX: false,
+                orderCellsTop: true,
+                fixedHeader: true,
+                initComplete: function () {
+                    var api = this.api();
+
+                    // For each column
+                    api
+                        .columns()
+                        .eq(0)
+                        .each(function (colIdx) {
+                            // Set the header cell to contain the input element
+                            var cell = $('.filters th').eq(
+                                $(api.column(colIdx).header()).index()
+                            );
+                            var title = $(cell).text();
+                            $(cell).html('<input type="text" placeholder="' + title + '" />');
+
+                            // On every keypress in this input
+                            $(
+                                'input',
+                                $('.filters th').eq($(api.column(colIdx).header()).index())
+                            )
+                                .off('keyup change')
+                                .on('change', function (e) {
+                                    // Get the search value
+                                    $(this).attr('title', $(this).val());
+                                    var regexr = '({search})'; //$(this).parents('th').find('select').val();
+
+                                    var cursorPosition = this.selectionStart;
+                                    // Search the column for that value
+                                    api
+                                        .column(colIdx)
+                                        .search(
+                                            this.value != ''
+                                                ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                                : '',
+                                            this.value != '',
+                                            this.value == ''
+                                        )
+                                        .draw();
+                                })
+                                .on('keyup', function (e) {
+                                    e.stopPropagation();
+
+                                    $(this).trigger('change');
+                                    $(this)
+                                        .focus()[0]
+                                        .setSelectionRange(cursorPosition, cursorPosition);
+                                });
+                        });
+                },
+            });
+        })
+    </script>
+
+}

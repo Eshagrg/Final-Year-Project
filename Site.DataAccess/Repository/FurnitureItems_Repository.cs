@@ -42,6 +42,7 @@ namespace Site.DataAccess.Repository
             }
         }
 
+
         public string DeleteCategoryDetail(int id)
         {
             try
@@ -60,6 +61,8 @@ namespace Site.DataAccess.Repository
             }
         }
 
+      
+
         public IEnumerable<Category> GetCategorylist()
         {
             try
@@ -67,6 +70,38 @@ namespace Site.DataAccess.Repository
                 using (var conn = new SqlConnection(_connection.DbConnection))
                 {
                     IEnumerable<Category> output = conn.Query<Category>("USP_GetCategoryList", commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        //public IEnumerable<Product_VM> GetCategorylistDropDown()
+        //{
+        //    try
+        //    {
+        //        using (var conn = new SqlConnection(_connection.DbConnection))
+        //        {
+        //            IEnumerable<Product_VM> output = conn.Query<Product_VM>("USP_GetCategoryList", commandType: CommandType.StoredProcedure);
+        //            return output;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        public IEnumerable<Product> GetProductlist()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    IEnumerable<Product> output = conn.Query<Product>("USP_GetProductList", commandType: CommandType.StoredProcedure);
                     return output;
                 }
             }
@@ -93,6 +128,20 @@ namespace Site.DataAccess.Repository
             {
                 throw;
             }
+        }
+
+
+        public bool AddProducty(string categoryName, string createdBy)
+        {
+            throw new NotImplementedException();
+        }
+        public string UpdateProductDetail(string obj, int id)
+        {
+            throw new NotImplementedException();
+        }
+        public string DeleteProductDetail(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

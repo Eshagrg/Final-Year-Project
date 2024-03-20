@@ -1,9 +1,11 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Site.DataAccess.Domain;
 using Site.DataAccess.Interface;
+using System.Linq;
 using System.Text;
 
 namespace MilijuliFurniture.Controllers
@@ -287,6 +289,19 @@ namespace MilijuliFurniture.Controllers
             return RedirectToAction("CategoryIndex");
         }
 
+        public IActionResult ProductIndex()
+        {
+            IEnumerable<Product> obj = _furnitureItems.GetProductlist();
+            return View(obj);
+        }
+        public IActionResult AddProduct()
+        {
+            // Retrieve categories from the database
+            List<Category> categories = _furnitureItems.GetCategorylist().ToList();
 
+            // Pass categories to the view
+            ViewBag.ListOfCategory = categories;
+            return View(new Product_VM());
+        }
     }
 }
