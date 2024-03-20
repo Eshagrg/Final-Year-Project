@@ -158,7 +158,20 @@ namespace Site.DataAccess.Repository
         }
         public string DeleteProductDetail(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@Id", id);
+                    string output = conn.ExecuteScalar<string>("USP_DeleteProductDetails", param, commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

@@ -376,5 +376,15 @@ namespace MilijuliFurniture.Controllers
             }
             return View();
         }
+
+        public IActionResult DeleteProduct(int id)
+        {
+            string output = _furnitureItems.DeleteProductDetail(id);
+            if (output == "SUCCESS")
+            {
+                return RedirectToAction("ProductIndex");
+            }
+            return RedirectToAction("ProductIndex");
+        }
     }
 }
