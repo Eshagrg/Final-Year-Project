@@ -19,8 +19,8 @@
                     <div class="card-body">
                         <form method="post" class="needs-validation" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label>Category</label>
-                                <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(@ViewBag.ListofCategory,"CategoryId","CategoryName"))"></select>
+                                <label asp-for="CategoryName">Category</label>
+                                <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfCategory,"Id","Name"))"></select>
                             </div>
                             <div class="form-group">
                                 <label>Full Name</label>

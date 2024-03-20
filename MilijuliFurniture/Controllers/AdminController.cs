@@ -3,6 +3,7 @@ using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Site.DataAccess.Domain;
 using Site.DataAccess.Interface;
 using System.Linq;
@@ -297,11 +298,14 @@ namespace MilijuliFurniture.Controllers
         public IActionResult AddProduct()
         {
             // Retrieve categories from the database
-            List<Category> categories = _furnitureItems.GetCategorylist().ToList();
+            List<Category> categories = new List<Category>();
+            categories = _furnitureItems.GetCategorylist().ToList();
+
+            categories.Insert(0, new Category { Id = 0, Name = "Select Category" });
 
             // Pass categories to the view
             ViewBag.ListOfCategory = categories;
-            return View(new Product_VM());
+            return View();
         }
     }
 }
