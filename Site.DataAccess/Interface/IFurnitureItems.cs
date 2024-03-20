@@ -18,7 +18,7 @@ namespace Site.DataAccess.Interface
 
         IEnumerable<Product> GetProductlist();
 
-        bool AddProducty(string categoryName, string createdBy);
+        string SaveProductData(Product obj,string createdBy);
 
         string UpdateProductDetail(string obj, int id);
         string DeleteProductDetail(int id);

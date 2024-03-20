@@ -307,5 +307,74 @@ namespace MilijuliFurniture.Controllers
             ViewBag.ListOfCategory = categories;
             return View();
         }
+
+        [HttpPost]
+        public IActionResult AddProduct(Product_VM obj)
+        {
+            if (obj.UploadImage != null)
+            {
+                //Upload File
+                string folder = "wwwroot/uploadfiles/";
+                string fileurl = "/uploadfiles/";
+                string guid = Guid.NewGuid().ToString();
+                fileurl += guid + obj.UploadImage.FileName;
+                folder += guid + obj.UploadImage.FileName;
+                string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
+
+                obj.UploadImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+                Product vm = new Product();
+                vm.Name = obj.Name;
+                vm.Price = obj.Price;
+                vm.CategoryId = obj.CategoryId;
+                vm.UploadImage = fileurl;
+                string creadtedBy = User.Identity.Name;
+                string output = _furnitureItems.SaveProductData(vm,creadtedBy);
+                if (output == "SUCCESS")
+                {
+                    return RedirectToAction("ProductIndex");
+                }
+            }
+            else
+            {
+
+                string folder = "wwwroot/uploadfiles/";
+                string fileurl = "/uploadfiles/";
+                string guid = Guid.NewGuid().ToString();
+                string output = "";
+
+                if (obj.UploadImage != null && obj.UploadImage.Length > 0)
+                {
+                    // If obj.UploadImage is not null and has data, proceed with uploading the image
+                    fileurl += guid + "staff.png";
+                    folder += guid + "staff.png";
+                    string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
+
+                    using (var fileStream = new FileStream(serverFolder, FileMode.Create))
+                    {
+                        obj.UploadImage.CopyToAsync(fileStream);
+                    }
+                }
+                else
+                {
+                    // If obj.UploadImage is null or empty, upload a default image instead
+                    fileurl += "staff.png";
+                }
+
+                Product vm = new Product();
+                vm.Name = obj.Name;
+                vm.Price = obj.Price;
+                vm.CategoryId = obj.CategoryId;
+                vm.UploadImage = fileurl;
+                string creadtedBy = User.Identity.Name;
+                output = _furnitureItems.SaveProductData(vm,creadtedBy);
+                if (output == "SUCCESS")
+                {
+                    return RedirectToAction("ProductIndex");
+                }
+
+            }
+            return View();
+        }
     }
 }

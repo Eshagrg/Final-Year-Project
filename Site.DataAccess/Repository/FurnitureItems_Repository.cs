@@ -131,9 +131,26 @@ namespace Site.DataAccess.Repository
         }
 
 
-        public bool AddProducty(string categoryName, string createdBy)
+        public string SaveProductData(Product obj, string createdBy)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@Name", obj.Name);
+                    param.Add("@Price", obj.Price);
+                    param.Add("@CategoryId", obj.CategoryId);
+                    param.Add("@CreatedBy", createdBy);
+                    param.Add("@UploadFile", obj.UploadImage);
+                    string output = conn.ExecuteScalar<string>("USP_SaveProductDetails", param, commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         public string UpdateProductDetail(string obj, int id)
         {
