@@ -191,7 +191,7 @@ namespace Site.DataAccess.Repository
             }
         }
 
-        public Product GetproductDetailsById(int id)
+        public Product GetProductDetailsById(int id)
         {
             try
             {

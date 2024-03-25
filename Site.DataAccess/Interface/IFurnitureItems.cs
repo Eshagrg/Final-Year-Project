@@ -20,7 +20,7 @@ namespace Site.DataAccess.Interface
 
         string SaveProductData(Product obj,string createdBy);
 
-        Product GetproductDetailsById(int id);
+        Product GetProductDetailsById(int id);
         string UpdateProductDetail(Product obj, int id);
         string DeleteProductDetail(int id);
     }
