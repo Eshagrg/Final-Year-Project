@@ -232,7 +232,7 @@ namespace MilijuliFurniture.Controllers
         }
 
 
-        //Category and Product
+        //Category CRUD Operations
 
         public IActionResult CategoryIndex()
         {
@@ -268,6 +268,11 @@ namespace MilijuliFurniture.Controllers
          
         }
 
+        public IActionResult UpdateProduct(int id)
+        {
+            Product obj = _furnitureItems.GetProductDetailsById(id);
+            return View(obj);
+        }
 
         [HttpPost]
         public IActionResult UpdateCategory(string obj,int id)
@@ -289,6 +294,9 @@ namespace MilijuliFurniture.Controllers
             }
             return RedirectToAction("CategoryIndex");
         }
+
+
+        //Product CRUD operations
 
         public IActionResult ProductIndex()
         {
@@ -373,6 +381,17 @@ namespace MilijuliFurniture.Controllers
                     return RedirectToAction("ProductIndex");
                 }
 
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UpdateProduct(Product obj, int id)
+        {
+            string output = _furnitureItems.UpdateProductDetail(obj,id);
+            if (output == "SUCCESS")
+            {
+                return RedirectToAction("ProductIndex");
             }
             return View();
         }

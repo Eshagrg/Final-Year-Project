@@ -84,7 +84,7 @@
                                             {
 
                                                 <span class="btn-group">
-                                                    <button class="btn btn-primary" onclick="openChangeCategoryModal('@item.Id', '@item.Name')" hidden>Update</button>
+                                                    <a asp-controller="Admin" asp-action="UpdateProduct" asp-route-id=@item.Id class="btn btn-primary text-white">Update</a>
                                                 </span>
                                                 <span class="btn-group">
                                                     <a asp-controller="Admin" asp-action="DeleteProduct" asp-route-id=@item.Id class="btn btn-primary text-white" data-toggle="modal" data-target="#confirmationModal" hidden>Delete</a>
@@ -93,7 +93,7 @@
                                             else
                                             {
                                                 <span class="btn-group">
-                                                    <button class="btn btn-primary" onclick="openChangeCategoryModal('@item.Id', '@item.Name')">Update</button>
+                                                    <a asp-controller="Admin" asp-action="UpdateProduct asp-route-id=@item.Id class="btn btn-primary text-white">Update</a>
                                                 </span>
                                                 @*  <span class="btn-group">
                                         <a asp-controller="Admin" asp-action="UpdateCategory" asp-route-id=@item.Id class="btn btn-primary text-white">Update</a>
@@ -140,19 +140,19 @@
 
 @section Script {
     <script>
-        function openChangePasswordModal(userId, userName, email) {
+        function openChangeCategoryModal(userId, userName, price) {
             // Set the user ID and name in the respective spans of the modal
             $('#userId').val(userId);
             $('#userIdDisplay').text(userId);
             $('#userNameDisplay').text(userName);
-            $('#userEmailDisplay').text(email)
+            $('#userPriceDisplay').text(price)
 
             // Show the change password modal
             $('#changePasswordModal').modal('show');
         }
 
         // Submit the form within the modal using AJAX
-        $('#changePasswordForm').submit(function (e) {
+        $('#changeCategoryForm').submit(function (e) {
             e.preventDefault(); // Prevent the form from submitting normally
 
             // Get the form data

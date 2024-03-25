@@ -152,9 +152,26 @@ namespace Site.DataAccess.Repository
                 throw;
             }
         }
-        public string UpdateProductDetail(string obj, int id)
+        public string UpdateProductDetail(Product obj, int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@Id", id);
+                    param.Add("@Name", obj.Name);
+                    param.Add("@Price", obj.Price);
+                    param.Add("@CategoryId", obj.CategoryId);
+                    param.Add("@UploadFile", obj.UploadImage);
+                    string output = conn.ExecuteScalar<string>("USP_UpdateProductDetails", param, commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         public string DeleteProductDetail(int id)
         {
@@ -165,6 +182,24 @@ namespace Site.DataAccess.Repository
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@Id", id);
                     string output = conn.ExecuteScalar<string>("USP_DeleteProductDetails", param, commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Product GetproductDetailsById(int id)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@Id", id);
+                    Product output = conn.QueryFirstOrDefault<Product>("USP_GetProductDetailById", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
             }
