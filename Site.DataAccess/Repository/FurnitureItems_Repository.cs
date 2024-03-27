@@ -163,7 +163,7 @@ namespace Site.DataAccess.Repository
                     param.Add("@Name", obj.Name);
                     param.Add("@Price", obj.Price);
                     param.Add("@CategoryId", obj.CategoryId);
-                    param.Add("@UploadFile", obj.UploadImage);
+                    //param.Add("@UploadFile", obj.UploadImage);
                     string output = conn.ExecuteScalar<string>("USP_UpdateProductDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }

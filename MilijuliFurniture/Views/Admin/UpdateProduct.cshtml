@@ -5,7 +5,7 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>User</h1>
+        <h1>Update Product</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
             <div class="breadcrumb-item">User</div>
@@ -18,10 +18,14 @@
                 <div class="card">
                     <div class="card-body">
                         <form method="post" class="needs-validation">
+
                             <div class="form-group">
-                                <label asp-for="CategoryName">Category</label>
-                                <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfCategory,"Id","Name"))"></select>
+                                <label asp-for="CategoryId">Category</label>
+                                <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfCategory, "Id", "Name", ViewBag.SelectedCategoryId))">
+                                  
+                                </select>
                             </div>
+
                             <div class="form-group">
                                 <label>Product Name</label>
                                 <input type="text" asp-for="Name" class="form-control" required>
@@ -46,7 +50,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <a asp-controller="Admin" asp-action="StaffIndex" class="btn btn-primary text-white">Back to List</a>
+                                <a asp-controller="Admin" asp-action="Productindex" class="btn btn-primary text-white">Back to List</a>
                                 <button type="submit" class="btn btn-primary text-white">Update Staff</button>
 
                             </div>

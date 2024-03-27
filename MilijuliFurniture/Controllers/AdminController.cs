@@ -383,17 +383,18 @@ namespace MilijuliFurniture.Controllers
 
         public IActionResult UpdateProduct(int id)
         {
-            List<Category> categories = new List<Category>();
-            categories = _furnitureItems.GetCategorylist().ToList();
-
+            List<Category> categories = _furnitureItems.GetCategorylist().ToList();
             categories.Insert(0, new Category { Id = 0, Name = "Select Category" });
 
-            // Pass categories to the view
             ViewBag.ListOfCategory = categories;
 
             Product obj = _furnitureItems.GetProductDetailsById(id);
+            ViewBag.SelectedCategoryId = obj.CategoryId;
             return View(obj);
+
+          
         }
+
         [HttpPost]
         public IActionResult UpdateProduct(Product obj, int id)
         {
