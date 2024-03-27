@@ -1,1 +1,2 @@
-*.cs linguist-language=C#
+* linguist-vendored
+*.csharp linguist-vendored=false
