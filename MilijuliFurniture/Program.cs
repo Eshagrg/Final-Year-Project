@@ -76,6 +76,7 @@ builder.Services.AddNotyf(config =>
 builder.Services.Configure<ConnectionStrings>(builder.Configuration.GetSection("ConnectionStrings"));
 builder.Services.AddScoped<IUserAuth, UserAuth_Repository>();
 builder.Services.AddScoped<IFurnitureItems, FurnitureItems_Repository>();
+builder.Services.AddScoped<ISales, SalesService_Repository>();
 // Configure the HTTP request pipeline.
 
 var app = builder.Build();
