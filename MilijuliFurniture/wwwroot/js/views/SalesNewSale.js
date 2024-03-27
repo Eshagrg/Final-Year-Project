@@ -41,9 +41,9 @@ $(document).ready(function () {
                             id: item.idProduct,
                             text: item.description,
 
-                            brand: item.brand,
+                            brand: item.name,
                             category: item.nameCategory,
-                            photoBase64: item.photoBase64,
+                            photoBase64: item.uploadImage,
                             price: parseFloat(item.price)
                         }
                     ))
@@ -67,11 +67,11 @@ function formatResults(data) {
         `<table width="100%">
             <tr>
                 <td style="width:60px">
-                    <img style="height:60px;width:60px;margin-right:10px" src="data:image/png;base64,${data.photoBase64}"/>
+                    <img style="height:60px;width:60px;margin-right:10px" src="${data.photoBase64}"/>
                 </td>
                 <td>
                     <p style="font-weight: bolder;margin:2px">${data.brand}</p>
-                    <p style="margin:2px">${data.text}</p>
+                    <p style="margin:2px">${data.price}</p>
                 </td>
             </tr>
          </table>`
