@@ -3,23 +3,23 @@ let TaxValue = 0;
 let ProductsForSale = [];
 
 $(document).ready(function () {
-    // This code is using the Fetch API to make a GET request to the "/Sales/ListTypeDocumentSale" endpoint and populate a HTML select element with the response data.
-    fetch("/Sales/ListTypeDocumentSale")
-    // Check if the response was successful using the "ok" property of the response object
-        // If successful, return the response data in JSON format, otherwise return a rejected Promise with the response object
-        .then(response => {
-            return response.ok ? response.json() : Promise.reject(response);
-        }).then(responseJson => {
-            // If the length of the responseJson array is greater than 0, iterate over each item in the array and append an option element to the HTML select element with id "cboTypeDocumentSale"
+    //// This code is using the Fetch API to make a GET request to the "/Sales/ListTypeDocumentSale" endpoint and populate a HTML select element with the response data.
+    //fetch("/Sales/ListTypeDocumentSale")
+    //// Check if the response was successful using the "ok" property of the response object
+    //    // If successful, return the response data in JSON format, otherwise return a rejected Promise with the response object
+    //    .then(response => {
+    //        return response.ok ? response.json() : Promise.reject(response);
+    //    }).then(responseJson => {
+    //        // If the length of the responseJson array is greater than 0, iterate over each item in the array and append an option element to the HTML select element with id "cboTypeDocumentSale"
            
-            if (responseJson.length > 0) {
-                responseJson.forEach((item) => {
-                    $("#cboTypeDocumentSale").append(
-                        $("<option>").val(item.idTypeDocumentSale).text(item.description)
-                    )
-                });
-            }
-        })
+    //        if (responseJson.length > 0) {
+    //            responseJson.forEach((item) => {
+    //                $("#cboTypeDocumentSale").append(
+    //                    $("<option>").val(item.idTypeDocumentSale).text(item.description)
+    //                )
+    //            });
+    //        }
+    //    })
 
 
 
@@ -38,11 +38,11 @@ $(document).ready(function () {
                 return {
                     results: data.map((item) => (
                         {
-                            id: item.idProduct,
-                            text: item.description,
+                            id: item.id,
+                            
 
                             brand: item.name,
-                            category: item.nameCategory,
+                        
                             photoBase64: item.uploadImage,
                             price: parseFloat(item.price)
                         }
@@ -82,13 +82,13 @@ function formatResults(data) {
 
 
 $(document).on('select2:open', () => {
-    document.querySelector('.select2-search__field').focus();
+    cdocument.querySelector('.select2-search__field').focus();
 });
 
 $('#cboSearchProduct').on('select2:select', function (e) {
     var data = e.params.data;
 
-    let product_found = ProductsForSale.filter(prod => prod.idProduct == data.id)
+    let product_found = ProductsForSale.filter(prod => prod.id == data.id)
     if (product_found.length > 0) {
         $("#cboSearchProduct").val("").trigger('change');
         toastr.warning("", "The product has already been added");
@@ -97,7 +97,7 @@ $('#cboSearchProduct').on('select2:select', function (e) {
 
     swal({
         title: data.brand,
-        text: data.text,
+        text: data.price,
         type: "input",
         showCancelButton: true,
         closeOnConfirm: false,
@@ -119,7 +119,7 @@ $('#cboSearchProduct').on('select2:select', function (e) {
 
         let product = {
             idProduct: data.id,
-            brandProduct: data.brand,
+            brandProduct: data.name,
             descriptionProduct: data.text,
             categoryProducty: data.category,
             quantity: parseInt(value),

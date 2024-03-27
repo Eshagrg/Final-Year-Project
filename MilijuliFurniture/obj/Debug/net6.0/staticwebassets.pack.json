@@ -18809,6 +18809,18 @@
       "PackagePath": "staticwebassets\\uploadfiles\\c69abfd4-5641-4d5c-92c6-c86a71bd0b5ereport.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\d6fe83d9-3b2d-42fa-948a-1069db264ba8table.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\d6fe83d9-3b2d-42fa-948a-1069db264ba8table.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\e235b3ff-ff63-4264-b2b9-0d339f0fac86nepal-flag.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\e235b3ff-ff63-4264-b2b9-0d339f0fac86nepal-flag.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\e690cb0b-b827-4f06-9759-ea0a1658dd58logomilijuli.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\e690cb0b-b827-4f06-9759-ea0a1658dd58logomilijuli.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\ebc1a239-8bb0-4f62-bd19-c2241da643c0staff.png",
       "PackagePath": "staticwebassets\\uploadfiles\\ebc1a239-8bb0-4f62-bd19-c2241da643c0staff.png"
     },
@@ -19111,6 +19123,14 @@
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\select2\\js\\select2.min.js",
       "PackagePath": "staticwebassets\\vendors\\select2\\js\\select2.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\sweetalert\\sweetalert.css",
+      "PackagePath": "staticwebassets\\vendors\\sweetalert\\sweetalert.css"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\sweetalert\\sweetalert.js",
+      "PackagePath": "staticwebassets\\vendors\\sweetalert\\sweetalert.js"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.MilijuliFurniture.Microsoft.AspNetCore.StaticWebAssets.props",
