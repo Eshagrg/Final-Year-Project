@@ -102,7 +102,7 @@ $('#cboSearchProduct').on('select2:select', function (e) {
         showCancelButton: true,
         closeOnConfirm: false,
         inputPlaceholder: "Enter quantity"
-    }, function (value) {
+    }, async function (value) {
 
         if (value === false) return false;
 
@@ -117,7 +117,10 @@ $('#cboSearchProduct').on('select2:select', function (e) {
         }
    
         let quantityAvailable = await checkQuantityAvailable(data.id, parseInt(value))
-
+        if (!quantityAvailable) {
+            toastr.warning("", "The entered quantity is not available");
+            return false;
+        }
 
         let product = {
             idProduct: data.id,
