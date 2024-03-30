@@ -38,6 +38,9 @@ namespace Site.DataAccess.Domain
 
         public bool Status { get; set; }
 
+        public string Brand { get; set; }
+        public int Quantity { get; set; }
+
     }
 
     public class Product
@@ -57,6 +60,9 @@ namespace Site.DataAccess.Domain
         public string CreatedBy { get; set; }
 
         public bool Status { get; set; }
+
+        public string Brand { get; set; }
+        public int Quantity { get; set; }
 
     }
 }

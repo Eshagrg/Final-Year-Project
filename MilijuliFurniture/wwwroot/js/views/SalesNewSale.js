@@ -40,9 +40,9 @@ $(document).ready(function () {
                         {
                             id: item.id,
                             
-
-                            brand: item.name,
-                        
+                            name: item.name,
+                            brand: item.brand,
+                            quantity: item.quantity,
                             photoBase64: item.uploadImage,
                             price: parseFloat(item.price)
                         }
@@ -70,7 +70,7 @@ function formatResults(data) {
                     <img style="height:60px;width:60px;margin-right:10px" src="${data.photoBase64}"/>
                 </td>
                 <td>
-                    <p style="font-weight: bolder;margin:2px">${data.brand}</p>
+                    <p style="font-weight: bolder;margin:2px">${data.name}</p>
                     <p style="margin:2px">${data.price}</p>
                 </td>
             </tr>
@@ -88,7 +88,7 @@ $(document).on('select2:open', () => {
 $('#cboSearchProduct').on('select2:select', function (e) {
     var data = e.params.data;
 
-    let product_found = ProductsForSale.filter(prod => prod.id == data.id)
+    let product_found = ProductsForSale.filter(prod => prod.idProduct == data.id)
     if (product_found.length > 0) {
         $("#cboSearchProduct").val("").trigger('change');
         toastr.warning("", "The product has already been added");
@@ -96,8 +96,8 @@ $('#cboSearchProduct').on('select2:select', function (e) {
     }
 
     swal({
-        title: data.brand,
-        text: data.price,
+        title:"Product:"+data.name,
+        text: "Quantity:"+data.quantity,
         type: "input",
         showCancelButton: true,
         closeOnConfirm: false,
@@ -115,11 +115,13 @@ $('#cboSearchProduct').on('select2:select', function (e) {
             toastr.warning("", "You must enter a numeric value");
             return false
         }
+   
+        let quantityAvailable = await checkQuantityAvailable(data.id, parseInt(value))
 
 
         let product = {
             idProduct: data.id,
-            brandProduct: data.name,
+            nameProduct: data.name,
             descriptionProduct: data.text,
             categoryProducty: data.category,
             quantity: parseInt(value),
@@ -135,7 +137,26 @@ $('#cboSearchProduct').on('select2:select', function (e) {
 
     });
 
-});
+
+
+    });
+async function checkQuantityAvailable(productId, quantity) {
+    try {
+        let response = await fetch(`/Sales/CheckQuantity?id=${productId}&quantity=${quantity}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        let data = await response.json();
+        return data.available;
+    } catch (error) {
+        toastr.error('Error checking quantity:', error);
+        return false;
+    }
+}
+
+
+
+
 
 function showProducts_Prices() {
 

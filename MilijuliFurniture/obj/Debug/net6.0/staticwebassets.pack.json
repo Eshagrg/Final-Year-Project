@@ -18805,6 +18805,10 @@
       "PackagePath": "staticwebassets\\uploadfiles\\75189ff2-e60b-46d8-9cb9-b8d6789d34dbreport.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\7bce6f35-9e15-497a-93f2-a084a141e6a5logomilijuli.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\7bce6f35-9e15-497a-93f2-a084a141e6a5logomilijuli.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\c69abfd4-5641-4d5c-92c6-c86a71bd0b5ereport.png",
       "PackagePath": "staticwebassets\\uploadfiles\\c69abfd4-5641-4d5c-92c6-c86a71bd0b5ereport.png"
     },
@@ -19131,6 +19135,22 @@
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\sweetalert\\sweetalert.js",
       "PackagePath": "staticwebassets\\vendors\\sweetalert\\sweetalert.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\toastr\\toastr.css",
+      "PackagePath": "staticwebassets\\vendors\\toastr\\toastr.css"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\toastr\\toastr.js.map",
+      "PackagePath": "staticwebassets\\vendors\\toastr\\toastr.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\toastr\\toastr.min.css",
+      "PackagePath": "staticwebassets\\vendors\\toastr\\toastr.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\toastr\\toastr.min.js",
+      "PackagePath": "staticwebassets\\vendors\\toastr\\toastr.min.js"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.MilijuliFurniture.Microsoft.AspNetCore.StaticWebAssets.props",

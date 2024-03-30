@@ -29,6 +29,13 @@ namespace MilijuliFurniture.Controllers
             return StatusCode(StatusCodes.Status200OK,obj);
         }
 
+        [HttpGet]
+        public IActionResult CheckQuantity(int id, int quantity)
+        {
+            bool available = _salesService.IsQuantityAvailable(id, quantity);
+            return Json(new { available });
+        }
+
         //[HttpGet]
         //public async Task<IActionResult> GetProducts(string search)
         //{

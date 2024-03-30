@@ -21,59 +21,7 @@ namespace Site.DataAccess.Repository
         {
             _connection = connection.Value;
         }
-        //public IEnumerable<Product> GetProductlist()
-        //{
-        //    try
-        //    {
-        //        using (var conn = new SqlConnection(_connection.DbConnection))
-        //        {
-        //            IEnumerable<Product> output = conn.Query<Product>("USP_GetProductList", commandType: CommandType.StoredProcedure);
-        //            return output;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
 
-        //public async Task<List<Product>> GetProducts(string search)
-        //{
-        //    try
-        //    {
-        //        using (var conn = new SqlConnection(_connection.DbConnection))
-        //        {
-        //            // Construct the SQL query to filter products based on search criteria
-        //            string query = @"
-        //        SELECT p.*, c.*
-        //        FROM Products p
-        //        INNER JOIN Categories c ON p.CategoryId = c.Id
-        //        WHERE p.IsActive = 1
-        //            AND p.Quantity > 0
-        //            AND CONCAT(p.BarCode, p.Brand, p.Description) LIKE @Search
-        //    ";
-
-        //            // Execute the query and return the results
-        //            var products = await conn.QueryAsync<Product, Category, Product>(
-        //                query,
-        //                (product, category) =>
-        //                {
-        //                    product.IdCategoryNavigation = category;
-        //                    return product;
-        //                },
-        //                new { Search = "%" + search + "%" },
-        //                splitOn: "Id"
-        //            );
-
-        //            return products.ToList();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Handle any exceptions
-        //        throw ex;
-        //    }
-        //}
 
      
 
@@ -93,5 +41,23 @@ namespace Site.DataAccess.Repository
                 throw;
             }
         }
+
+        public bool IsQuantityAvailable(int productId, int quantity)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    var parameters = new { ProductId = productId, Quantity = quantity };
+                    bool isAvailable = conn.QuerySingle<bool>("USP_CheckQuantityAvailability", parameters, commandType: CommandType.StoredProcedure);
+                    return isAvailable;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

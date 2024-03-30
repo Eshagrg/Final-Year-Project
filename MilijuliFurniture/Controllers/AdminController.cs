@@ -332,6 +332,8 @@ namespace MilijuliFurniture.Controllers
                 vm.Price = obj.Price;
                 vm.CategoryId = obj.CategoryId;
                 vm.UploadImage = fileurl;
+                vm.Brand = obj.Brand;
+                vm.Quantity = obj.Quantity;
                 string creadtedBy = User.Identity.Name;
                 string output = _furnitureItems.SaveProductData(vm,creadtedBy);
                 if (output == "SUCCESS")
@@ -370,6 +372,8 @@ namespace MilijuliFurniture.Controllers
                 vm.Price = obj.Price;
                 vm.CategoryId = obj.CategoryId;
                 vm.UploadImage = fileurl;
+                vm.Quantity = obj.Quantity;
+                vm.Brand = obj.Brand;
                 string creadtedBy = User.Identity.Name;
                 output = _furnitureItems.SaveProductData(vm,creadtedBy);
                 if (output == "SUCCESS")

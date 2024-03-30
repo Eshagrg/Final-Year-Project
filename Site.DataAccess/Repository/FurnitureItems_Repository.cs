@@ -143,6 +143,8 @@ namespace Site.DataAccess.Repository
                     param.Add("@CategoryId", obj.CategoryId);
                     param.Add("@CreatedBy", createdBy);
                     param.Add("@UploadFile", obj.UploadImage);
+                    param.Add("@Quantity", obj.Quantity);
+                    param.Add("@Brand", obj.Brand);
                     string output = conn.ExecuteScalar<string>("USP_SaveProductDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
