@@ -18861,6 +18861,10 @@
       "PackagePath": "staticwebassets\\vendors\\datatables.net\\jquery.dataTables.js"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\loadingoverlay\\loadingoverlay.min.js",
+      "PackagePath": "staticwebassets\\vendors\\loadingoverlay\\loadingoverlay.min.js"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\mdi\\css\\materialdesignicons.min.css",
       "PackagePath": "staticwebassets\\vendors\\mdi\\css\\materialdesignicons.min.css"
     },

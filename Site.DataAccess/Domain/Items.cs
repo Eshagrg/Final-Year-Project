@@ -39,7 +39,7 @@ namespace Site.DataAccess.Domain
         public bool Status { get; set; }
 
         public string Brand { get; set; }
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
     }
 
@@ -62,7 +62,7 @@ namespace Site.DataAccess.Domain
         public bool Status { get; set; }
 
         public string Brand { get; set; }
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
     }
 }

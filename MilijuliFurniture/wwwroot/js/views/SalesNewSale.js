@@ -88,7 +88,7 @@ $(document).on('select2:open', () => {
 $('#cboSearchProduct').on('select2:select', function (e) {
     var data = e.params.data;
 
-    let product_found = ProductsForSale.filter(prod => prod.idProduct == data.id)
+    let product_found = ProductsForSale.filter(prod => prod.ProductId == data.id)
     if (product_found.length > 0) {
         $("#cboSearchProduct").val("").trigger('change');
         toastr.warning("", "The product has already been added");
@@ -123,7 +123,7 @@ $('#cboSearchProduct').on('select2:select', function (e) {
         }
 
         let product = {
-            idProduct: data.id,
+            ProductId: data.id,
             nameProduct: data.name,
             descriptionProduct: data.text,
             categoryProducty: data.category,
@@ -179,7 +179,7 @@ function showProducts_Prices() {
                 $("<td>").append(
                     $("<button>").addClass("btn btn-danger btn-delete btn-sm").append(
                         $("<i>").addClass("mdi mdi-trash-can")
-                    ).data("idProduct", item.idProduct)
+                    ).data("ProductId", item.ProductId)
                 ),
                 $("<td>").text(item.descriptionProduct),
                 $("<td>").text(item.quantity),
@@ -200,9 +200,9 @@ function showProducts_Prices() {
 }
 
 $(document).on("click", "button.btn-delete", function () {
-    const _idproduct = $(this).data("idProduct")
+    const _ProductId = $(this).data("ProductId")
 
-    ProductsForSale = ProductsForSale.filter(p => p.idProduct != _idproduct)
+    ProductsForSale = ProductsForSale.filter(p => p.ProductId != _ProductId)
 
     showProducts_Prices()
 })
@@ -217,6 +217,7 @@ $("#btnFinalizeSale").click(function () {
     const vmDetailSale = ProductsForSale;
 
     const sale = {
+        
         idTypeDocumentSale: $("#cboTypeDocumentSale").val(),
         customerDocument: $("#txtDocumentClient").val(),
         clientName: $("#txtNameClient").val(),
@@ -233,7 +234,7 @@ $("#btnFinalizeSale").click(function () {
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify(sale)
     }).then(response => {
-   
+
         $("#btnFinalizeSale").closest("div.card-body").LoadingOverlay("hide")
         return response.ok ? response.json() : Promise.reject(response);
     }).then(responseJson => {

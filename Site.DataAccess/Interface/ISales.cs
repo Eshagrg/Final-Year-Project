@@ -11,6 +11,7 @@ namespace Site.DataAccess.Interface
     {
         IEnumerable<Product> GetProductList(string search);
         bool IsQuantityAvailable(int id, int quantity);
+        Task<Sale> Register(Sale entity);
 
         //Task<List<Product>> GetProducts(string search);
     }
