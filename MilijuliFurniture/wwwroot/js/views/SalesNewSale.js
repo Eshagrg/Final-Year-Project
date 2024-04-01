@@ -39,7 +39,7 @@ $(document).ready(function () {
                     results: data.map((item) => (
                         {
                             id: item.id,
-                            
+                            category: item.categoryName,
                             name: item.name,
                             brand: item.brand,
                             quantity: item.quantity,
@@ -127,6 +127,7 @@ $('#cboSearchProduct').on('select2:select', function (e) {
             nameProduct: data.name,
             descriptionProduct: data.text,
             categoryProducty: data.category,
+            brandProduct: data.brand,
             quantity: parseInt(value),
             price: data.price.toString(),
             total: (parseFloat(value) * data.price).toString()

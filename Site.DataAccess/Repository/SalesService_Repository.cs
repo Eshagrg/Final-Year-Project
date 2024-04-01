@@ -224,41 +224,6 @@ namespace Site.DataAccess.Repository
                 {
                     try
                     {
-                        foreach (DetailSale dv in entity.DetailSales)
-                        {
-                            // Fetch product information using SqlCommand
-                            string query = "SELECT * FROM Product WHERE Id = @ProductId";
-                            using (var cmd = new SqlCommand(query, cn, tx))
-                            {
-                                cmd.Parameters.AddWithValue("@ProductId", dv.ProductId);
-                                using (var reader = await cmd.ExecuteReaderAsync())
-                                {
-                                    if (reader.Read())
-                                    {
-                                        // Update product quantity
-                                        int quantity = (int)reader["Quantity"];
-                                        quantity -= dv.Quantity;
-                                        // Close the reader before executing another query
-                                        reader.Close();
-                                        // Update product quantity using SqlCommand
-                                        string updateQuery = "UPDATE Product SET Quantity = @Quantity WHERE Id = @Id";
-                                        using (var updateCmd = new SqlCommand(updateQuery, cn, tx))
-                                        {
-                                            updateCmd.Parameters.AddWithValue("@Quantity", quantity);
-                                            updateCmd.Parameters.AddWithValue("@Id", dv.ProductId);
-                                            await updateCmd.ExecuteNonQueryAsync();
-                                        }
-                                    }
-                                    else
-                                    {
-                                        reader.Close(); // Close the reader before throwing exception
-                                        // Handle the case where product is not found
-                                        throw new Exception("Product not found");
-                                    }
-                                }
-                            }
-                        }
-
                         // Update CorrelativeNumber using SqlCommand
                         string correlativeQuery = "SELECT * FROM CorrelativeNumber WHERE Management = 'Sale'";
                         using (var correlativeCmd = new SqlCommand(correlativeQuery, cn, tx))
@@ -277,7 +242,7 @@ namespace Site.DataAccess.Repository
                                     // Close the reader before executing another query
                                     reader.Close();
                                     // Generate sale number
-                                    
+
 
                                     entity.SaleNumber = saleNumber;
                                     string updateCorrelativeQuery = "UPDATE CorrelativeNumber SET LastNumber = @LastNumber, DateUpdate = @DateUpdate WHERE CorrelativenumberId = @Id";
@@ -285,29 +250,16 @@ namespace Site.DataAccess.Repository
                                     {
                                         updateCorrelativeCmd.Parameters.AddWithValue("@LastNumber", lastNumber);
                                         updateCorrelativeCmd.Parameters.AddWithValue("@DateUpdate", dateUpdate);
-                                        updateCorrelativeCmd.Parameters.AddWithValue("@Id",id);
-                                        
+                                        updateCorrelativeCmd.Parameters.AddWithValue("@Id", id);
+
                                         await updateCorrelativeCmd.ExecuteNonQueryAsync();
 
-                                        
+
                                     }
 
-                                    
 
-                                    // Insert sale using SqlCommand
-                                    string insertQuery = "INSERT INTO Sale (saleNumber,UserId, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @UserId, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
-                                    using (var insertCmd = new SqlCommand(insertQuery, cn, tx))
-                                    {
-                                        insertCmd.Parameters.AddWithValue("@SaleNumber", entity.SaleNumber);
-                                        insertCmd.Parameters.AddWithValue("@userId", entity.UserId);
-                                      
-                                        insertCmd.Parameters.AddWithValue("@ClientName", entity.ClientName);
-                                        insertCmd.Parameters.AddWithValue("@Subtotal", entity.Subtotal);
-                                        insertCmd.Parameters.AddWithValue("@TotalTaxes", entity.TotalTaxes);
-                                        insertCmd.Parameters.AddWithValue("@Total", entity.Total);
-                                        insertCmd.Parameters.AddWithValue("@RegistrationDate", DateTime.Today);
-                                        int saleId = (int)await insertCmd.ExecuteScalarAsync();
-                                    }
+
+
                                 }
                                 else
                                 {
@@ -317,6 +269,74 @@ namespace Site.DataAccess.Repository
                                     throw new Exception("CorrelativeNumber not found");
                                 }
                             }
+
+                            // Insert sale using SqlCommand
+                            string insertQuery = "INSERT INTO Sale (saleNumber,UserId, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @UserId, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
+                            int saleId;
+
+                            using (var insertCmd = new SqlCommand(insertQuery, cn, tx))
+                            {
+                                insertCmd.Parameters.AddWithValue("@SaleNumber", entity.SaleNumber);
+                                insertCmd.Parameters.AddWithValue("@userId", entity.UserId);
+
+                                insertCmd.Parameters.AddWithValue("@ClientName", entity.ClientName);
+                                insertCmd.Parameters.AddWithValue("@Subtotal", entity.Subtotal);
+                                insertCmd.Parameters.AddWithValue("@TotalTaxes", entity.TotalTaxes);
+                                insertCmd.Parameters.AddWithValue("@Total", entity.Total);
+                                insertCmd.Parameters.AddWithValue("@RegistrationDate", DateTime.Today);
+                                saleId = (int)await insertCmd.ExecuteScalarAsync();
+                            }
+                            foreach (DetailSale dv in entity.DetailSales)
+                            {
+                                // Fetch product information using SqlCommand
+                                string query = "SELECT * FROM Product WHERE Id = @ProductId";
+                                using (var cmd = new SqlCommand(query, cn, tx))
+                                {
+                                    cmd.Parameters.AddWithValue("@ProductId", dv.ProductId);
+                                    using (var reader = await cmd.ExecuteReaderAsync())
+                                    {
+                                        if (reader.Read())
+                                        {
+                                            // Update product quantity
+                                            int quantity = (int)reader["Quantity"];
+                                            quantity -= dv.Quantity;
+                                            // Close the reader before executing another query
+                                            reader.Close();
+                                            // Update product quantity using SqlCommand
+                                            string updateQuery = "UPDATE Product SET Quantity = @Quantity WHERE Id = @Id";
+                                            using (var updateCmd = new SqlCommand(updateQuery, cn, tx))
+                                            {
+                                                updateCmd.Parameters.AddWithValue("@Quantity", quantity);
+                                                updateCmd.Parameters.AddWithValue("@Id", dv.ProductId);
+                                                await updateCmd.ExecuteNonQueryAsync();
+                                            }
+                                            reader.Close ();
+                                            // Insert detail sale into DetailSale table
+                                            string insertDetailSaleQuery = "INSERT INTO DetailSale (ProductId, Quantity, SaleId,brandProduct,categoryProduct,price,total) VALUES (@ProductId, @Quantity, @SaleId,@BrandProduct,@CategoryProduct,@Price,@Total)";
+                                            using (var insertDetailSaleCmd = new SqlCommand(insertDetailSaleQuery, cn, tx))
+                                            {
+                                                insertDetailSaleCmd.Parameters.AddWithValue("@ProductId", dv.ProductId);
+                                                insertDetailSaleCmd.Parameters.AddWithValue("@Quantity", dv.Quantity);
+                                                insertDetailSaleCmd.Parameters.AddWithValue("@SaleId", saleId);
+                                                insertDetailSaleCmd.Parameters.AddWithValue("@BrandProduct", dv.BrandProduct);
+                                                insertDetailSaleCmd.Parameters.AddWithValue("@CategoryProduct", dv.CategoryProducty);
+                                                insertDetailSaleCmd.Parameters.AddWithValue("@Price", dv.Price);
+                                                insertDetailSaleCmd.Parameters.AddWithValue("@Total", dv.Total);
+                                                // Assuming saleId is the ID of the current sale
+                                                await insertDetailSaleCmd.ExecuteNonQueryAsync();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            reader.Close(); // Close the reader before throwing exception
+                                            // Handle the case where product is not found
+                                            throw new Exception("Product not found");
+                                        }
+                                    }
+                                }
+                            }
+
+                        
                         }
 
                         // Commit transaction
