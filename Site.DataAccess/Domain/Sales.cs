@@ -60,7 +60,7 @@ namespace Site.DataAccess.Domain
         public string? BrandProduct { get; set; }
         public string? DescriptionProduct { get; set; }
         public string? CategoryProducty { get; set; }
-        public int? Quantity { get; set; }
+        public int Quantity { get; set; }
         public decimal? Price { get; set; }
         public decimal? Total { get; set; }
 
@@ -69,7 +69,7 @@ namespace Site.DataAccess.Domain
 
     public partial class CorrelativeNumber
     {
-        public int IdCorrelativeNumber { get; set; }
+        public int CorrelativeNumberId { get; set; }
         public int? LastNumber { get; set; }
         public int? QuantityDigits { get; set; }
         public string? Management { get; set; }

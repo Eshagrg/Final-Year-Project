@@ -84,7 +84,7 @@ namespace MilijuliFurniture.Controllers
                     // Map properties from VMDetailSale to DetailSale
                     ProductId = vmDetailSale.ProductId,
                     Price = decimal.Parse(vmDetailSale.Price),
-                    Quantity = vmDetailSale.Quantity,
+                    Quantity = (int)vmDetailSale.Quantity,
 
                     // Map other properties as needed...
                 }).ToList();

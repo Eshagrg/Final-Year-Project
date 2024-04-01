@@ -82,62 +82,250 @@ namespace Site.DataAccess.Repository
         //    }
         //}
 
+        //public async Task<Sale> Register(Sale entity)
+        //{
+        //    using (IDbConnection dbConnection = new SqlConnection(_connection.DbConnection))
+        //    {
+        //        dbConnection.Open();
+        //        using (var transaction = dbConnection.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                foreach (DetailSale dv in entity.DetailSales)
+        //                {
+        //                    // Fetch product information using Dapper
+        //                    string query = "SELECT * FROM Product WHERE Id = @ProductId";
+        //                    var product_found = await dbConnection.QueryFirstOrDefaultAsync<Product>(query, new { Productid = dv.ProductId }, transaction);
+
+        //                    // Update product quantity
+        //                    product_found.Quantity -= dv.Quantity;
+
+
+        //                    // Update product quantity using Dapper
+        //                    string updateQuery = "UPDATE Product SET Quantity = @Quantity WHERE Id = @Id";
+        //                    await dbConnection.ExecuteAsync(updateQuery, product_found, transaction);
+        //                }
+
+        //                // Update CorrelativeNumber using Dapper
+        //                string correlativeQuery = "SELECT * FROM CorrelativeNumber WHERE Management = 'Sale'";
+        //                var correlative = await dbConnection.QueryFirstOrDefaultAsync<CorrelativeNumber>(correlativeQuery, transaction);
+        //                correlative.LastNumber++;
+        //                correlative.DateUpdate = DateTime.Now;
+
+        //                string updateCorrelativeQuery = "UPDATE CorrelativeNumber SET LastNumber = @LastNumber, DateUpdate = @DateUpdate WHERE Id = @Id";
+        //                await dbConnection.ExecuteAsync(updateCorrelativeQuery, correlative, transaction);
+
+        //                // Generate sale number
+        //                string ceros = new string('0', (int)correlative.QuantityDigits);
+        //                string saleNumber = ceros + correlative.LastNumber.ToString();
+        //                saleNumber = saleNumber.Substring((int)(saleNumber.Length - correlative.QuantityDigits));
+
+        //                entity.SaleNumber = saleNumber;
+
+        //                // Insert sale using Dapper
+        //                string insertQuery = "INSERT INTO Sales (saleNumber, idTypeDocumentSale, idUsers, customerDocument, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @IdTypeDocumentSale, @IdUsers, @CustomerDocument, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
+        //                int saleId = await dbConnection.QueryFirstOrDefaultAsync<int>(insertQuery, entity, transaction);
+
+        //                // Commit transaction
+        //                transaction.Commit();
+
+        //                return entity;
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                transaction.Rollback();
+        //                throw;
+        //            }
+        //        }
+        //    }
+        //}
+
+        //public async Task<Sale> Register(Sale entity)
+        //{
+        //    using (IDbConnection dbConnection = new SqlConnection(_connection.DbConnection))
+        //    {
+        //        dbConnection.Open();
+        //        var transaction = dbConnection.BeginTransaction();
+
+        //            try
+        //            {
+        //                foreach (DetailSale dv in entity.DetailSales)
+        //                {
+        //                    // Fetch product information using Dapper
+        //                    string query = "SELECT * FROM Product WHERE Id = @ProductId";
+        //                    var product_found = await dbConnection.QueryFirstOrDefaultAsync<Product>(query, new { ProductId = dv.ProductId }, transaction);
+
+        //                    // Update product quantity
+        //                    if (product_found != null)
+        //                    {
+        //                        product_found.Quantity -= dv.Quantity;
+
+        //                        // Update product quantity using Dapper
+        //                        string updateQuery = "UPDATE Product SET Quantity = @Quantity WHERE Id = @Id";
+        //                        await dbConnection.ExecuteAsync(updateQuery, product_found, transaction);
+        //                    }
+        //                    else
+        //                    {
+        //                        // Handle the case where product is not found
+        //                        throw new Exception("Product not found");
+        //                    }
+        //                }
+
+        //                    // Update CorrelativeNumber using Dapper
+        //                    string correlativeQuery = "SELECT * FROM CorrelativeNumber WHERE Management = 'Sale'";
+        //                    var correlative = await dbConnection.QueryFirstOrDefaultAsync<CorrelativeNumber>(correlativeQuery, transaction);
+
+        //                    if (correlative != null)
+        //                    {
+        //                        correlative.LastNumber++;
+        //                        correlative.DateUpdate = DateTime.Now;
+
+        //                        string updateCorrelativeQuery = "UPDATE CorrelativeNumber SET LastNumber = @LastNumber, DateUpdate = @DateUpdate WHERE Id = @Id";
+        //                        await dbConnection.ExecuteAsync(updateCorrelativeQuery, correlative, transaction);
+
+        //                        // Generate sale number
+        //                        string ceros = new string('0', (int)correlative.QuantityDigits);
+        //                        string saleNumber = ceros + correlative.LastNumber.ToString();
+        //                        saleNumber = saleNumber.Substring((int)(saleNumber.Length - correlative.QuantityDigits));
+
+        //                        entity.SaleNumber = saleNumber;
+
+        //                        // Insert sale using Dapper
+        //                        string insertQuery = "INSERT INTO Sales (saleNumber, idTypeDocumentSale, idUsers, customerDocument, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @IdTypeDocumentSale, @IdUsers, @CustomerDocument, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
+        //                        int saleId = await dbConnection.QueryFirstOrDefaultAsync<int>(insertQuery, entity, transaction);
+
+        //                        // Commit transaction
+        //                        transaction.Commit();
+
+        //                        return entity;
+        //                    }
+        //                    else
+        //                    {
+        //                        // Handle the case where CorrelativeNumber is not found
+        //                        throw new Exception("CorrelativeNumber not found");
+        //                    }
+
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                transaction.Rollback();
+        //                throw;
+        //            }
+
+        //    }
+        //}
+
         public async Task<Sale> Register(Sale entity)
         {
-            using (IDbConnection dbConnection = new SqlConnection(_connection.DbConnection))
+            using (var cn = new SqlConnection(_connection.DbConnection))
             {
-                dbConnection.Open();
-                using (var transaction = dbConnection.BeginTransaction())
+                cn.Open();
+                using (var tx = cn.BeginTransaction())
                 {
                     try
                     {
                         foreach (DetailSale dv in entity.DetailSales)
                         {
-                            // Fetch product information using Dapper
+                            // Fetch product information using SqlCommand
                             string query = "SELECT * FROM Product WHERE Id = @ProductId";
-                            var product_found = await dbConnection.QueryFirstOrDefaultAsync<Product>(query, new { Productid = dv.ProductId }, transaction);
+                            using (var cmd = new SqlCommand(query, cn, tx))
+                            {
+                                cmd.Parameters.AddWithValue("@ProductId", dv.ProductId);
+                                using (var reader = await cmd.ExecuteReaderAsync())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        // Update product quantity
+                                        int quantity = (int)reader["Quantity"];
+                                        quantity -= dv.Quantity;
 
-                            // Update product quantity
-                            product_found.Quantity -= dv.Quantity;
-
-                            // Update product quantity using Dapper
-                            string updateQuery = "UPDATE Product SET Quantity = @Quantity WHERE Id = @ProductId";
-                            await dbConnection.ExecuteAsync(updateQuery, product_found, transaction);
+                                        // Update product quantity using SqlCommand
+                                        string updateQuery = "UPDATE Product SET Quantity = @Quantity WHERE Id = @Id";
+                                        using (var updateCmd = new SqlCommand(updateQuery, cn, tx))
+                                        {
+                                            updateCmd.Parameters.AddWithValue("@Quantity", quantity);
+                                            updateCmd.Parameters.AddWithValue("@Id", dv.ProductId);
+                                            await updateCmd.ExecuteNonQueryAsync();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // Handle the case where product is not found
+                                        throw new Exception("Product not found");
+                                    }
+                                }
+                            }
                         }
 
-                        // Update CorrelativeNumber using Dapper
-                        string correlativeQuery = "SELECT * FROM CorrelativeNumbers WHERE Management = 'Sale'";
-                        var correlative = await dbConnection.QueryFirstOrDefaultAsync<CorrelativeNumber>(correlativeQuery, transaction);
-                        correlative.LastNumber++;
-                        correlative.DateUpdate = DateTime.Now;
+                        // Update CorrelativeNumber using SqlCommand
+                        string correlativeQuery = "SELECT * FROM CorrelativeNumber WHERE Management = 'Sale'";
+                        using (var correlativeCmd = new SqlCommand(correlativeQuery, cn, tx))
+                        {
+                            using (var reader = await correlativeCmd.ExecuteReaderAsync())
+                            {
+                                if (reader.Read())
+                                {
+                                    int lastNumber = (int)reader["LastNumber"];
+                                    lastNumber++;
+                                    DateTime dateUpdate = DateTime.Now;
 
-                        string updateCorrelativeQuery = "UPDATE CorrelativeNumbers SET LastNumber = @LastNumber, DateUpdate = @DateUpdate WHERE Id = @Id";
-                        await dbConnection.ExecuteAsync(updateCorrelativeQuery, correlative, transaction);
+                                    string updateCorrelativeQuery = "UPDATE CorrelativeNumber SET LastNumber = @LastNumber, DateUpdate = @DateUpdate WHERE Id = @Id";
+                                    using (var updateCorrelativeCmd = new SqlCommand(updateCorrelativeQuery, cn, tx))
+                                    {
+                                        updateCorrelativeCmd.Parameters.AddWithValue("@LastNumber", lastNumber);
+                                        updateCorrelativeCmd.Parameters.AddWithValue("@DateUpdate", dateUpdate);
+                                        updateCorrelativeCmd.Parameters.AddWithValue("@Id", (int)reader["Id"]);
+                                        await updateCorrelativeCmd.ExecuteNonQueryAsync();
+                                    }
 
-                        // Generate sale number
-                        string ceros = new string('0', (int)correlative.QuantityDigits);
-                        string saleNumber = ceros + correlative.LastNumber.ToString();
-                        saleNumber = saleNumber.Substring((int)(saleNumber.Length - correlative.QuantityDigits));
+                                    // Generate sale number
+                                    string ceros = new string('0', (int)reader["QuantityDigits"]);
+                                    string saleNumber = ceros + lastNumber.ToString();
+                                    saleNumber = saleNumber.Substring((int)(saleNumber.Length - (int)reader["QuantityDigits"]));
 
-                        entity.SaleNumber = saleNumber;
+                                    entity.SaleNumber = saleNumber;
 
-                        // Insert sale using Dapper
-                        string insertQuery = "INSERT INTO Sales (saleNumber, idTypeDocumentSale, idUsers, customerDocument, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @IdTypeDocumentSale, @IdUsers, @CustomerDocument, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
-                        int saleId = await dbConnection.QueryFirstOrDefaultAsync<int>(insertQuery, entity, transaction);
+                                    // Insert sale using SqlCommand
+                                    string insertQuery = "INSERT INTO Sales (saleNumber,UserId, customerDocument, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @UserId, @CustomerDocument, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
+                                    using (var insertCmd = new SqlCommand(insertQuery, cn, tx))
+                                    {
+                                        insertCmd.Parameters.AddWithValue("@SaleNumber", entity.SaleNumber);
+                                        insertCmd.Parameters.AddWithValue("@userId", entity.UserId);
+                                        insertCmd.Parameters.AddWithValue("@CustomerDocument", entity.CustomerDocument);
+                                        insertCmd.Parameters.AddWithValue("@ClientName", entity.ClientName);
+                                        insertCmd.Parameters.AddWithValue("@Subtotal", entity.Subtotal);
+                                        insertCmd.Parameters.AddWithValue("@TotalTaxes", entity.TotalTaxes);
+                                        insertCmd.Parameters.AddWithValue("@Total", entity.Total);
+                                        insertCmd.Parameters.AddWithValue("@RegistrationDate", entity.RegistrationDate);
+                                        int saleId = (int)await insertCmd.ExecuteScalarAsync();
+                                    }
+                                }
+                                else
+                                {
+                                    // Handle the case where CorrelativeNumber is not found
+                                    throw new Exception("CorrelativeNumber not found");
+                                }
+                            }
+                        }
 
                         // Commit transaction
-                        transaction.Commit();
+                        tx.Commit();
 
                         return entity;
                     }
                     catch (Exception ex)
                     {
-                        transaction.Rollback();
+                        // Rollback transaction on exception
+                        tx.Rollback();
                         throw;
                     }
                 }
             }
+
         }
+
+
+
 
     }
 }
