@@ -81,9 +81,9 @@ function formatResults(data) {
 }
 
 
-$(document).on('select2:open', () => {
-    cdocument.querySelector('.select2-search__field').focus();
-});
+//$(document).on('select2:open', () => {
+//    cdocument.querySelector('.select2-search__field').focus();
+//});
 
 $('#cboSearchProduct').on('select2:select', function (e) {
     var data = e.params.data;
@@ -239,15 +239,16 @@ $("#btnFinalizeSale").click(function () {
         return response.ok ? response.json() : Promise.reject(response);
     }).then(responseJson => {
 
-        if (responseJson.state) {
+        if (responseJson.success == true) {
 
             ProductsForSale = [];
             showProducts_Prices();
-            $("#txtDocumentClient").val("");
+           /* $("#txtDocumentClient").val("");*/
             $("#txtNameClient").val("");
-            $("#cboTypeDocumentSale").val($("#cboTypeDocumentSale option:first").val());
+          /*  $("#cboTypeDocumentSale").val($("#cboTypeDocumentSale option:first").val());*/
 
-            swal("Registered!", `Sale Number : ${responseJson.object.saleNumber}`, "success");
+            swal("Registered!", `Sale Number : ${responseJson.saleNumber}`, "success");
+   
 
         } else {
             swal("We're sorry", "The sale could not be registered", "error");

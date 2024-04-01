@@ -238,7 +238,8 @@ namespace Site.DataAccess.Repository
                                         // Update product quantity
                                         int quantity = (int)reader["Quantity"];
                                         quantity -= dv.Quantity;
-
+                                        // Close the reader before executing another query
+                                        reader.Close();
                                         // Update product quantity using SqlCommand
                                         string updateQuery = "UPDATE Product SET Quantity = @Quantity WHERE Id = @Id";
                                         using (var updateCmd = new SqlCommand(updateQuery, cn, tx))
@@ -250,6 +251,7 @@ namespace Site.DataAccess.Repository
                                     }
                                     else
                                     {
+                                        reader.Close(); // Close the reader before throwing exception
                                         // Handle the case where product is not found
                                         throw new Exception("Product not found");
                                     }
@@ -266,42 +268,51 @@ namespace Site.DataAccess.Repository
                                 if (reader.Read())
                                 {
                                     int lastNumber = (int)reader["LastNumber"];
+                                    int id = (int)reader["CorrelativeNumberId"];
                                     lastNumber++;
                                     DateTime dateUpdate = DateTime.Now;
+                                    string ceros = new string('0', (int)reader["QuantityDigits"]);
+                                    string saleNumber = ceros + lastNumber.ToString();
+                                    saleNumber = saleNumber.Substring((int)(saleNumber.Length - (int)reader["QuantityDigits"]));
+                                    // Close the reader before executing another query
+                                    reader.Close();
+                                    // Generate sale number
+                                    
 
-                                    string updateCorrelativeQuery = "UPDATE CorrelativeNumber SET LastNumber = @LastNumber, DateUpdate = @DateUpdate WHERE Id = @Id";
+                                    entity.SaleNumber = saleNumber;
+                                    string updateCorrelativeQuery = "UPDATE CorrelativeNumber SET LastNumber = @LastNumber, DateUpdate = @DateUpdate WHERE CorrelativenumberId = @Id";
                                     using (var updateCorrelativeCmd = new SqlCommand(updateCorrelativeQuery, cn, tx))
                                     {
                                         updateCorrelativeCmd.Parameters.AddWithValue("@LastNumber", lastNumber);
                                         updateCorrelativeCmd.Parameters.AddWithValue("@DateUpdate", dateUpdate);
-                                        updateCorrelativeCmd.Parameters.AddWithValue("@Id", (int)reader["Id"]);
+                                        updateCorrelativeCmd.Parameters.AddWithValue("@Id",id);
+                                        
                                         await updateCorrelativeCmd.ExecuteNonQueryAsync();
+
+                                        
                                     }
 
-                                    // Generate sale number
-                                    string ceros = new string('0', (int)reader["QuantityDigits"]);
-                                    string saleNumber = ceros + lastNumber.ToString();
-                                    saleNumber = saleNumber.Substring((int)(saleNumber.Length - (int)reader["QuantityDigits"]));
-
-                                    entity.SaleNumber = saleNumber;
+                                    
 
                                     // Insert sale using SqlCommand
-                                    string insertQuery = "INSERT INTO Sales (saleNumber,UserId, customerDocument, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @UserId, @CustomerDocument, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
+                                    string insertQuery = "INSERT INTO Sale (saleNumber,UserId, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @UserId, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
                                     using (var insertCmd = new SqlCommand(insertQuery, cn, tx))
                                     {
                                         insertCmd.Parameters.AddWithValue("@SaleNumber", entity.SaleNumber);
                                         insertCmd.Parameters.AddWithValue("@userId", entity.UserId);
-                                        insertCmd.Parameters.AddWithValue("@CustomerDocument", entity.CustomerDocument);
+                                      
                                         insertCmd.Parameters.AddWithValue("@ClientName", entity.ClientName);
                                         insertCmd.Parameters.AddWithValue("@Subtotal", entity.Subtotal);
                                         insertCmd.Parameters.AddWithValue("@TotalTaxes", entity.TotalTaxes);
                                         insertCmd.Parameters.AddWithValue("@Total", entity.Total);
-                                        insertCmd.Parameters.AddWithValue("@RegistrationDate", entity.RegistrationDate);
+                                        insertCmd.Parameters.AddWithValue("@RegistrationDate", DateTime.Today);
                                         int saleId = (int)await insertCmd.ExecuteScalarAsync();
                                     }
                                 }
                                 else
                                 {
+                                    reader.Close(); // Close the reader before throwing exception
+
                                     // Handle the case where CorrelativeNumber is not found
                                     throw new Exception("CorrelativeNumber not found");
                                 }
@@ -309,7 +320,7 @@ namespace Site.DataAccess.Repository
                         }
 
                         // Commit transaction
-                        tx.Commit();
+                        tx.CommitAsync();
 
                         return entity;
                     }
