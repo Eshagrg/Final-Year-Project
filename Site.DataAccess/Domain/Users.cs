@@ -45,13 +45,19 @@ namespace Site.DataAccess.Domain
         [Required]
         public string FullName { get; set; }
         [Required]
+        [RegularExpression(@"^[^\s@]+@[^\s@]+\.[^\s@]+$", ErrorMessage = "Invalid email address format.")]
+        [EmailAddress(ErrorMessage = "Invalid email address format.")]
         public string Email { get; set; }
         [Required]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Invalid phone number format. Use 10 digits.")]
         public string PhoneNo { get; set; }
         public IFormFile UploadImage { get; set; }
         [Required]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$",
+        ErrorMessage = "The password must have at least one uppercase letter, one number, and one special character.")]
         public string Password { get; set; }
         [Required]
+        [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
     }
     public class AddStaff

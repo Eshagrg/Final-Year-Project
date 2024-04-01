@@ -64,70 +64,93 @@ namespace MilijuliFurniture.Controllers
         [HttpPost]
         public IActionResult AddStaff(AddStaff_VM obj)
         {
-            if (obj.UploadImage != null)
+            if (ModelState.IsValid)
             {
-                //Upload File
-                string folder = "wwwroot/uploadfiles/";
-                string fileurl = "/uploadfiles/";
-                string guid = Guid.NewGuid().ToString();
-                fileurl += guid + obj.UploadImage.FileName;
-                folder += guid + obj.UploadImage.FileName;
-                string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
-
-                obj.UploadImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-
-                AddStaff vm = new AddStaff();
-                vm.FullName = obj.FullName;
-                vm.PhoneNo = obj.PhoneNo;
-                vm.Email = obj.Email;
-                vm.Password = EncryptPassword(obj.Password);
-                vm.UploadImage = fileurl;
-                string output = _userAuth.SaveStaffData(vm);
-                if (output == "SUCCESS")
+                string msg = _userAuth.CheckEmailExist(obj.Email);
+                if (msg == "SUCCESS")
                 {
-                    return RedirectToAction("StaffIndex");
+                    _toastNotificationHero.Information("Email aready exists");
+                    return View();
                 }
-            }
-            else
-            {
-                
-                string folder = "wwwroot/uploadfiles/";
-                string fileurl = "/uploadfiles/";
-                string guid = Guid.NewGuid().ToString();
-                string output = "";
 
-                if (obj.UploadImage != null && obj.UploadImage.Length > 0)
+                if (obj.Password != obj.ConfirmPassword)
                 {
-                    // If obj.UploadImage is not null and has data, proceed with uploading the image
-                    fileurl += guid + "staff.png";
-                    folder += guid + "staff.png";
+                    _toastNotificationHero.Information("Password does not match");
+                    return View();
+                }
+                if (obj.UploadImage != null)
+                {
+                    //Upload File
+                    string folder = "wwwroot/uploadfiles/";
+                    string fileurl = "/uploadfiles/";
+                    string guid = Guid.NewGuid().ToString();
+                    fileurl += guid + obj.UploadImage.FileName;
+                    folder += guid + obj.UploadImage.FileName;
                     string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
 
-                    using (var fileStream = new FileStream(serverFolder, FileMode.Create))
+                    obj.UploadImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+                    AddStaff vm = new AddStaff();
+                    vm.FullName = obj.FullName;
+                    vm.PhoneNo = obj.PhoneNo;
+                    vm.Email = obj.Email;
+                    vm.Password = EncryptPassword(obj.Password);
+                    vm.UploadImage = fileurl;
+                    string output = _userAuth.SaveStaffData(vm);
+                    if (output == "SUCCESS")
                     {
-                        obj.UploadImage.CopyToAsync(fileStream);
+                        return RedirectToAction("StaffIndex");
                     }
                 }
                 else
                 {
-                    // If obj.UploadImage is null or empty, upload a default image instead
-                    fileurl += "staff.png";
+
+                    string folder = "wwwroot/uploadfiles/";
+                    string fileurl = "/uploadfiles/";
+                    string guid = Guid.NewGuid().ToString();
+                    string output = "";
+
+                    if (obj.UploadImage != null && obj.UploadImage.Length > 0)
+                    {
+                        // If obj.UploadImage is not null and has data, proceed with uploading the image
+                        fileurl += guid + "staff.png";
+                        folder += guid + "staff.png";
+                        string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
+
+                        using (var fileStream = new FileStream(serverFolder, FileMode.Create))
+                        {
+                            obj.UploadImage.CopyToAsync(fileStream);
+                        }
+                    }
+                    else
+                    {
+                        // If obj.UploadImage is null or empty, upload a default image instead
+                        fileurl += "staff.png";
+                    }
+
+                    AddStaff vm = new AddStaff();
+                    vm.FullName = obj.FullName;
+                    vm.PhoneNo = obj.PhoneNo;
+                    vm.Email = obj.Email;
+                    vm.Password = EncryptPassword(obj.Password);
+                    vm.UploadImage = fileurl;
+
+                    output = _userAuth.SaveStaffData(vm);
+
+                    if (output == "SUCCESS")
+                    {
+                        return RedirectToAction("StaffIndex");
+                    }
+
                 }
-
-                AddStaff vm = new AddStaff();
-                vm.FullName = obj.FullName;
-                vm.PhoneNo = obj.PhoneNo;
-                vm.Email = obj.Email;
-                vm.Password = EncryptPassword(obj.Password);
-                vm.UploadImage = fileurl;
-
-                output = _userAuth.SaveStaffData(vm);
-
-                if (output == "SUCCESS")
+            }
+            else
+            {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
                 {
-                    return RedirectToAction("StaffIndex");
+                    _toastNotificationHero.Error(error.ErrorMessage);
                 }
-
+                return View(obj);
             }
             return View();
         }
