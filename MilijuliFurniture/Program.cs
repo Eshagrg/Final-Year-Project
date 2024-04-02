@@ -1,4 +1,6 @@
 using AspNetCoreHero.ToastNotification;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -7,6 +9,7 @@ using Site.DataAccess.DBConn;
 using Site.DataAccess.Interface;
 using Site.DataAccess.Repository;
 using System.Globalization;
+using PointOfSale.Utilities.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,6 +80,10 @@ builder.Services.Configure<ConnectionStrings>(builder.Configuration.GetSection("
 builder.Services.AddScoped<IUserAuth, UserAuth_Repository>();
 builder.Services.AddScoped<IFurnitureItems, FurnitureItems_Repository>();
 builder.Services.AddScoped<ISales, SalesService_Repository>();
+
+var context = new CustomAssemblyLoadContext();
+context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "Utilities/LibraryPDF/libwkhtmltox.dll"));
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 // Configure the HTTP request pipeline.
 
 var app = builder.Build();
