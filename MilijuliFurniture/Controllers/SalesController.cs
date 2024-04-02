@@ -1,9 +1,13 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Site.DataAccess.Domain;
 using Site.DataAccess.Interface;
+using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Security.Claims;
 
 namespace MilijuliFurniture.Controllers
@@ -13,13 +17,14 @@ namespace MilijuliFurniture.Controllers
     {
         private readonly ISales _salesService;
         private readonly INotyfService _toastNotificationHero;
+        private readonly IConverter _converter;
 
-        public SalesController(ISales salesService, INotyfService toastNotificationHero, IFurnitureItems furnitureItems)
+        public SalesController(ISales salesService, INotyfService toastNotificationHero, IFurnitureItems furnitureItems, IConverter converter)
         {
 
             _salesService = salesService;
             _toastNotificationHero = toastNotificationHero;
-            
+            _converter = converter;
         }
         public IActionResult SalesIndex()
         {
@@ -40,35 +45,6 @@ namespace MilijuliFurniture.Controllers
             return Json(new { available });
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> RegisterSale([FromBody] VMSale model)
-        //{
-        //    try
-        //    {
-        //        string user = User.Identity.Name;
-        //        string userId = User.FindFirst("UserId").Value;
-
-
-        //        // Set the userId in the model
-        //        model.User = (user);
-        //        model.UserId = int.Parse(userId);
-
-        //        int result = await _salesService.RegisterSale(model);
-
-        //        if (result > 0)
-        //        {
-        //            return StatusCode(StatusCodes.Status200OK, new { Success = true });
-        //        }
-        //        else
-        //        {
-        //            return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = "Failed to register sale." });
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message });
-        //    }
-        //}
 
         [HttpPost]
         public async Task<IActionResult> RegisterSale([FromBody] VMSale model)
@@ -127,6 +103,59 @@ namespace MilijuliFurniture.Controllers
         }
 
 
+        public IActionResult SalesHistory()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> History(string saleNumber, string startDate, string endDate)
+        {
+            var sales = await _salesService.SaleHistory(saleNumber, startDate, endDate);
+            List<VMSale> vmHistorySale = sales.Select(s => new VMSale
+            {
+                // Map properties manually here
+                SaleNumber = s.SaleNumber,
+                RegistrationDate = s.RegistrationDate.ToString(),
+                ClientName = s.ClientName,
+                Total =s.Total.ToString(),
+                CustomerDocument = s.CustomerDocument,
+                DetailSales = s.DetailSales.Select(ds => new VMDetailSale
+                {
+                    // Map properties of VMDetailSale here
+                    DescriptionProduct = ds.DescriptionProduct,
+                    Quantity = ds.Quantity,
+                    Price = ds.Price.ToString(),
+                    Total = s.Total.ToString(),
+                    
+                }).ToList()
+
+                // Map other properties as needed
+            }).ToList();
+            return StatusCode(StatusCodes.Status200OK, vmHistorySale);
+        }
+
+
+        public IActionResult ShowPDFSale(string saleNumber)
+        {
+            string urlTemplateView = $"{this.Request.Scheme}://{this.Request.Host}/Template/PDFSale?saleNumber={saleNumber}";
+
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = new GlobalSettings()
+                {
+                    PaperSize = DinkToPdf.PaperKind.A4,
+                    Orientation = Orientation.Portrait
+                },
+                Objects = {
+                    new ObjectSettings(){
+                        Page = urlTemplateView
+                    }
+                }
+            };
+            var archivoPDF = _converter.Convert(pdf);
+            return File(archivoPDF, "application/pdf");
+        }
         //[HttpGet]
         //public async Task<IActionResult> GetProducts(string search)
         //{

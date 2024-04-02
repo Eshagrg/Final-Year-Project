@@ -825,3 +825,4 @@ C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug
 C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug\net6.0\ref\MilijuliFurniture.dll
 C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug\net6.0\MilijuliFurniture.Resources.Views.Shared.AdminLayout.menu.np-NP.resources
 C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug\net6.0\MilijuliFurniture.Resources.Views.Shared.AdminLayout.menu.en-US.resources
+C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\bin\Debug\net6.0\DinkToPdf.dll

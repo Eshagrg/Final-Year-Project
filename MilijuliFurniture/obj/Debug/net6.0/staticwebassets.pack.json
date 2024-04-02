@@ -18561,6 +18561,10 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\js\\views\\SalesHistorySale.js",
+      "PackagePath": "staticwebassets\\js\\views\\SalesHistorySale.js"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\js\\views\\SalesNewSale.js",
       "PackagePath": "staticwebassets\\js\\views\\SalesNewSale.js"
     },
@@ -18871,6 +18875,42 @@
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\jquery.dataTables.js",
       "PackagePath": "staticwebassets\\vendors\\datatables.net\\jquery.dataTables.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\jquery-ui\\idioma\\datepicker-es.js",
+      "PackagePath": "staticwebassets\\vendors\\jquery-ui\\idioma\\datepicker-es.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\jquery-ui\\images\\ui-icons_444444_256x240.png",
+      "PackagePath": "staticwebassets\\vendors\\jquery-ui\\images\\ui-icons_444444_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\jquery-ui\\images\\ui-icons_555555_256x240.png",
+      "PackagePath": "staticwebassets\\vendors\\jquery-ui\\images\\ui-icons_555555_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\jquery-ui\\images\\ui-icons_777620_256x240.png",
+      "PackagePath": "staticwebassets\\vendors\\jquery-ui\\images\\ui-icons_777620_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\jquery-ui\\images\\ui-icons_777777_256x240.png",
+      "PackagePath": "staticwebassets\\vendors\\jquery-ui\\images\\ui-icons_777777_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\jquery-ui\\images\\ui-icons_cc0000_256x240.png",
+      "PackagePath": "staticwebassets\\vendors\\jquery-ui\\images\\ui-icons_cc0000_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\jquery-ui\\images\\ui-icons_ffffff_256x240.png",
+      "PackagePath": "staticwebassets\\vendors\\jquery-ui\\images\\ui-icons_ffffff_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\jquery-ui\\jquery-ui.css",
+      "PackagePath": "staticwebassets\\vendors\\jquery-ui\\jquery-ui.css"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\jquery-ui\\jquery-ui.js",
+      "PackagePath": "staticwebassets\\vendors\\jquery-ui\\jquery-ui.js"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\loadingoverlay\\loadingoverlay.min.js",

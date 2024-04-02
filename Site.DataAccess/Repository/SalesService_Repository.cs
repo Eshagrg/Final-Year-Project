@@ -1,12 +1,14 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Site.DataAccess.DBConn;
 using Site.DataAccess.Domain;
 using Site.DataAccess.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,161 +61,7 @@ namespace Site.DataAccess.Repository
             }
         }
 
-        //public async Task<int> RegisterSale(VMSale entity)
-        //{
-        //    using (IDbConnection dbConnection = new SqlConnection(_connection.DbConnection))
-        //    {
-
-        //        if (dbConnection.State == ConnectionState.Closed)
-        //            dbConnection.Open();
-
-        //        var parameters = new
-        //        {
-        //            // Map your entity properties to stored procedure parameters
-        //            TypeDocumentSaleId = entity.TypeDocumentSaleId,
-        //            CustomerDocument = entity.CustomerDocument,
-        //            ClientName = entity.ClientName,
-        //            // Map other properties as needed...
-        //        };
-
-        //        var result = await dbConnection.ExecuteAsync("USP_RegisterSale", parameters, commandType: CommandType.StoredProcedure);
-
-        //        return result;
-        //    }
-        //}
-
-        //public async Task<Sale> Register(Sale entity)
-        //{
-        //    using (IDbConnection dbConnection = new SqlConnection(_connection.DbConnection))
-        //    {
-        //        dbConnection.Open();
-        //        using (var transaction = dbConnection.BeginTransaction())
-        //        {
-        //            try
-        //            {
-        //                foreach (DetailSale dv in entity.DetailSales)
-        //                {
-        //                    // Fetch product information using Dapper
-        //                    string query = "SELECT * FROM Product WHERE Id = @ProductId";
-        //                    var product_found = await dbConnection.QueryFirstOrDefaultAsync<Product>(query, new { Productid = dv.ProductId }, transaction);
-
-        //                    // Update product quantity
-        //                    product_found.Quantity -= dv.Quantity;
-
-
-        //                    // Update product quantity using Dapper
-        //                    string updateQuery = "UPDATE Product SET Quantity = @Quantity WHERE Id = @Id";
-        //                    await dbConnection.ExecuteAsync(updateQuery, product_found, transaction);
-        //                }
-
-        //                // Update CorrelativeNumber using Dapper
-        //                string correlativeQuery = "SELECT * FROM CorrelativeNumber WHERE Management = 'Sale'";
-        //                var correlative = await dbConnection.QueryFirstOrDefaultAsync<CorrelativeNumber>(correlativeQuery, transaction);
-        //                correlative.LastNumber++;
-        //                correlative.DateUpdate = DateTime.Now;
-
-        //                string updateCorrelativeQuery = "UPDATE CorrelativeNumber SET LastNumber = @LastNumber, DateUpdate = @DateUpdate WHERE Id = @Id";
-        //                await dbConnection.ExecuteAsync(updateCorrelativeQuery, correlative, transaction);
-
-        //                // Generate sale number
-        //                string ceros = new string('0', (int)correlative.QuantityDigits);
-        //                string saleNumber = ceros + correlative.LastNumber.ToString();
-        //                saleNumber = saleNumber.Substring((int)(saleNumber.Length - correlative.QuantityDigits));
-
-        //                entity.SaleNumber = saleNumber;
-
-        //                // Insert sale using Dapper
-        //                string insertQuery = "INSERT INTO Sales (saleNumber, idTypeDocumentSale, idUsers, customerDocument, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @IdTypeDocumentSale, @IdUsers, @CustomerDocument, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
-        //                int saleId = await dbConnection.QueryFirstOrDefaultAsync<int>(insertQuery, entity, transaction);
-
-        //                // Commit transaction
-        //                transaction.Commit();
-
-        //                return entity;
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                transaction.Rollback();
-        //                throw;
-        //            }
-        //        }
-        //    }
-        //}
-
-        //public async Task<Sale> Register(Sale entity)
-        //{
-        //    using (IDbConnection dbConnection = new SqlConnection(_connection.DbConnection))
-        //    {
-        //        dbConnection.Open();
-        //        var transaction = dbConnection.BeginTransaction();
-
-        //            try
-        //            {
-        //                foreach (DetailSale dv in entity.DetailSales)
-        //                {
-        //                    // Fetch product information using Dapper
-        //                    string query = "SELECT * FROM Product WHERE Id = @ProductId";
-        //                    var product_found = await dbConnection.QueryFirstOrDefaultAsync<Product>(query, new { ProductId = dv.ProductId }, transaction);
-
-        //                    // Update product quantity
-        //                    if (product_found != null)
-        //                    {
-        //                        product_found.Quantity -= dv.Quantity;
-
-        //                        // Update product quantity using Dapper
-        //                        string updateQuery = "UPDATE Product SET Quantity = @Quantity WHERE Id = @Id";
-        //                        await dbConnection.ExecuteAsync(updateQuery, product_found, transaction);
-        //                    }
-        //                    else
-        //                    {
-        //                        // Handle the case where product is not found
-        //                        throw new Exception("Product not found");
-        //                    }
-        //                }
-
-        //                    // Update CorrelativeNumber using Dapper
-        //                    string correlativeQuery = "SELECT * FROM CorrelativeNumber WHERE Management = 'Sale'";
-        //                    var correlative = await dbConnection.QueryFirstOrDefaultAsync<CorrelativeNumber>(correlativeQuery, transaction);
-
-        //                    if (correlative != null)
-        //                    {
-        //                        correlative.LastNumber++;
-        //                        correlative.DateUpdate = DateTime.Now;
-
-        //                        string updateCorrelativeQuery = "UPDATE CorrelativeNumber SET LastNumber = @LastNumber, DateUpdate = @DateUpdate WHERE Id = @Id";
-        //                        await dbConnection.ExecuteAsync(updateCorrelativeQuery, correlative, transaction);
-
-        //                        // Generate sale number
-        //                        string ceros = new string('0', (int)correlative.QuantityDigits);
-        //                        string saleNumber = ceros + correlative.LastNumber.ToString();
-        //                        saleNumber = saleNumber.Substring((int)(saleNumber.Length - correlative.QuantityDigits));
-
-        //                        entity.SaleNumber = saleNumber;
-
-        //                        // Insert sale using Dapper
-        //                        string insertQuery = "INSERT INTO Sales (saleNumber, idTypeDocumentSale, idUsers, customerDocument, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @IdTypeDocumentSale, @IdUsers, @CustomerDocument, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
-        //                        int saleId = await dbConnection.QueryFirstOrDefaultAsync<int>(insertQuery, entity, transaction);
-
-        //                        // Commit transaction
-        //                        transaction.Commit();
-
-        //                        return entity;
-        //                    }
-        //                    else
-        //                    {
-        //                        // Handle the case where CorrelativeNumber is not found
-        //                        throw new Exception("CorrelativeNumber not found");
-        //                    }
-
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                transaction.Rollback();
-        //                throw;
-        //            }
-
-        //    }
-        //}
+        
 
         public async Task<Sale> Register(Sale entity)
         {
@@ -283,7 +131,7 @@ namespace Site.DataAccess.Repository
                                 insertCmd.Parameters.AddWithValue("@Subtotal", entity.Subtotal);
                                 insertCmd.Parameters.AddWithValue("@TotalTaxes", entity.TotalTaxes);
                                 insertCmd.Parameters.AddWithValue("@Total", entity.Total);
-                                insertCmd.Parameters.AddWithValue("@RegistrationDate", DateTime.Today);
+                                insertCmd.Parameters.AddWithValue("@RegistrationDate", DateTime.Now);
                                 saleId = (int)await insertCmd.ExecuteScalarAsync();
                             }
                             foreach (DetailSale dv in entity.DetailSales)
@@ -354,6 +202,72 @@ namespace Site.DataAccess.Repository
             }
 
         }
+
+        //public async Task<List<Sale>> SaleHistory(string saleNumber, string startDate, string endDate)
+        //{
+        //    using IDbConnection db = new SqlConnection(_connection.DbConnection);
+        //    string query = "";
+        //    DateTime start_date = DateTime.ParseExact(startDate, "dd/MM/yyyy", new CultureInfo("es-PE"));
+        //    DateTime end_date = DateTime.ParseExact(endDate, "dd/MM/yyyy", new CultureInfo("es-PE"));
+        //    if (!string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
+        //    {
+        //        query = @"SELECT * FROM Sale 
+        //              WHERE RegistrationDate BETWEEN @StartDate AND @EndDate";
+        //    }
+        //    else
+        //    {
+        //        query = @"SELECT * FROM Sale 
+        //              WHERE SaleNumber = @SaleNumber";
+        //    }
+
+        //    var parameters = new {StartDate = start_date, EndDate = end_date };
+        //    var sales = await db.QueryAsync<Sale>(query, parameters);
+        //    return sales.AsList();
+        //}
+
+        public async Task<List<Sale>> SaleHistory(string salesNumber,string startDate, string endDate)
+        {
+            using IDbConnection db = new SqlConnection(_connection.DbConnection);
+            string query = "";
+            DateTime start_date = DateTime.ParseExact(startDate, "dd/MM/yyyy", new CultureInfo("es-PE"));
+            DateTime end_date = DateTime.ParseExact(endDate, "dd/MM/yyyy", new CultureInfo("es-PE"));
+
+            query = @"SELECT s.*, ds.*, p.*,u.FullName AS UserFullName
+              FROM Sale s
+              JOIN DetailSale ds ON s.SaleID = ds.SaleID
+              JOIN Product p ON ds.ProductID = p.Id
+              JOIN Portal_Users u ON s.UserID = u.Id
+              WHERE s.RegistrationDate BETWEEN @StartDate AND @EndDate";
+
+            var parameters = new { StartDate = start_date, EndDate = end_date };
+            var salesDictionary = new Dictionary<int, Sale>(); // Dictionary to store unique Sales by SaleID
+
+            await db.QueryAsync<Sale, DetailSale, Product,string, Sale>(
+                query,
+                (sale, detailSale, product, userFullName) =>
+                {
+                    if (!salesDictionary.TryGetValue(sale.SaleId, out Sale saleEntry))
+                    {
+                        saleEntry = sale;
+                        saleEntry.DetailSales = new List<DetailSale>();
+                        salesDictionary.Add(saleEntry.SaleId, saleEntry);
+                    }
+
+                    detailSale.ProductId = product.Id; // Attach the product to the detail sale
+                    detailSale.DescriptionProduct = product.Name;
+                    detailSale.Quantity = (int)product.Quantity;
+                    saleEntry.DetailSales.Add(detailSale);
+                    saleEntry.CustomerDocument = userFullName;
+                    return null; // We don't need to return anything here
+                },
+                parameters,
+                splitOn: "SaleID, ProductID,UserFullName" // Assuming "SaleID" and "ProductID" are the columns separating Sale and Product
+            );
+
+            return salesDictionary.Values.ToList();
+        }
+
+
 
 
 

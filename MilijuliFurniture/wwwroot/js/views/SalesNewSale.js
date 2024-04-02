@@ -249,8 +249,10 @@ $("#btnFinalizeSale").click(function () {
           /*  $("#cboTypeDocumentSale").val($("#cboTypeDocumentSale option:first").val());*/
 
             swal("Registered!", `Sale Number : ${responseJson.saleNumber}`, "success");
-   
+           
 
+
+                    
         } else {
             swal("We're sorry", "The sale could not be registered", "error");
         }

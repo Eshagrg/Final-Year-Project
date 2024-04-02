@@ -13,6 +13,8 @@ namespace Site.DataAccess.Interface
         bool IsQuantityAvailable(int id, int quantity);
         Task<Sale> Register(Sale entity);
 
+        Task<List<Sale>> SaleHistory(string saleNumber, string startDate, string endDate);
+
         //Task<List<Product>> GetProducts(string search);
     }
 }
