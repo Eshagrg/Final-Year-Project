@@ -23,5 +23,14 @@ namespace Site.DataAccess.Interface
         Product GetProductDetailsById(int id);
         string UpdateProductDetail(Product obj, int id);
         string DeleteProductDetail(int id);
+
+
+        //DashBoard details
+        Task<int> TotalSalesLastWeek();
+        //Task<string> TotalIncomeLastWeek();
+        //Task<int> TotalProducts();
+        //Task<int> TotalCategories();
+        //Task<Dictionary<string, int>> SalesLastWeek();
+        //Task<Dictionary<string, int>> ProductsTopLastWeek();
     }
 }

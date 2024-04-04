@@ -85,6 +85,8 @@ var context = new CustomAssemblyLoadContext();
 context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "Utilities/LibraryPDF/libwkhtmltox.dll"));
 builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+builder.Services.AddCors();
 // Configure the HTTP request pipeline.
 
 var app = builder.Build();
@@ -102,6 +104,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
 app.UseAuthentication();
 
 

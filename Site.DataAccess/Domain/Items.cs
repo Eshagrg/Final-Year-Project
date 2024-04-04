@@ -65,4 +65,25 @@ namespace Site.DataAccess.Domain
         public int? Quantity { get; set; }
 
     }
+
+    public class VMDashBoard
+    {
+        public int TotalSales { get; set; }
+        public string? TotalIncome { get; set; }
+        public int TotalProducts { get; set; }
+        public int TotalCategories { get; set; }
+        public List<VMSalesWeek> SalesLastWeek { get; set; }
+        public List<VMProductsWeek> ProductsTopLastWeek { get; set; }
+    }
+
+    public class VMSalesWeek
+    {
+        public string? Date { get; set; }
+        public int Total { get; set; }
+    }
+    public class VMProductsWeek
+    {
+        public string? Product { get; set; }
+        public int Quantity { get; set; }
+    }
 }

@@ -46,16 +46,10 @@
             <li class="active">
                 <a asp-controller="Admin" asp-action="Index" class="nav-link"><i class="fas fa-tachometer-alt"></i><span>@Localizer["Dashboard"]</span></a>
             </li>
-            <li class="active">
-                <a asp-controller="Admin" asp-action="AppliedVacancy" class="nav-link"><i class="fas fa-table"></i><span>@Localizer["Applied Vacancy"]</span></a>
-            </li>
-            <li class="active">
-                <a asp-controller="Admin" asp-action="VacancyIndex" class="nav-link"><i class="fas fa-table"></i><span>@Localizer["Vacancy"]</span></a>
+
             </li>
             <li class="menu-header">@Localizer["Settings"]</li>
-            <li class="active">
-                <a asp-controller="Admin" asp-action="UserIndex" class="nav-link"><i class="fas fa-users"></i><span>@Localizer["Users"]</span></a>
-            </li>
+         
             <li class="active">
                 <a asp-controller="Admin" asp-action="StaffIndex" class="nav-link"><i class="fas fa-user-tie"></i><span>@Localizer["Staffs"]</span></a>
             </li>
@@ -70,7 +64,7 @@
                 <a asp-controller="Sales" asp-action="SalesIndex" class="nav-link"><i class="fa fa-file"></i><span>@Localizer["New Sale"]</span></a>
             </li>
             <li class="active">
-                <a asp-controller="Admin" asp-action="GetSummaryReport" class="nav-link"><i class="fa fa-file"></i><span>@Localizer["Quota Summary Report"]</span></a>
+                <a asp-controller="Sales" asp-action="History" class="nav-link"><i class="fa fa-file"></i><span>@Localizer["Sales History"]</span></a>
             </li>
         </ul>
     </aside>

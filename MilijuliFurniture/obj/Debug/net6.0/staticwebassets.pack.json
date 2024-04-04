@@ -18561,6 +18561,10 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\js\\views\\AdminDashBoard.js",
+      "PackagePath": "staticwebassets\\js\\views\\AdminDashBoard.js"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\js\\views\\SalesHistorySale.js",
       "PackagePath": "staticwebassets\\js\\views\\SalesHistorySale.js"
     },

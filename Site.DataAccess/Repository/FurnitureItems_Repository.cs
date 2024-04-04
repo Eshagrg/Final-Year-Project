@@ -7,6 +7,8 @@ using Site.DataAccess.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +18,11 @@ namespace Site.DataAccess.Repository
     public class FurnitureItems_Repository : IFurnitureItems
     {
         private readonly ConnectionStrings _connection;
-
+        private DateTime StartDate = DateTime.Now;
         public FurnitureItems_Repository(IOptions<ConnectionStrings> connection)
         {
             _connection = connection.Value;
+            StartDate = StartDate.AddDays(-7);
         }
 
         public bool AddCategory(string categoryname, string createdBy)
@@ -210,5 +213,25 @@ namespace Site.DataAccess.Repository
                 throw;
             }
         }
+
+        //DashBoard 
+
+        public async Task<int> TotalSalesLastWeek()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    string sql = "SELECT COUNT(*) FROM Sale WHERE RegistrationDate >= @StartDate";
+                    int total = await conn.ExecuteScalarAsync<int>(sql, new { StartDate = StartDate.Date});
+                    return total;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

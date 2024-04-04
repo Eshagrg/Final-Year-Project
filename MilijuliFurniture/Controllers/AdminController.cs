@@ -29,7 +29,51 @@ namespace MilijuliFurniture.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> GetSummary()
+        {
+            try
+            {
+                VMDashBoard vmDashboard = new VMDashBoard();
 
+                // Populate the view model with data from the dashboard service
+                vmDashboard.TotalSales = await _furnitureItems.TotalSalesLastWeek();
+                //vmDashboard.TotalIncome = await _furnitureItems.TotalIncomeLastWeek();
+                //vmDashboard.TotalProducts = await _furnitureItems.TotalProducts();
+                //vmDashboard.TotalCategories = await _furnitureItems.TotalCategories();
+
+                // Create lists for sales and products data
+                List<VMSalesWeek> listSalesWeek = new List<VMSalesWeek>();
+                List<VMProductsWeek> ProductListWeek = new List<VMProductsWeek>();
+
+                //foreach (KeyValuePair<string, int> item in await _furnitureItems.SalesLastWeek())
+                //{
+                //    listSalesWeek.Add(new VMSalesWeek()
+                //    {
+                //        Date = item.Key,
+                //        Total = item.Value
+                //    });
+                //}
+
+                //foreach (KeyValuePair<string, int> item in await _furnitureItems.ProductsTopLastWeek())
+                //{
+                //    ProductListWeek.Add(new VMProductsWeek()
+                //    {
+                //        Product = item.Key,
+                //        Quantity = item.Value
+                //    });
+                //}
+
+                // Assign the sales and products lists to the view model
+                vmDashboard.SalesLastWeek = listSalesWeek;
+                vmDashboard.ProductsTopLastWeek = ProductListWeek;
+                return StatusCode(StatusCodes.Status200OK, new { Success = true, vmDashboard = vmDashboard });
+                return Ok(vmDashboard);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
         [HttpPost]
         public IActionResult SetCulture(string culture, string returnUrl)
         {

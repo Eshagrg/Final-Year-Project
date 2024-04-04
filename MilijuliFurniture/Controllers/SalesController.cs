@@ -18,6 +18,7 @@ namespace MilijuliFurniture.Controllers
         private readonly ISales _salesService;
         private readonly INotyfService _toastNotificationHero;
         private readonly IConverter _converter;
+   
 
         public SalesController(ISales salesService, INotyfService toastNotificationHero, IFurnitureItems furnitureItems, IConverter converter)
         {
@@ -25,6 +26,7 @@ namespace MilijuliFurniture.Controllers
             _salesService = salesService;
             _toastNotificationHero = toastNotificationHero;
             _converter = converter;
+          
         }
         public IActionResult SalesIndex()
         {
@@ -136,30 +138,9 @@ namespace MilijuliFurniture.Controllers
         }
 
 
-        //public IActionResult ShowPDFSale(string saleNumber)
-        //{
-        //    string urlTemplateView = $"{this.Request.Scheme}://{this.Request.Host}/Template/PDFSale?saleNumber={saleNumber}";
-
-        //    var pdf = new HtmlToPdfDocument()
-        //    {
-        //        GlobalSettings = new GlobalSettings()
-        //        {
-        //            PaperSize = DinkToPdf.PaperKind.A4,
-        //            Orientation = Orientation.Portrait
-        //        },
-        //        Objects = {
-        //            new ObjectSettings(){
-        //                Page = urlTemplateView
-        //            }
-        //        }
-        //    };
-        //    var archivoPDF = _converter.Convert(pdf);
-        //    return File(archivoPDF, "application/pdf");
-        //}
-
         public IActionResult ShowPDFSale(string saleNumber)
         {
-            string urlTemplateView = Url.Action("PDFSale", "Template", new { saleNumber }, Request.Scheme);
+            string urlTemplateView = $"{this.Request.Scheme}://{this.Request.Host}/Template/PDFSale?saleNumber={saleNumber}";
 
             var pdf = new HtmlToPdfDocument()
             {
@@ -169,16 +150,14 @@ namespace MilijuliFurniture.Controllers
                     Orientation = Orientation.Portrait
                 },
                 Objects = {
-            new ObjectSettings(){
-                Page = urlTemplateView
-            }
-        }
+                    new ObjectSettings(){
+                        Page = urlTemplateView
+                    }
+                }
             };
-
             var archivoPDF = _converter.Convert(pdf);
             return File(archivoPDF, "application/pdf");
         }
-
         //[HttpGet]
         //public async Task<IActionResult> GetProducts(string search)
         //{
