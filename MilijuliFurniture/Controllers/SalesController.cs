@@ -136,9 +136,30 @@ namespace MilijuliFurniture.Controllers
         }
 
 
+        //public IActionResult ShowPDFSale(string saleNumber)
+        //{
+        //    string urlTemplateView = $"{this.Request.Scheme}://{this.Request.Host}/Template/PDFSale?saleNumber={saleNumber}";
+
+        //    var pdf = new HtmlToPdfDocument()
+        //    {
+        //        GlobalSettings = new GlobalSettings()
+        //        {
+        //            PaperSize = DinkToPdf.PaperKind.A4,
+        //            Orientation = Orientation.Portrait
+        //        },
+        //        Objects = {
+        //            new ObjectSettings(){
+        //                Page = urlTemplateView
+        //            }
+        //        }
+        //    };
+        //    var archivoPDF = _converter.Convert(pdf);
+        //    return File(archivoPDF, "application/pdf");
+        //}
+
         public IActionResult ShowPDFSale(string saleNumber)
         {
-            string urlTemplateView = $"{this.Request.Scheme}://{this.Request.Host}/Template/PDFSale?saleNumber={saleNumber}";
+            string urlTemplateView = Url.Action("PDFSale", "Template", new { saleNumber }, Request.Scheme);
 
             var pdf = new HtmlToPdfDocument()
             {
@@ -148,14 +169,16 @@ namespace MilijuliFurniture.Controllers
                     Orientation = Orientation.Portrait
                 },
                 Objects = {
-                    new ObjectSettings(){
-                        Page = urlTemplateView
-                    }
-                }
+            new ObjectSettings(){
+                Page = urlTemplateView
+            }
+        }
             };
+
             var archivoPDF = _converter.Convert(pdf);
             return File(archivoPDF, "application/pdf");
         }
+
         //[HttpGet]
         //public async Task<IActionResult> GetProducts(string search)
         //{

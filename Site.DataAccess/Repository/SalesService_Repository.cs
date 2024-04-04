@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Site.DataAccess.Repository
 {
-    public class SalesService_Repository: ISales
+    public class SalesService_Repository : ISales
     {
         private readonly ConnectionStrings _connection;
 
@@ -25,7 +25,7 @@ namespace Site.DataAccess.Repository
         }
 
 
-     
+
 
         public IEnumerable<Product> GetProductList(string search)
         {
@@ -61,7 +61,7 @@ namespace Site.DataAccess.Repository
             }
         }
 
-        
+
 
         public async Task<Sale> Register(Sale entity)
         {
@@ -158,7 +158,7 @@ namespace Site.DataAccess.Repository
                                                 updateCmd.Parameters.AddWithValue("@Id", dv.ProductId);
                                                 await updateCmd.ExecuteNonQueryAsync();
                                             }
-                                            reader.Close ();
+                                            reader.Close();
                                             // Insert detail sale into DetailSale table
                                             string insertDetailSaleQuery = "INSERT INTO DetailSale (ProductId, Quantity, SaleId,brandProduct,categoryProduct,price,total) VALUES (@ProductId, @Quantity, @SaleId,@BrandProduct,@CategoryProduct,@Price,@Total)";
                                             using (var insertDetailSaleCmd = new SqlCommand(insertDetailSaleQuery, cn, tx))
@@ -184,7 +184,7 @@ namespace Site.DataAccess.Repository
                                 }
                             }
 
-                        
+
                         }
 
                         // Commit transaction
@@ -225,7 +225,7 @@ namespace Site.DataAccess.Repository
         //    return sales.AsList();
         //}
 
-        public async Task<List<Sale>> SaleHistory(string salesNumber,string startDate, string endDate)
+        public async Task<List<Sale>> SaleHistory(string salesNumber, string startDate, string endDate)
         {
             using IDbConnection db = new SqlConnection(_connection.DbConnection);
             string query = "";
@@ -242,7 +242,7 @@ namespace Site.DataAccess.Repository
             var parameters = new { StartDate = start_date, EndDate = end_date };
             var salesDictionary = new Dictionary<int, Sale>(); // Dictionary to store unique Sales by SaleID
 
-            await db.QueryAsync<Sale, DetailSale, Product,string, Sale>(
+            await db.QueryAsync<Sale, DetailSale, Product, string, Sale>(
                 query,
                 (sale, detailSale, product, userFullName) =>
                 {
@@ -266,6 +266,51 @@ namespace Site.DataAccess.Repository
 
             return salesDictionary.Values.ToList();
         }
+
+        public async Task<Sale> Detail(string salesNumber)
+        {
+            using IDbConnection db = new SqlConnection(_connection.DbConnection);
+            string query = "";
+           
+
+            query = @"SELECT s.*, ds.*, p.*,u.FullName AS UserFullName
+              FROM Sale s
+              JOIN DetailSale ds ON s.SaleID = ds.SaleID
+              JOIN Product p ON ds.ProductID = p.Id
+              JOIN Portal_Users u ON s.UserID = u.Id
+              WHERE s.SaleNumber = @SaleNumber";
+
+            var parameters = new { SaleNumber = salesNumber };
+            var salesDictionary = new Dictionary<int, Sale>(); // Dictionary to store unique Sales by SaleID
+
+            await db.QueryAsync<Sale, DetailSale, Product, string, Sale>(
+                query,
+                (sale, detailSale, product, userFullName) =>
+                {
+                    if (!salesDictionary.TryGetValue(sale.SaleId, out Sale saleEntry))
+                    {
+                        saleEntry = sale;
+                        saleEntry.DetailSales = new List<DetailSale>();
+                        salesDictionary.Add(saleEntry.SaleId, saleEntry);
+                    }
+
+                    detailSale.ProductId = product.Id; // Attach the product to the detail sale
+                    detailSale.DescriptionProduct = product.Name;
+                    detailSale.Quantity = (int)product.Quantity;
+                    saleEntry.DetailSales.Add(detailSale);
+                    saleEntry.CustomerDocument = userFullName;
+                    return null; // We don't need to return anything here
+                },
+                parameters,
+                splitOn: "SaleID, ProductID,UserFullName" // Assuming "SaleID" and "ProductID" are the columns separating Sale and Product
+            );
+
+            return salesDictionary.Values.FirstOrDefault();
+        }
+
+
+
+
 
 
 

@@ -132,6 +132,9 @@
   <data name="New Sale" xml:space="preserve">
     <value>New Sale</value>
   </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
   <data name="Quota Summary Report" xml:space="preserve">
     <value>Quota Summary Report</value>
   </data>

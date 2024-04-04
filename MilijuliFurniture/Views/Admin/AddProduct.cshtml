@@ -1,4 +1,6 @@
 ﻿@model Site.DataAccess.Domain.Product_VM
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     Layout = "AdminLayout/_AdminLayout";
 }
@@ -7,8 +9,8 @@
     <div class="section-header">
         <h1>User</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item">User</div>
+            <div class="breadcrumb-item active"><a href="#">@Localizer["Dashboard"]</a></div>
+            <div class="breadcrumb-item">@Localizer["User"]</div>
         </div>
     </div>
 
@@ -19,33 +21,33 @@
                     <div class="card-body">
                         <form method="post" class="needs-validation" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label asp-for="CategoryName">Category</label>
+                                <label asp-for="CategoryName">@Localizer["Category"]</label>
                                 <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfCategory,"Id","Name"))"></select>
                             </div>
                             <div class="form-group">
-                                <label>Product Name</label>
+                                <label>@Localizer["Product Name"]</label>
                                 <input type="text" asp-for="Name" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
+                                <label>@Localizer["Price"]</label>
                                 <input type="text" asp-for="Price" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Quantity</label>
+                                <label>@Localizer["Quantity"]</label>
                                 <input type="text" asp-for="Quantity" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Brand</label>
+                                <label>@Localizer["Brand"]</label>
                                 <input type="text" asp-for="Brand" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Upload Image</label>
+                                <label>@Localizer["Upload Image"]</label>
                                 <input asp-for="UploadImage" class="form-control">
                             </div>
 
                             <div class="card-footer">
-                                <a asp-controller="Admin" asp-action="ProductIndex" class="btn btn-primary text-white">Back to List</a>
-                                <button type="submit" class="btn btn-primary text-white">Add Product</button>
+                                <a asp-controller="Admin" asp-action="ProductIndex" class="btn btn-primary text-white">@Localizer["Back to List"]</a>
+                                <button type="submit" class="btn btn-primary text-white">@Localizer["Add Product"]</button>
 
                             </div>
 

@@ -33,7 +33,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedUICultures = supportedCultures;
 });
 
-builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
 
 //Cookie Authentication
 builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
@@ -84,6 +84,7 @@ builder.Services.AddScoped<ISales, SalesService_Repository>();
 var context = new CustomAssemblyLoadContext();
 context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "Utilities/LibraryPDF/libwkhtmltox.dll"));
 builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 // Configure the HTTP request pipeline.
 
 var app = builder.Build();
