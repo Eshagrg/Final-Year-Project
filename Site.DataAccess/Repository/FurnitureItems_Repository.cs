@@ -64,7 +64,7 @@ namespace Site.DataAccess.Repository
             }
         }
 
-      
+
 
         public IEnumerable<Category> GetCategorylist()
         {
@@ -225,7 +225,7 @@ namespace Site.DataAccess.Repository
                 using (var conn = new SqlConnection(_connection.DbConnection))
                 {
                     string sql = "SELECT COUNT(*) FROM Sale WHERE RegistrationDate >= @StartDate";
-                    int total = await conn.ExecuteScalarAsync<int>(sql, new { StartDate = StartDate.Date});
+                    int total = await conn.ExecuteScalarAsync<int>(sql, new { StartDate = StartDate.Date });
                     return total;
                 }
             }
@@ -241,7 +241,7 @@ namespace Site.DataAccess.Repository
             {
                 using (var conn = new SqlConnection(_connection.DbConnection))
                 {
-                    string sql = "SELECT COUNT(*) FROM Product"; 
+                    string sql = "SELECT COUNT(*) FROM Product";
                     int total = await conn.ExecuteScalarAsync<int>(sql);
                     return total;
                 }
@@ -283,5 +283,74 @@ namespace Site.DataAccess.Repository
                 throw;
             }
         }
+
+        public async Task<IEnumerable<KeyValuePair<string, int>>> ProductsTopLastWeek()
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_connection.DbConnection))
+                {
+                    // Write the SQL query to retrieve top product sales data
+                    string sql = @"
+                SELECT TOP 4 p.Name AS Product,
+                    COUNT(*) AS Total
+                    FROM Product p
+                    Inner JOIN DetailSale ds On p.Id = ds.ProductId
+                    INNER JOIN Sale s ON ds.SaleId = s.SaleId
+                    WHERE s.RegistrationDate >= 4/9/1
+                    GROUP BY p.Name
+                    ORDER BY COUNT(*) DESC";
+                    
+                    // Execute the SQL query using Dapper
+                    var salesData = await connection.QueryAsync<dynamic>(sql, new { StartDate });
+
+                    // Process the query result to create the dictionary
+                    var resultado = salesData.ToDictionary(row => (string)row.Product, row => (int)row.Total);
+
+                    return resultado;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions appropriately
+                throw new Exception("Error fetching top product sales data from the database", ex);
+            }
+        }
+
+      
+
+        async Task<IEnumerable<KeyValuePair<string, int>>> IFurnitureItems.SalesLastWeek()
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_connection.DbConnection))
+                {
+                    // Write the SQL query to retrieve sales data for the last week
+                    string sql = @"
+                SELECT CONVERT(VARCHAR(10), RegistrationDate, 103) AS Date,
+                       COUNT(*) AS Total
+                FROM Sale
+                WHERE RegistrationDate >= DATEADD(DAY, -7, GETDATE())
+                GROUP BY CONVERT(VARCHAR(10), RegistrationDate, 103)
+                ORDER BY CONVERT(VARCHAR(10), RegistrationDate, 103) DESC";
+
+                    // Execute the SQL query using Dapper
+                    var salesData = await connection.QueryAsync<dynamic>(sql);
+
+                    // Process the query result to create the dictionary
+                    var resultado = salesData.ToDictionary(row => (string)row.Date, row => (int)row.Total);
+
+                    return resultado;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions appropriately
+                throw new Exception("Error fetching sales data from the database", ex);
+
+            }
+        }
+
+       
     }
 }

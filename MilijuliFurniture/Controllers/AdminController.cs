@@ -49,6 +49,23 @@ namespace MilijuliFurniture.Controllers
                 List<VMSalesWeek> listSalesWeek = new List<VMSalesWeek>();
                 List<VMProductsWeek> ProductListWeek = new List<VMProductsWeek>();
 
+                foreach (KeyValuePair<string, int> item in await _furnitureItems.SalesLastWeek())
+                {
+                    listSalesWeek.Add(new VMSalesWeek()
+                    {
+                        Date = item.Key,
+                        Total = item.Value
+                    });
+                }
+
+                foreach (KeyValuePair<string, int> item in await _furnitureItems.ProductsTopLastWeek())
+                {
+                    ProductListWeek.Add(new VMProductsWeek()
+                    {
+                        Product = item.Key,
+                        Quantity = item.Value
+                    });
+                }
                 // Assign the sales and products lists to the view model
                 vmDashboard.SalesLastWeek = listSalesWeek;
                 vmDashboard.ProductsTopLastWeek = ProductListWeek;

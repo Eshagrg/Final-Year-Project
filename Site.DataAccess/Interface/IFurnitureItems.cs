@@ -31,6 +31,8 @@ namespace Site.DataAccess.Interface
         Task<int> TotalProducts();
         Task<int> TotalUsers();
         Task<int> TotalCategories();
+        Task<IEnumerable<KeyValuePair<string, int>>> SalesLastWeek();
+        Task<IEnumerable<KeyValuePair<string, int>>> ProductsTopLastWeek();
         //Task<Dictionary<string, int>> SalesLastWeek();
         //Task<Dictionary<string, int>> ProductsTopLastWeek();
     }
