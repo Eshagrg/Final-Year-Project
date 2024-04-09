@@ -129,6 +129,9 @@
   <data name="Are you sure you want to delete this category?" xml:space="preserve">
     <value>के तपाईं यो प्रोडक्ट मेटाउन चाहानुहुन्छ?</value>
   </data>
+  <data name="Brand" xml:space="preserve">
+    <value>ब्रान्ड</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>रद्द गर्नुहोस्</value>
   </data>
@@ -153,8 +156,14 @@
   <data name="Price" xml:space="preserve">
     <value>मूल्य</value>
   </data>
+  <data name="Product" xml:space="preserve">
+    <value />
+  </data>
   <data name="Products" xml:space="preserve">
     <value>प्रोडक्टहरू</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>मात्रा</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>स्थिति</value>

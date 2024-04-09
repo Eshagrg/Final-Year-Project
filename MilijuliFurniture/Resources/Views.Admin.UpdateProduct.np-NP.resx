@@ -141,7 +141,7 @@
   <data name="Quantity" xml:space="preserve">
     <value>Quantity</value>
   </data>
-  <data name="Update Staff" xml:space="preserve">
-    <value>Update Staff</value>
+  <data name="Update Product" xml:space="preserve">
+    <value>Update Product</value>
   </data>
 </root>

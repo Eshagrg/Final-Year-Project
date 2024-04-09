@@ -301,7 +301,7 @@ namespace Site.DataAccess.Repository
             }
         }
 
-        public Portal_User GetStaffDetailsById(int id)
+        public AddStaff_VM GetStaffDetailsById(int id)
         {
             try
             {
@@ -309,7 +309,7 @@ namespace Site.DataAccess.Repository
                 {
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@Id", id);
-                    Portal_User output = conn.QueryFirstOrDefault<Portal_User>("USP_GetStaffDetailById", param, commandType: CommandType.StoredProcedure);
+                    AddStaff_VM output = conn.QueryFirstOrDefault<AddStaff_VM>("USP_GetStaffDetailById", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
             }
@@ -330,6 +330,7 @@ namespace Site.DataAccess.Repository
                     param.Add("@FullName", obj.FullName);
                     param.Add("@Email", obj.Email);
                     param.Add("@PhoneNo", obj.PhoneNo);
+                    param.Add("@UploadFile", obj.UploadImage);
                     string output = conn.ExecuteScalar<string>("USP_UpdateStaffDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
@@ -371,5 +372,14 @@ namespace Site.DataAccess.Repository
             }
         }
 
+    
+        public object GetUserData(int userId)
+        {
+            using (IDbConnection db = new SqlConnection(_connection.DbConnection))
+            {
+                string query = "SELECT * FROM Portal_Users WHERE Id = @UserId"; // Adjust this query as per your database schema
+                return db.QueryFirstOrDefault<object>(query, new { UserId = userId });
+            }
+        }
     }
 }

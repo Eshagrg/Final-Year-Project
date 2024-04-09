@@ -141,6 +141,9 @@
   <data name="Report" xml:space="preserve">
     <value>रिपोर्ट</value>
   </data>
+  <data name="Sales History" xml:space="preserve">
+    <value>बिक्री इतिहास</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>सेटिङहरू</value>
   </data>
@@ -149,8 +152,5 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>प्रयोगकर्ताहरू</value>
-  </data>
-  <data name="Vacancy" xml:space="preserve">
-    <value>रिक्तता</value>
   </data>
 </root>

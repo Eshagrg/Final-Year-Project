@@ -135,10 +135,10 @@
   <data name="Phone Number" xml:space="preserve">
     <value>Phone Number</value>
   </data>
+  <data name="Staff" xml:space="preserve">
+    <value>Staff</value>
+  </data>
   <data name="Update Staff" xml:space="preserve">
     <value>Update Staff</value>
-  </data>
-  <data name="User" xml:space="preserve">
-    <value>User</value>
   </data>
 </root>

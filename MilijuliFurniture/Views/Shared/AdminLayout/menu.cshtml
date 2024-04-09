@@ -2,6 +2,7 @@
 @inject IViewLocalizer Localizer
 
 <link rel="stylesheet" href="~/admin/css/custom.css">
+
 <style>
     .main-sidebar .sidebar-menu li.active a {
         color: black
@@ -44,29 +45,49 @@
         <ul class="sidebar-menu">
             <li class="menu-header">@Localizer["Dashboard"]</li>
             <li class="active">
-                <a asp-controller="Admin" asp-action="Index" class="nav-link"><i class="fas fa-tachometer-alt"></i><span>@Localizer["Dashboard"]</span></a>
+                <a asp-controller="Admin" asp-action="Index" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>@Localizer["Dashboard"]</span>
+                </a>
             </li>
 
             </li>
             <li class="menu-header">@Localizer["Settings"]</li>
          
             <li class="active">
-                <a asp-controller="Admin" asp-action="StaffIndex" class="nav-link"><i class="fas fa-user-tie"></i><span>@Localizer["Staffs"]</span></a>
+                <a asp-controller="Admin" asp-action="StaffIndex" class="nav-link">
+                    <i class="fas fa-user-tie"></i>
+                    <span>@Localizer["Staffs"]</span>
+                </a>
             </li>
             <li class="menu-header">Reports</li>
             <li class="active">
-                <a asp-controller="Admin" asp-action="CategoryIndex" class="nav-link"><i class="fa fa-file"></i><span>@Localizer["Category"]</span></a>
+                <a asp-controller="Admin" asp-action="CategoryIndex" class="nav-link">
+                    <i class="fas fa-chair"></i>
+                    <span>@Localizer["Category"]</span>
+                </a>
             </li>
             <li class="active">
-                <a asp-controller="Admin" asp-action="Productindex" class="nav-link"><i class="fa fa-file"></i><span>@Localizer["Products"]</span></a>
+                <a asp-controller="Admin" asp-action="Productindex" class="nav-link">
+                    <i class="fas fa-couch"></i>
+                    <span>@Localizer["Products"]</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a asp-controller="Sales" asp-action="SalesIndex" class="nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>@Localizer["New Sale"]</span>
+                </a>
             </li>
             <li class="active">
-                <a asp-controller="Sales" asp-action="SalesIndex" class="nav-link"><i class="fa fa-file"></i><span>@Localizer["New Sale"]</span></a>
-            </li>
-            <li class="active">
-                <a asp-controller="Sales" asp-action="History" class="nav-link"><i class="fa fa-file"></i><span>@Localizer["Sales History"]</span></a>
+                <a asp-controller="Sales" asp-action="SalesHistory" class="nav-link">
+                    <i class="fa fa-file"></i>
+                    <span>@Localizer["Sales History"]</span>
+                </a>
             </li>
         </ul>
     </aside>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+

@@ -13,7 +13,7 @@
                 let d = responseJson.vmDashboard;
 
                 $("#totalSale").text(d.totalSales);
-                $("#totalIncome").text(d.totalIncome)
+                $("#totalUsers").text(d.totalUsers)
                 $("#totalProducts").text(d.totalProducts)
                 $("#totalCategories").text(d.totalCategories)
 

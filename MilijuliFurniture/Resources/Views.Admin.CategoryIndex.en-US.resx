@@ -129,6 +129,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>रद्द गर्नुहोस्</value>
   </data>
+  <data name="Categories" xml:space="preserve">
+    <value>वर्गहरू</value>
+  </data>
   <data name="Category" xml:space="preserve">
     <value>वर्ग</value>
   </data>
@@ -150,14 +153,11 @@
   <data name="Enable" xml:space="preserve">
     <value>सक्षम गर्नुहोस्</value>
   </data>
-  <data name="Enter your new category here" xml:space="preserve">
-    <value>तपाईंको नयाँ वर्ग यहाँ लेख्नुहोस्</value>
-  </data>
   <data name="InActive" xml:space="preserve">
     <value>निष्क्रिय</value>
   </data>
-  <data name="New Category:" xml:space="preserve">
-    <value>नयाँ वर्ग</value>
+  <data name="Recent Category Name:" xml:space="preserve">
+    <value>हालको वर्ग नाम</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>स्थिति</value>
@@ -167,5 +167,14 @@
   </data>
   <data name="Update Action" xml:space="preserve">
     <value>कार्य अपडेट गर्नुहोस्</value>
+  </data>
+  <data name="Update Category" xml:space="preserve">
+    <value>अपडेट वर्ग</value>
+  </data>
+  <data name="Update Category:" xml:space="preserve">
+    <value>अपडेट वर्ग</value>
+  </data>
+  <data name="Update your category name here" xml:space="preserve">
+    <value>तपाईंको वर्ग यहाँ अपडेट  गर्नुहोस्</value>
   </data>
 </root>

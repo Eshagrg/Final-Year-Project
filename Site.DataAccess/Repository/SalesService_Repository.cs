@@ -232,14 +232,20 @@ namespace Site.DataAccess.Repository
             DateTime start_date = DateTime.ParseExact(startDate, "dd/MM/yyyy", new CultureInfo("es-PE"));
             DateTime end_date = DateTime.ParseExact(endDate, "dd/MM/yyyy", new CultureInfo("es-PE"));
 
-            query = @"SELECT s.*, ds.*, p.*,u.FullName AS UserFullName
-              FROM Sale s
-              JOIN DetailSale ds ON s.SaleID = ds.SaleID
-              JOIN Product p ON ds.ProductID = p.Id
-              JOIN Portal_Users u ON s.UserID = u.Id
-              WHERE s.RegistrationDate BETWEEN @StartDate AND @EndDate";
+            query = @"SELECT s.*, ds.*, p.*, u.FullName AS UserFullName
+            FROM Sale s
+            JOIN DetailSale ds ON s.SaleID = ds.SaleID
+            JOIN Product p ON ds.ProductID = p.Id
+            JOIN Portal_Users u ON s.UserID = u.Id
+            WHERE s.RegistrationDate BETWEEN @StartDate AND @EndDate";
 
-            var parameters = new { StartDate = start_date, EndDate = end_date };
+            // Add filter for sales number if it's provided
+            if (!string.IsNullOrEmpty(salesNumber))
+            {
+                query += " AND s.SalesNumber = @SalesNumber";
+            }
+
+            var parameters = new { StartDate = start_date, EndDate = end_date, SalesNumber = salesNumber };
             var salesDictionary = new Dictionary<int, Sale>(); // Dictionary to store unique Sales by SaleID
 
             await db.QueryAsync<Sale, DetailSale, Product, string, Sale>(
@@ -266,6 +272,7 @@ namespace Site.DataAccess.Repository
 
             return salesDictionary.Values.ToList();
         }
+
 
         public async Task<Sale> Detail(string salesNumber)
         {

@@ -144,14 +144,11 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="Enter your new category here" xml:space="preserve">
-    <value>Enter your new category here</value>
-  </data>
   <data name="InActive" xml:space="preserve">
     <value>InActive</value>
   </data>
-  <data name="New Category:" xml:space="preserve">
-    <value>New Category:</value>
+  <data name="Recent Category Name:" xml:space="preserve">
+    <value>Recent Category Name:</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
@@ -161,5 +158,14 @@
   </data>
   <data name="Update Action" xml:space="preserve">
     <value>Update Action</value>
+  </data>
+  <data name="Update Category" xml:space="preserve">
+    <value>Update Category:</value>
+  </data>
+  <data name="Update Category:" xml:space="preserve">
+    <value>Update Category:</value>
+  </data>
+  <data name="Update your category name here" xml:space="preserve">
+    <value>Update your category name here</value>
   </data>
 </root>

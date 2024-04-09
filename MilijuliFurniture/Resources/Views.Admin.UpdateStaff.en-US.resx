@@ -135,10 +135,10 @@
   <data name="Phone Number" xml:space="preserve">
     <value>फोन नं</value>
   </data>
+  <data name="Staff" xml:space="preserve">
+    <value>कर्मचारी</value>
+  </data>
   <data name="Update Staff" xml:space="preserve">
     <value>कर्मचारी अपडेट गर्नुहोस्</value>
-  </data>
-  <data name="User" xml:space="preserve">
-    <value>प्रयोगकर्ता</value>
   </data>
 </root>

@@ -141,7 +141,7 @@
   <data name="Quantity" xml:space="preserve">
     <value>मात्रा</value>
   </data>
-  <data name="Update Staff" xml:space="preserve">
-    <value>कर्मचारी अपडेट गर्नुहोस्</value>
+  <data name="Update Product" xml:space="preserve">
+    <value>प्रोडक्ट अपडेट गर्नुहोस्</value>
   </data>
 </root>

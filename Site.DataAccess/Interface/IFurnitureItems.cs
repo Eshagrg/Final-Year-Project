@@ -28,8 +28,9 @@ namespace Site.DataAccess.Interface
         //DashBoard details
         Task<int> TotalSalesLastWeek();
         //Task<string> TotalIncomeLastWeek();
-        //Task<int> TotalProducts();
-        //Task<int> TotalCategories();
+        Task<int> TotalProducts();
+        Task<int> TotalUsers();
+        Task<int> TotalCategories();
         //Task<Dictionary<string, int>> SalesLastWeek();
         //Task<Dictionary<string, int>> ProductsTopLastWeek();
     }

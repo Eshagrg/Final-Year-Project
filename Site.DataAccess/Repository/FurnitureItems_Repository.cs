@@ -167,6 +167,8 @@ namespace Site.DataAccess.Repository
                     param.Add("@Id", id);
                     param.Add("@Name", obj.Name);
                     param.Add("@Price", obj.Price);
+                    param.Add("@Quantity", obj.Quantity);
+                    param.Add("@Brand", obj.Brand);
                     param.Add("@CategoryId", obj.CategoryId);
                     //param.Add("@UploadFile", obj.UploadImage);
                     string output = conn.ExecuteScalar<string>("USP_UpdateProductDetails", param, commandType: CommandType.StoredProcedure);
@@ -233,5 +235,53 @@ namespace Site.DataAccess.Repository
             }
         }
 
+        public async Task<int> TotalProducts()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    string sql = "SELECT COUNT(*) FROM Product"; 
+                    int total = await conn.ExecuteScalarAsync<int>(sql);
+                    return total;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<int> TotalCategories()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    string sql = "SELECT COUNT(*) FROM Category";
+                    int total = await conn.ExecuteScalarAsync<int>(sql);
+                    return total;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<int> TotalUsers()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    string sql = "SELECT COUNT(*) FROM Portal_Users";
+                    int total = await conn.ExecuteScalarAsync<int>(sql);
+                    return total;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

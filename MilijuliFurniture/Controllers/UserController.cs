@@ -179,7 +179,7 @@ namespace MilijuliFurniture.Controllers
                         ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
                         await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
-                        if (usr.RoleName == "Admin" || usr.RoleName == "Staff")
+                        if (usr.RoleName == "Admin")
                         {
                             depatment = "Admin";
                             _toastNotificationHero.Success("Logged In As Admin");
@@ -187,12 +187,12 @@ namespace MilijuliFurniture.Controllers
                         }
                         else
                         {
-                            depatment = "User";
+                            depatment = "Staff";
 
                         }
 
                         _toastNotificationHero.Success("Logged in Succesfully");
-                        return RedirectToAction("Index", "User");
+                        return RedirectToAction("Index", "Admin");
 
 
                     }
@@ -216,6 +216,16 @@ namespace MilijuliFurniture.Controllers
             await HttpContext.SignOutAsync("MyCookieAuth");
             return RedirectToAction("LogIn");
 
+        }
+
+        [HttpGet]
+        public IActionResult GetuserImage(int userId)
+        {
+            // Fetch data from the database based on the user ID
+            var userData = _userAuth.GetUserData(userId); // Replace _userService.GetDataForUser(userId) with your actual method to fetch data for the user
+
+            // Return the data as a JSON response
+            return Json(userData);
         }
     }
 

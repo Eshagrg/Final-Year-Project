@@ -38,42 +38,30 @@ namespace MilijuliFurniture.Controllers
                 // Populate the view model with data from the dashboard service
                 vmDashboard.TotalSales = await _furnitureItems.TotalSalesLastWeek();
                 //vmDashboard.TotalIncome = await _furnitureItems.TotalIncomeLastWeek();
-                //vmDashboard.TotalProducts = await _furnitureItems.TotalProducts();
-                //vmDashboard.TotalCategories = await _furnitureItems.TotalCategories();
+                vmDashboard.TotalProducts = await _furnitureItems.TotalProducts();
+                vmDashboard.TotalCategories = await _furnitureItems.TotalCategories();
+                vmDashboard.TotalUsers = await _furnitureItems.TotalUsers();
+                
+
+
 
                 // Create lists for sales and products data
                 List<VMSalesWeek> listSalesWeek = new List<VMSalesWeek>();
                 List<VMProductsWeek> ProductListWeek = new List<VMProductsWeek>();
 
-                //foreach (KeyValuePair<string, int> item in await _furnitureItems.SalesLastWeek())
-                //{
-                //    listSalesWeek.Add(new VMSalesWeek()
-                //    {
-                //        Date = item.Key,
-                //        Total = item.Value
-                //    });
-                //}
-
-                //foreach (KeyValuePair<string, int> item in await _furnitureItems.ProductsTopLastWeek())
-                //{
-                //    ProductListWeek.Add(new VMProductsWeek()
-                //    {
-                //        Product = item.Key,
-                //        Quantity = item.Value
-                //    });
-                //}
-
                 // Assign the sales and products lists to the view model
                 vmDashboard.SalesLastWeek = listSalesWeek;
                 vmDashboard.ProductsTopLastWeek = ProductListWeek;
+              
+
                 return StatusCode(StatusCodes.Status200OK, new { Success = true, vmDashboard = vmDashboard });
-                return Ok(vmDashboard);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
         [HttpPost]
         public IActionResult SetCulture(string culture, string returnUrl)
         {
@@ -201,17 +189,54 @@ namespace MilijuliFurniture.Controllers
 
         public IActionResult UpdateStaff(int id)
         {
-            Portal_User obj = _userAuth.GetStaffDetailsById(id);
+            AddStaff_VM obj = _userAuth.GetStaffDetailsById(id);
             return View(obj);
         }
 
         [HttpPost]
-        public IActionResult UpdateStaff(Portal_User obj)
+        public IActionResult UpdateStaff(AddStaff_VM obj)
         {
-            string output = _userAuth.UpdateStaffDetail(obj);
-            if (output == "SUCCESS")
+            if (obj.UploadImage != null)
             {
-                return RedirectToAction("StaffIndex");
+                //Upload File
+                string folder = "wwwroot/uploadfiles/";
+                string fileurl = "/uploadfiles/";
+                string guid = Guid.NewGuid().ToString();
+                fileurl += guid + obj.UploadImage.FileName;
+                folder += guid + obj.UploadImage.FileName;
+                string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
+
+                obj.UploadImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+                Portal_User vm = new Portal_User();
+                vm.Id = obj.Id;
+                vm.FullName = obj.FullName;
+                vm.PhoneNo = obj.PhoneNo;
+                vm.Email = obj.Email;
+                vm.UploadImage = fileurl;
+                string output = _userAuth.UpdateStaffDetail(vm);
+                if (output == "SUCCESS")
+                {
+                    return RedirectToAction("StaffIndex");
+                }
+            }
+            else
+            {
+                // Fetch existing user details
+                AddStaff_VM existingUser = _userAuth.GetStaffDetailsById(obj.Id); // You need to implement a method to fetch user details by ID
+
+                // Update user's details without changing the image
+                Portal_User vm = new Portal_User();
+                vm.Id = obj.Id;
+                vm.FullName = obj.FullName;
+                vm.PhoneNo = obj.PhoneNo;
+                vm.Email = obj.Email;
+                vm.UploadImage = existingUser.UploadImageString; // Assign the previous image URL
+                string output = _userAuth.UpdateStaffDetail(vm);
+                if (output == "SUCCESS")
+                {
+                    return RedirectToAction("StaffIndex");
+                }
             }
             return View();
         }
@@ -486,5 +511,7 @@ namespace MilijuliFurniture.Controllers
             }
             return RedirectToAction("ProductIndex");
         }
+
     }
+
 }
