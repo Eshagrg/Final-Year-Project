@@ -31,6 +31,7 @@ $(document).ready(function () {
 $("#cboSearchBy").change(function () {
 
     if ($("#cboSearchBy").val() == "date") {
+
         SEARCH_VIEW["searchDate"]();
     } else {
         SEARCH_VIEW["searchSale"]();
