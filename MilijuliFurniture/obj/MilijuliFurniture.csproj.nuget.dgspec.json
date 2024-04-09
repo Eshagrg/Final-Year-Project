@@ -57,6 +57,14 @@
               "target": "Package",
               "version": "[1.0.8, )"
             },
+            "DinkToPdf.Standard": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "DinkToPdfCopyDependencies": {
+              "target": "Package",
+              "version": "[1.0.8, )"
+            },
             "Microsoft.AspNetCore.Mvc.Localization": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -141,6 +149,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.1.28, )"
+            },
+            "DinkToPdf": {
+              "target": "Package",
+              "version": "[1.0.8, )"
             },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",

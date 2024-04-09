@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TEcCQB0hyFvSB2M1cOjdVInxI5MrMqo5IFP60RhkPhmCW6fSS2mgt+8NfskjBHNPAIE4RFv4aib35yNrl2tK8A==",
+  "dgSpecHash": "6A30T5hA9uBs5l95eVuSKZ5bOZyIQvqeMwej1hq+eQfAizxLgn0yjzdvBHqP+WeGqOCRJzuqTANTL7tFS42+eA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\MilijuliFurniture.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,8 @@
     "C:\\Users\\Rumrail\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\Rumrail\\.nuget\\packages\\dapper\\2.1.28\\dapper.2.1.28.nupkg.sha512",
     "C:\\Users\\Rumrail\\.nuget\\packages\\dinktopdf\\1.0.8\\dinktopdf.1.0.8.nupkg.sha512",
+    "C:\\Users\\Rumrail\\.nuget\\packages\\dinktopdf.standard\\1.1.0\\dinktopdf.standard.1.1.0.nupkg.sha512",
+    "C:\\Users\\Rumrail\\.nuget\\packages\\dinktopdfcopydependencies\\1.0.8\\dinktopdfcopydependencies.1.0.8.nupkg.sha512",
     "C:\\Users\\Rumrail\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
     "C:\\Users\\Rumrail\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Rumrail\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MilijuliFurniture")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+05436e6dd2a42a445f3526cae39ebfa730c3bdb4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6dd0a70dfe1dc1b3b9db7e16233d19a1bafb2e77")]
 [assembly: System.Reflection.AssemblyProductAttribute("MilijuliFurniture")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MilijuliFurniture")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

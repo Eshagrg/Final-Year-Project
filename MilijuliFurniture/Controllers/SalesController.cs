@@ -152,6 +152,7 @@ namespace MilijuliFurniture.Controllers
                 Objects = {
                     new ObjectSettings(){
                         Page = urlTemplateView
+                     
                     }
                 }
             };

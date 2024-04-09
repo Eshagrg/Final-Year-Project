@@ -104,6 +104,45 @@
           }
         }
       },
+      "DinkToPdf.Standard/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/DinkToPdf.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DinkToPdf.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win-x64/native/wkhtmltox.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/wkhtmltox.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          },
+          "runtimes/win7-x64/native/wkhtmltox.dll": {
+            "assetType": "native",
+            "rid": "win7-x64"
+          },
+          "runtimes/win7-x86/native/wkhtmltox.dll": {
+            "assetType": "native",
+            "rid": "win7-x86"
+          }
+        }
+      },
+      "DinkToPdfCopyDependencies/1.0.8": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard/DinkToPdf.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard/DinkToPdf.dll": {}
+        },
+        "build": {
+          "build/DinkToPdfCopyDependencies.props": {}
+        }
+      },
       "Humanizer.Core/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -4405,6 +4444,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Dapper": "2.1.28",
+          "DinkToPdf": "1.0.8",
           "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.Data.SqlClient": "5.2.0",
           "Microsoft.Extensions.Options": "6.0.0"
@@ -4518,6 +4558,39 @@
         "lib/netstandard1.6/DinkToPdf.dll",
         "lib/netstandard1.6/DinkToPdf.pdb",
         "lib/netstandard1.6/DinkToPdf.xml"
+      ]
+    },
+    "DinkToPdf.Standard/1.1.0": {
+      "sha512": "o/9HYO8tQ3GkPNZKRmwxqKzGMJwXF4IjN9XCQO9e+UhmDn9qaQgHVl1VDOyfk6CSaSs/QZfJfYX9g1lZKNyqPg==",
+      "type": "package",
+      "path": "dinktopdf.standard/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dinktopdf.standard.1.1.0.nupkg.sha512",
+        "dinktopdf.standard.nuspec",
+        "lib/netstandard2.0/DinkToPdf.dll",
+        "runtimes/LICENSE",
+        "runtimes/win-x64/native/wkhtmltox.dll",
+        "runtimes/win-x86/native/wkhtmltox.dll",
+        "runtimes/win7-x64/native/wkhtmltox.dll",
+        "runtimes/win7-x86/native/wkhtmltox.dll"
+      ]
+    },
+    "DinkToPdfCopyDependencies/1.0.8": {
+      "sha512": "eJeXFfx/tyVG3nzUdNGGjDoKpF+7RqKTw4OE5Zr/afZI9LTtVbtMkGLxNmhdijKN3BlSYdap2CVZN8e4PaEdBA==",
+      "type": "package",
+      "path": "dinktopdfcopydependencies/1.0.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/DinkToPdfCopyDependencies.props",
+        "build/libwkhtmltox.dll",
+        "build/libwkhtmltox.dylib",
+        "build/libwkhtmltox.so",
+        "dinktopdfcopydependencies.1.0.8.nupkg.sha512",
+        "dinktopdfcopydependencies.nuspec",
+        "lib/netstandard/DinkToPdf.dll"
       ]
     },
     "Humanizer.Core/2.2.0": {
@@ -11725,6 +11798,8 @@
     "net6.0": [
       "AspNetCoreHero.ToastNotification >= 1.1.0",
       "DinkToPdf >= 1.0.8",
+      "DinkToPdf.Standard >= 1.1.0",
+      "DinkToPdfCopyDependencies >= 1.0.8",
       "Microsoft.AspNetCore.Mvc.Localization >= 2.2.0",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 6.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.8",
@@ -11786,6 +11861,14 @@
             "version": "[1.1.0, )"
           },
           "DinkToPdf": {
+            "target": "Package",
+            "version": "[1.0.8, )"
+          },
+          "DinkToPdf.Standard": {
+            "target": "Package",
+            "version": "[1.1.0, )"
+          },
+          "DinkToPdfCopyDependencies": {
             "target": "Package",
             "version": "[1.0.8, )"
           },
