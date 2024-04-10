@@ -6,6 +6,10 @@
 
 }
 
+@section Css{
+    <link href="~/css/page/customedatatable.css" rel="stylesheet" />
+}
+
 <!-- The Modal -->
 <div id="changePasswordModal" class="modal fade">
     <div class="modal-dialog modal-dialog-centered">
@@ -88,8 +92,7 @@
                                 {
                                     <tr>
                                         <td scope="col">@sn</td>
-                                        <td scope="col" style="max-width:10px; max-height: 10px;"><img alt="image" src="@item.UploadImage" class="img-fluid"></td>
-
+                                        <td scope="col"><img alt="image" src="@item.UploadImage" class="rounded mx-auto d-block" style="max-width:70px";></td>
                                         <td scope="col">@item.FullName</td>
                                         <td scope="col">@item.Email</td>
                                         <td scope="col">@item.PhoneNo</td>
@@ -231,6 +234,8 @@
                 scrollX: false,
                 orderCellsTop: true,
                 fixedHeader: true,
+                pagingType: 'simple', // Use simple pagination controls (only previous and next buttons)
+                
                 initComplete: function () {
                     var api = this.api();
 

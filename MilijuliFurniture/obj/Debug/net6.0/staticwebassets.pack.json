@@ -18533,6 +18533,10 @@
       "PackagePath": "staticwebassets\\css\\Vendor\\Vendor.css"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\css\\page\\CustomeDataTable.css",
+      "PackagePath": "staticwebassets\\css\\page\\CustomeDataTable.css"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -18819,6 +18823,10 @@
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\2375bcd9-e979-4419-a5a4-a08245a66eccmilijuliLogo.png",
       "PackagePath": "staticwebassets\\uploadfiles\\2375bcd9-e979-4419-a5a4-a08245a66eccmilijuliLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\23fc8d8c-5921-4510-b329-c297baaa9d91Twin Bed Frame.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\23fc8d8c-5921-4510-b329-c297baaa9d91Twin Bed Frame.png"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\329f7bbc-6c01-4933-a761-b4a0e148babaTwin Bed Frame.png",
