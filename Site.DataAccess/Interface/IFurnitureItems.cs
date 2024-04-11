@@ -14,7 +14,7 @@ namespace Site.DataAccess.Interface
         bool AddCategory(string categoryName,string createdBy);
 
         string UpdateCategoryDetail(string obj,int id);
-        string DeleteCategoryDetail(int id);
+        string DeleteCategoryDetail(int id,string deletedBy);
 
         IEnumerable<Product> GetProductlist();
 
@@ -22,7 +22,7 @@ namespace Site.DataAccess.Interface
 
         Product GetProductDetailsById(int id);
         string UpdateProductDetail(Product obj, int id);
-        string DeleteProductDetail(int id);
+        string DeleteProductDetail(int id,string deletedBy);
 
 
         //DashBoard details

@@ -24,14 +24,14 @@
                 <div class="card">
                     <div class="card-header">
 
-                        @if (@User.FindFirst("Role").Value == "Staff")
+                     @*    @if (@User.FindFirst("Role").Value == "Staff")
                         {
                             <a asp-controller="Admin" asp-action="AddProduct" class="btn btn-primary text-white" hidden>@Localizer["Add product"]</a>
                         }
                         else
-                        {
+                        { *@
                             <a asp-controller="Admin" asp-action="AddProduct" class="btn btn-primary text-white">@Localizer["Add Product"]</a>
-                        }
+                        @* } *@
                     </div>
                     <div class="card-body table-responsive">
                         <table class="display table" id="example">
@@ -66,28 +66,15 @@
 
                                        
                                         <td scope="col">
-                                            @if (@User.FindFirst("Role").Value == "Staff")
-                                            {
-
+                             
                                                 <span class="btn-group">
                                                     <a asp-controller="Admin" asp-action="UpdateProduct" asp-route-id=@item.Id class="btn btn-primary text-white">@Localizer["Update"]</a>
                                                 </span>
-                                                <span class="btn-group">
-                                                    <a asp-controller="Admin" asp-action="DeleteProduct" asp-route-id=@item.Id class="btn btn-primary text-white" data-toggle="modal" data-target="#confirmationModal" hidden>@Localizer["Delete"]</a>
-                                                </span>
-                                            }
-                                            else
-                                            {
-                                                <span class="btn-group">
-                                                    <a asp-controller="Admin" asp-action="UpdateProduct" asp-route-id=@item.Id class="btn btn-primary text-white">@Localizer["Update"]</a>
-                                                </span>
-                                                @*  <span class="btn-group">
-                                        <a asp-controller="Admin" asp-action="UpdateCategory" asp-route-id=@item.Id class="btn btn-primary text-white">Update</a>
-                                        </span> *@
+                                              
                                                 <span class="btn-group">
                                                     <a asp-controller="Admin" asp-action="DeleteProduct" asp-route-id=@item.Id class="btn btn-primary text-white" data-toggle="modal" data-target="#confirmationModal">@Localizer["Delete"]</a>
                                                 </span>
-                                            }
+                                           
                                         </td>
                                        
                                     </tr>

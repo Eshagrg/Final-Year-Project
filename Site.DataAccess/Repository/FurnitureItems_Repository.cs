@@ -46,7 +46,7 @@ namespace Site.DataAccess.Repository
         }
 
 
-        public string DeleteCategoryDetail(int id)
+        public string DeleteCategoryDetail(int id, string deletedBy)
         {
             try
             {
@@ -54,6 +54,7 @@ namespace Site.DataAccess.Repository
                 {
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@Id", id);
+                    param.Add("@DeletedBy", deletedBy);
                     string output = conn.ExecuteScalar<string>("USP_DeleteCategoryDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
@@ -180,7 +181,7 @@ namespace Site.DataAccess.Repository
                 throw;
             }
         }
-        public string DeleteProductDetail(int id)
+        public string DeleteProductDetail(int id,string deletedBy)
         {
             try
             {
@@ -188,6 +189,7 @@ namespace Site.DataAccess.Repository
                 {
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@Id", id);
+                    param.Add("@DeletedBy", deletedBy);
                     string output = conn.ExecuteScalar<string>("USP_DeleteProductDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }

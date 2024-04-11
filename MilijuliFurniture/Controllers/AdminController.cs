@@ -392,7 +392,8 @@ namespace MilijuliFurniture.Controllers
 
         public IActionResult DeleteCategory(int id)
         {
-            string output = _furnitureItems.DeleteCategoryDetail(id);
+            string deletedBy = User.Identity.Name;
+            string output = _furnitureItems.DeleteCategoryDetail(id,deletedBy);
             if (output == "SUCCESS")
             {
                 return RedirectToAction("CategoryIndex");
@@ -526,7 +527,8 @@ namespace MilijuliFurniture.Controllers
 
         public IActionResult DeleteProduct(int id)
         {
-            string output = _furnitureItems.DeleteProductDetail(id);
+            string deletedBy = User.Identity.Name;
+            string output = _furnitureItems.DeleteProductDetail(id,deletedBy);
             if (output == "SUCCESS")
             {
                 return RedirectToAction("ProductIndex");

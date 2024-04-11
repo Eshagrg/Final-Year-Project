@@ -141,29 +141,19 @@
                                         <td scope="col">@item.Name</td>
 
                                         <td scope="col">
-                                            @if (@User.FindFirst("Role").Value == "Staff")
-                                            {
-
-                                                <span class="btn-group">
-                                                    <button class="btn btn-primary" onclick="openChangeCategoryModal('@item.Id', '@item.Name')" hidden>@Localizer["Update"]</button>
-                                                </span>
-                                                <span class="btn-group">
-                                                    <a asp-controller="Admin" asp-action="DeleteCategory" asp-route-id=@item.Id class="btn btn-primary text-white" data-toggle="modal" data-target="#confirmationModal" hidden>@Localizer["Delete"]</a>
-                                                </span>
-                                            }
-                                            else
-                                            {
+                                            
                                                 <span class="btn-group">
                                                     <button class="btn btn-primary" onclick="openChangeCategoryModal('@item.Id', '@item.Name')">@Localizer["Update"]</button>
                                                 </span>
-                                                <span class="btn-group">
-                                                    <a asp-controller="Admin" asp-action="DeleteCategory" asp-route-id=@item.Id class="btn btn-primary text-white" data-toggle="modal" data-target="#confirmationModal">@Localizer["Delete"]</a>
-                                                </span>
-                                            }
+                                            <span class="btn-group">
+                                                <button class="btn btn-primary text-white" onclick="confirmDelete('@item.Id')">@Localizer["Delete"]</button>
+                                            </span>
+
+                                            
                                         </td>
                                     </tr>
                                     sn++;
-                                
+                      @*           
                                 <!-- Delete Modal -->
                                     <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -183,7 +173,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> *@
                                 }
                             </tbody>
                         </table>
@@ -198,6 +188,7 @@
 
 @section Script {
     <script>
+       
         function openChangePasswordModal() {
             // Show the change password modal
 
@@ -301,9 +292,22 @@
                 ]
             });
         })
-        function confirmDelete() {
-            return confirm('Are you sure you want to delete this item?');
-        };
+        function confirmDelete(categoryId) {
+            swal({
+                title: 'Are you sure?',
+                text: 'You will not be able to recover this category!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                dangerMode: true,
+            }, function (confirmed) {
+                if (confirmed) {
+                    // If the user confirms, proceed with the deletion
+                    window.location.href = '/Admin/DeleteCategory/' + categoryId;
+                }
+            });
+        }
 
         function openChangeCategoryModal(Id, name) {
             // Show the change password modal
