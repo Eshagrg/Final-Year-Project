@@ -22,7 +22,7 @@
     <link href="~/vendors/toastr/toastr.css" rel="stylesheet">
 </head>
 <!-- The Modal -->
-<div id="changePasswordModal" class="modal fade">
+<div id="changePasswordAdminModal" class="modal fade">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -34,7 +34,7 @@
                 <p><strong>@Localizer["User ID:"]</strong> <span id="userIdDisplay"></span></p>
                 <p><strong>@Localizer["User Name:"]:</strong> <span id="userNameDisplay"></span></p>
                 <p><strong>@Localizer["Email Address:"]:</strong> <span id="userEmailDisplay"></span></p>
-                <form id="changePasswordForm">
+                <form id="changePasswordAdminForm">
                     <div class="form-group">
                         <label for="newPassword">@Localizer["New Password:"]</label>
                         <input type="password" id="newPassword" name="newPassword" class="form-control" required>
@@ -47,7 +47,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">@Localizer["Cancel"]</button>
-                <button type="submit" form="changePasswordForm" class="btn btn-primary">@Localizer["Change Password"]</button>
+                <button type="submit" form="changePasswordAdminForm" class="btn btn-primary">@Localizer["Change Password"]</button>
             </div>
         </div>
     </div>
@@ -63,26 +63,27 @@
                         <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
                     </ul>
                 </form>
-                <ul class="navbar-nav navbar-right">
+                <ul class="navbar-nav navbar-right" style="font-size: 20px;">
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle dropdown-toggle-admin nav-link-lg nav-link-user">
-                            <img alt="image" src="" class="rounded-circle mr-1 userlogo">
+                            <img alt="image" src="" class="mr-1 userlogo" style="width: 40px; height: 35px;">
+
                             <div class="d-sm-none d-lg-inline-block">Hi, @User.Identity.Name </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-admin dropdown-menu-right">
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item has-icon text-information">
-                            @if (@User.FindFirst("Role").Value == "Staff")
-                            {
-                                    <i class="fas fa-duotone fa-key" onclick="openChangePasswordModal('@User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value', '@User.Identity.Name')','@User.FindFirst("Email")')" hidden>@Localizer["Change Password"]</i>
-                            }
-                            else
-                            {
-                                    <i class="fas fa-duotone fa-key" onclick="openChangePasswordModal('@User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value', '@User.Identity.Name','@User.FindFirst("Email")')">&nbsp;&nbsp;@Localizer["Change Password"]</i>
-
-                            }
+                            <a class="dropdown-item has-icon text-information" href="#">
+                                @if (@User.FindFirst("Role").Value == "Staff")
+                                {
+                                    <i class="fas fa-duotone fa-key" onclick="openChangePasswordAdminModal('@User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value', '@User.Identity.Name')','@User.FindFirst("Email")'">@Localizer["Change Password"]</i>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-duotone fa-key" onclick="openChangePasswordAdminModal('@User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value', '@User.Identity.Name','@User.FindFirst("Email")')">&nbsp;&nbsp;@Localizer["Change Password"]</i>
+                                }
                             </a>
-                            <div class="dropdown-divider"></div>
+
+                            <div class="dropdown-divider" style="border-color: black;"></div>
                             <a asp-controller="User" asp-action="Logout" class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> @Localizer["Logout"]
                             </a>
@@ -148,7 +149,7 @@
                 }
             });
         });
-        function openChangePasswordModal(userId, userName, email) {
+        function openChangePasswordAdminModal(userId, userName, email) {
             // Set the user ID and name in the respective spans of the modal
 
             $('#userId').val(userId);
@@ -157,11 +158,11 @@
             $('#userEmailDisplay').text(email)
 
             // Show the change password modal
-            $('#changePasswordModal').modal('show');
+            $('#changePasswordAdminModal').modal('show');
         }
 
         // Submit the form within the modal using AJAX
-        $('#changePasswordForm').submit(function (e) {
+        $('#changePasswordAdminForm').submit(function (e) {
             e.preventDefault(); // Prevent the form from submitting normally
 
             // Get the form data
@@ -186,7 +187,7 @@
                     if (response.success) {
                         alert('Password changed successfully!');
                         // Close the modal after successful password change
-                        $('#changePasswordModal').modal('hide');
+                        $('#changePasswordAdminModal').modal('hide');
                     } else {
                         alert('Failed to change password. Please check your current password.');
                     }

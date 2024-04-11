@@ -27,6 +27,7 @@
                     barchar_data = [0]
                 }
 
+
                 let piechart_labels;
                 let piechart_data;
                 if (d.productsTopLastWeek.length > 0) {

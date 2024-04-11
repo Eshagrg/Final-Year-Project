@@ -397,6 +397,11 @@ namespace MilijuliFurniture.Controllers
             {
                 return RedirectToAction("CategoryIndex");
             }
+            if (output == "HasValue")
+            {
+                _toastNotificationHero.Error("Category cannot be deleted as Product is assigned");
+                return RedirectToAction("CategoryIndex");
+            }
             return RedirectToAction("CategoryIndex");
         }
 

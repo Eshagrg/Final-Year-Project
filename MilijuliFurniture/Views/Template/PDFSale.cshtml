@@ -82,7 +82,7 @@
         <table style="width:100%">
             <tr>
                 <td>
-                    <img src="~/img/logomilijuli.png" style="width: 120px;height:120px"/>
+                    <img src="~/img/logomilijuli.png" style="width: 160px;height:120px"/>
                 </td>
                 <td style="text-align:right">
                     <table style="margin-right:0;margin-left:auto">
@@ -107,7 +107,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <p class="text">Email: MilijuliFurniture@gmail.com</p>
+                                <p class="text">Email: milijulifurniture@gmail.com</p>
                             </td>
                         </tr>
                     </table>
@@ -115,13 +115,14 @@
                 <td style="text-align:right">
                     <table style="margin-right:0;margin-left:auto">
                         <tr>
-                            <td><p class="title">CLIENT</p></td>
+                           @*  <td><p class="title">CLIENT</p></td> *@
                         </tr>
                         <tr>
-                            <td><p class="text">@Model.ClientName</p></td>
+                           
+                            <td>Customer Name: <span class="text">@Model.ClientName</span></td>
                         </tr>
                         <tr>
-                            <td><p class="text">@Model.CustomerDocument</p></td>
+                            <td>Sold By: <span class="text">@Model.CustomerDocument</span></td>
                         </tr>
                     </table>
                 </td>
@@ -133,7 +134,7 @@
         <table class="tbproductos" style="width:100%">
             <thead>
                 <tr>
-                    <th class="tbth">Product</th>
+                    <th class="tbth">Furniture</th>
                     <th class="tbth" style="width:130px">Quantity</th>
                     <th class="tbth" style="width:130px">Price</th>
                     <th class="tbth" style="width:130px">Total</th>

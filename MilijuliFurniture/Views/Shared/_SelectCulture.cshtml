@@ -24,7 +24,7 @@
 <style>
     .language-ddl {
         background: transparent;
-        color: #fff;
+        color: #bfff;
         border: none;
         font-size: 11pt;
     }
@@ -43,15 +43,12 @@
 </style>
 
  @* Access localiztion change *@
-<form id="selectLanguage" asp-controller="Admin"
-      asp-action="SetCulture" asp-route-culture="@currentCulture" asp-route-returnUrl="@responseUrl"
-      method="POST" role="form">
+<form id="selectLanguage" asp-controller="Admin" asp-action="SetCulture" asp-route-culture="@currentCulture" asp-route-returnUrl="@responseUrl" method="POST" role="form">
     <li class="dropdown">
         <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle dropdown-toggle-lang nav-link-lg nav-link-user">
             @currentCulture
         </a>
         <input type="hidden" id="selectedCulture" name="selectedCulture" />
-
 
         <div class="dropdown-menu dropdown-menu-lang dropdown-menu-right">
             @foreach (var item in cultureItems)
@@ -61,14 +58,15 @@
                     <img src="@img" class="culture-img">
                     @item.Text
                 </a>
-                if (cultureItems.IndexOf(item) < cultureItems.Count)
+                @if (cultureItems.IndexOf(item) < cultureItems.Count - 1) // Check if it's not the last item
                 {
-                    <div class="dropdown-divider"></div>
+                    <hr style="margin: 0.5rem 0; border-color: black;" />
                 }
             }
         </div>
     </li>
 </form>
+
 <script>
     function cultureSwitch(newCulture, currentCulture) {
         // Update a hidden input field with the new culture

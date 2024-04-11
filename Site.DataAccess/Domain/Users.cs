@@ -52,9 +52,10 @@ namespace Site.DataAccess.Domain
         [Required]
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Invalid phone number format. Use 10 digits.")]
         public string PhoneNo { get; set; }
+    
         public IFormFile UploadImage { get; set; }
 
-        public string UploadImageString { get; set; }
+        public string? UploadImageString { get; set; }
         [Required]
         [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$",
         ErrorMessage = "The password must have at least one uppercase letter, one number, and one special character.")]

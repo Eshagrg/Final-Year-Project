@@ -5,6 +5,10 @@
     Layout = "AdminLayout/_AdminLayout";
 
 }
+@section Css {
+    <link href="~/css/page/customedatatable.css" rel="stylesheet" />
+}}
+}
 <style>
     .toast {
         position: fixed;
@@ -32,7 +36,7 @@
 </style>
 
 <!-- The Add Category Modal -->
-<div id="changePasswordModal" class="modal fade">
+<div id="addCategoryModal" class="modal fade">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -41,16 +45,16 @@
             </div>
             <div class="modal-body">
              
-                <form id="changePasswordForm">
+                <form id="addCategoryForm">
                     <div class="form-group">
-                        <label for="newPassword">@Localizer["New Category:"]</label>
-                        <input type="text" id="newPassword" name="newPassword" class="form-control" required placeholder="Enter your new category here">
+                        <label for="categoryName">@Localizer["New Category:"]</label>
+                        <input type="text" id="categoryName" name="categoryName" class="form-control" required placeholder="Enter your new category here">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">@Localizer["Cancel"]</button>
-                <button type="submit" form="changePasswordForm" class="btn btn-primary">@Localizer["Add Category"]</button>
+                <button type="submit" form="addCategoryForm" class="btn btn-primary">"Add Category"</button>
             </div>
         </div>
     </div>
@@ -65,7 +69,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" id="id" name="id" value="" />
-                <p><strong>@Localizer["Recent Category Name:"]</strong> <span id="categoryName"></span></p>
+                <p><strong>@Localizer["Recent Category Name:"]</strong><span id="categoryName"></span></p>
                 <form id="changeCategoryForm">
                     <div class="form-group">
                         <label for="newPassword">@Localizer["Update Category:"]</label>
@@ -197,16 +201,16 @@
         function openChangePasswordModal() {
             // Show the change password modal
 
-            $('#changePasswordModal').modal('show');
+            $('#addCategoryModal').modal('show');
         }
 
         // Submit the form within the modal using AJAX
-        $('#changePasswordForm').submit(function (e) {
+        $('#addCategoryForm').submit(function (e) {
             e.preventDefault(); // Prevent the form from submitting normally
 
             // Get the form data
             var formData = {
-                categoryname: $('#newPassword').val(),
+                categoryName: $('#categoryName').val(),
             };
             // Send the form data to the server using AJAX
             $.ajax({
@@ -215,9 +219,11 @@
                 data: formData,
                 success: function (response) {
                     if (response.success) {
-                        alert('Category added successfully!');
+                        toastr.success("", "Category Added Succesgully");
+                  
                         // Close the modal after successful password change
-                        $('#changePasswordModal').modal('hide');
+                        $('#addCategoryModal').modal('hide');
+                        location.reload(); 
                     } else {
                         alert('Failed to add category. Please try again later.');
                     }
@@ -238,6 +244,7 @@
                 scrollX: false,
                 orderCellsTop: true,
                 fixedHeader: true,
+                pagingType: 'simple', // Use simple pagination controls (only previous and next buttons)
                 initComplete: function () {
                     var api = this.api();
 

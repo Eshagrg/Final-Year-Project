@@ -34,10 +34,12 @@
                                 <input type="number" maxlength="10" asp-for="PhoneNo" class="form-control" required>
                             </div>
                             <div class="chocolat-parent">
+                                <label>@Localizer["Image"]</label>
                                 <div data-crop-image="300" style="overflow: hidden; position: relative; height: 300px;">
+                                  
                                     @if (Model.UploadImageString != null)
                                     {
-                                        <img alt="image" src="@Model.UploadImageString" class="img-fluid">
+                                        <img alt="image" src="@Model.UploadImageString" class="rounded mx-auto" style="max-width:150px;align-items:start">
                                     }
                                     else
                                     {

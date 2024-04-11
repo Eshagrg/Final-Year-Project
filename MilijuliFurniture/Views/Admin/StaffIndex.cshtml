@@ -48,25 +48,27 @@
     <div class="section-header">
         <h1>@Localizer["Staffs"]</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">@Localizer["Dashboard"]</a></div>
+            <div class="breadcrumb-item active"><a href="https://localhost:44330/Admin/Index">@Localizer["Dashboard"]</a></div>
             <div class="breadcrumb-item">@Localizer["Staffs"]</div>
         </div>
     </div>
 
     <div class="section-body">
-        <div class="row"
+        <div class="row">
             <div class="col-12 col-md-6 col-lg-12">
                 <div class="card">
-                    <div class="card-header">
+                   
                         @if (@User.FindFirst("Role").Value == "Staff")
                         {
                             <a asp-controller="Admin" asp-action="AddStaff" class="btn btn-primary text-white" hidden>@Localizer["Add Staff"]</a>
                         }
                         else
                         {
+                        <div class="card-header">
                             <a asp-controller="Admin" asp-action="AddStaff" class="btn btn-primary text-white">@Localizer["Add Staff"]</a>
+                        </div>
                         }
-                    </div>
+                  
 
                     <div class="card-body table-responsive">
                         <table class="display table" id="example">
@@ -79,8 +81,16 @@
                                     <th scope="col">@Localizer["Phone No"]</th>
                                     <th scope="col">@Localizer["Status"]</th>
                                     <th scope="col">@Localizer["Type"]</th>
-                                    <th scope="col">@Localizer["Action"]</th>
-                                    <th scope="col">@Localizer["Change Password"]</th>
+                                     @if (@User.FindFirst("Role").Value == "Staff")
+                                    {
+                                        
+                                    }
+                                    else
+                                    {
+                                        <th scope="col">@Localizer["Action"]</th>
+                                        <th scope="col">@Localizer["Change Password"]</th>
+                                    }
+            
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,7 +102,9 @@
                                 {
                                     <tr>
                                         <td scope="col">@sn</td>
-                                        <td scope="col"><img alt="image" src="@item.UploadImage" class="rounded mx-auto d-block" style="max-width:70px";></td>
+                                       
+                                            <td scope="col"><img alt="image" src="@item.UploadImage" class=" mx-auto d-block" style="width: 60px; height: 70px;"></td>
+
                                         <td scope="col">@item.FullName</td>
                                         <td scope="col">@item.Email</td>
                                         <td scope="col">@item.PhoneNo</td>
@@ -121,32 +133,34 @@
 
                                         <td scope="col">@item.RoleName</td>
                                         
-                                        <td scope="col">
+                                     
                                             @if (item.RoleName == "Staff" && @User.FindFirst("Role").Value == "Staff")
-                                            {
+                                        {
+                                           
                                                 <span class="btn-group">
                                                     <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white" hidden>@Localizer["View"]</a>
                                                 </span>
                                                 <span class="btn-group">
                                                     <a asp-controller="Admin" asp-action="UpdateStaff" asp-route-id=@item.Id class="btn btn-primary text-white" hidden>@Localizer["Update"]</a>
                                                 </span>
+                                             
                                             }
                                             else
                                             {
+                                            <td scope="col">
                                                 <span class="btn-group">
                                                     <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white">@Localizer["View"]</a>
                                                 </span>
                                                 <span class="btn-group">
                                                     <a asp-controller="Admin" asp-action="Updatestaff" asp-route-id=@item.Id class="btn btn-primary text-white">@Localizer["Update"]</a>
                                                 </span>
+                                                    </td>
                                             }
-                                            @*  <span class="btn-group">
-                                        <a asp-controller="Admin" asp-action="ViewUserDetail" asp-route-id=@item.Id class="btn btn-primary text-white">View</a>
-                                        </span>*@
+                                           
 
-                                        </td>
+                                    
                                    
-                                        <td scope="col">
+                                      
 
                                             <span class="btn-group">
                                                 @if (item.RoleName == "Staff" && @User.FindFirst("Role").Value == "Staff")
@@ -155,12 +169,13 @@
                                                 }
                                                 else
                                                 {
+                                                      <td scope="col">
                                                     <button class="btn btn-primary" onclick="openChangePasswordModal('@item.Id', '@item.FullName','@item.Email')">@Localizer["Change Password"]</button>
-
+                                            </td>
                                                 }
                                             </span>
 
-                                        </td>
+                                        
                                     </tr>
                                     sn++;
                                 }
