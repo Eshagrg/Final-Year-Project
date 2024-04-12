@@ -32,6 +32,7 @@ namespace Site.DataAccess.Domain
         public string Name { get; set; }
 
         public IFormFile UploadImage { get; set; }
+        public string? UploadImageString { get; set; }
 
         public int Price { get; set; }
         public string CreatedBy { get; set; }
@@ -55,6 +56,8 @@ namespace Site.DataAccess.Domain
         public string Name { get; set; }
 
         public string UploadImage { get; set; }
+        public string? UploadImageString { get; set; }
+
         public int Price { get; set; }
 
         public string CreatedBy { get; set; }

@@ -52,7 +52,9 @@ namespace Site.DataAccess.Domain
         [Required]
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Invalid phone number format. Use 10 digits.")]
         public string PhoneNo { get; set; }
-    
+
+        [Required]
+        public string Address { get; set; }
         public IFormFile UploadImage { get; set; }
 
         public string? UploadImageString { get; set; }
@@ -72,6 +74,7 @@ namespace Site.DataAccess.Domain
         public string Email { get; set; }
    
         public string PhoneNo { get; set; }
+        public string Address { get; set; }
         public string UploadImage { get; set; }
       
         public string Password { get; set; }
@@ -110,7 +113,7 @@ namespace Site.DataAccess.Domain
         public string PhoneNo { get; set; }
         public string RoleName { get; set; }
         public bool Status { get; set; }
-
+        public string Address { get; set; }
         public string UploadImage { get; set; }
 
     }

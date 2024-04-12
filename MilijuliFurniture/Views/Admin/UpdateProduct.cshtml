@@ -1,4 +1,4 @@
-﻿@model Site.DataAccess.Domain.Product;
+﻿@model Site.DataAccess.Domain.Product_VM;
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @{
@@ -19,7 +19,7 @@
             <div class="col-12 col-md-6 col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" class="needs-validation">
+                        <form method="post" class="needs-validation" enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <label asp-for="CategoryId">@Localizer["Category"]</label>
@@ -45,20 +45,25 @@
                                 <label>@Localizer["Brand"]</label>
                                 <input type="text" asp-for="Brand" class="form-control" required>
                             </div>
-                        
+
                             <div class="chocolat-parent">
                                 <label>@Localizer["Image"]</label>
                                 <div data-crop-image="300" style="overflow: hidden; position: relative; height: 300px;">
-                                    @if (Model.UploadImage != null)
+
+                                    @if (Model.UploadImageString != null)
                                     {
-                                        <img alt="image" src="@Model.UploadImage" class="img-fluid">
-                                       
+                                        <img alt="image" src="@Model.UploadImageString" class="rounded mx-auto" style="max-width:150px;align-items:start">
                                     }
                                     else
                                     {
                                         <span>@Localizer["No image available"]</span>
                                     }
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="text-primary">@Localizer["Add a new image if you want to update the image"]</span>
+                                <label>@Localizer["Upload Image"]</label>
+                                <input asp-for="UploadImage" class="form-control">
                             </div>
 
                             <div class="card-footer">

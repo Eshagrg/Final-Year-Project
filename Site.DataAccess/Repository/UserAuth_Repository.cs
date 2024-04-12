@@ -196,6 +196,7 @@ namespace Site.DataAccess.Repository
                     param.Add("@PhoneNo", obj.PhoneNo);
                     param.Add("@RoleId", 2);
                     param.Add("@UploadFile", obj.UploadImage);
+                    param.Add("@Address", obj.Address);
                     string output = conn.ExecuteScalar<string>("USP_SaveStaffDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
@@ -331,6 +332,7 @@ namespace Site.DataAccess.Repository
                     param.Add("@Email", obj.Email);
                     param.Add("@PhoneNo", obj.PhoneNo);
                     param.Add("@UploadFile", obj.UploadImage);
+                    param.Add("@Address", obj.Address);
                     string output = conn.ExecuteScalar<string>("USP_UpdateStaffDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }

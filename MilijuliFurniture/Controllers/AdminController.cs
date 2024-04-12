@@ -145,6 +145,7 @@ namespace MilijuliFurniture.Controllers
                     vm.Email = obj.Email;
                     vm.Password = EncryptPassword(obj.Password);
                     vm.UploadImage = fileurl;
+                    vm.Address = obj.Address;
                     string output = _userAuth.SaveStaffData(vm);
                     if (output == "SUCCESS")
                     {
@@ -231,6 +232,7 @@ namespace MilijuliFurniture.Controllers
                 vm.PhoneNo = obj.PhoneNo;
                 vm.Email = obj.Email;
                 vm.UploadImage = fileurl;
+                vm.Address = obj.Address;
                 string output = _userAuth.UpdateStaffDetail(vm);
                 if (output == "SUCCESS")
                 {
@@ -249,6 +251,7 @@ namespace MilijuliFurniture.Controllers
                 vm.PhoneNo = obj.PhoneNo;
                 vm.Email = obj.Email;
                 vm.UploadImage = existingUser.UploadImageString; // Assign the previous image URL
+                vm.Address = obj.Address;
                 string output = _userAuth.UpdateStaffDetail(vm);
                 if (output == "SUCCESS")
                 {
@@ -499,7 +502,7 @@ namespace MilijuliFurniture.Controllers
             }
             return View();
         }
-
+        
         public IActionResult UpdateProduct(int id)
         {
             List<Category> categories = _furnitureItems.GetCategorylist().ToList();
@@ -507,7 +510,7 @@ namespace MilijuliFurniture.Controllers
 
             ViewBag.ListOfCategory = categories;
 
-            Product obj = _furnitureItems.GetProductDetailsById(id);
+            Product_VM obj = _furnitureItems.GetProductDetailsById(id);
             ViewBag.SelectedCategoryId = obj.CategoryId;
             return View(obj);
 
@@ -515,12 +518,55 @@ namespace MilijuliFurniture.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateProduct(Product obj, int id)
+        public IActionResult UpdateProduct(Product_VM obj, int id)
         {
-            string output = _furnitureItems.UpdateProductDetail(obj,id);
-            if (output == "SUCCESS")
+            if(obj.UploadImage!=null)
             {
-                return RedirectToAction("ProductIndex");
+                //Upload File
+                string folder = "wwwroot/uploadfiles/";
+                string fileurl = "/uploadfiles/";
+                string guid = Guid.NewGuid().ToString();
+                fileurl += guid + obj.UploadImage.FileName;
+                folder += guid + obj.UploadImage.FileName;
+                string serverFolder = Path.Combine(Directory.GetCurrentDirectory(), folder);
+
+                obj.UploadImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+                Product vm = new Product();
+                vm.Id = id;
+                vm.Name = obj.Name;
+                vm.Brand = obj.Brand;
+                vm.CategoryId = obj.CategoryId;
+                vm.Quantity = obj.Quantity;
+                vm.Price = obj.Price;
+                vm.UploadImage = fileurl;
+                string output = _furnitureItems.UpdateProductDetail(vm, id);
+                if (output == "SUCCESS")
+                {
+                    return RedirectToAction("ProductIndex");
+                }
+       
+            }
+            else
+            {
+                // Fetch existing user details
+                Product_VM existingUser = _furnitureItems.GetProductDetailsById(obj.Id); // You need to implement a method to fetch user details by ID
+
+                // Update user's details without changing the image
+                Product vm = new Product();
+                vm.Id = id;
+                vm.Name = obj.Name;
+                vm.Brand = obj.Brand;
+                vm.CategoryId = obj.CategoryId;
+                vm.Quantity = obj.Quantity;
+                vm.Price = obj.Price;
+                vm.UploadImage = existingUser.UploadImageString;
+
+                string output = _furnitureItems.UpdateProductDetail(vm, id);
+                if (output == "SUCCESS")
+                {
+                    return RedirectToAction("ProductIndex");
+                }
             }
             return View();
         }

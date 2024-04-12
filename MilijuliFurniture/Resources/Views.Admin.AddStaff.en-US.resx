@@ -120,6 +120,9 @@
   <data name="Add Staff" xml:space="preserve">
     <value>कर्मचारी थप्नुहोस्</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>ठेगाना</value>
+  </data>
   <data name="Back to List" xml:space="preserve">
     <value>सूचीमा फिर्ता</value>
   </data>

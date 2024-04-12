@@ -237,7 +237,7 @@ namespace Site.DataAccess.Repository
 
             if (!string.IsNullOrEmpty(salesNumber))
             {
-                query = @"SELECT s.*, ds.*, p.*, u.FullName AS UserFullName
+                query = @"SELECT s.*, ds.*,ds.quantity As Quantity,p.Name,p.Price,p.CategoryId,p.Brand, u.FullName AS UserFullName
             FROM Sale s
             JOIN DetailSale ds ON s.SaleID = ds.SaleID
             JOIN Product p ON ds.ProductID = p.Id
@@ -246,7 +246,7 @@ namespace Site.DataAccess.Repository
             }
             else
             {
-                query = @"SELECT s.*, ds.*, p.*, u.FullName AS UserFullName
+                query = @"SELECT s.*, ds.*,ds.quantity AS Quantity, p.Name,p.Price,p.CategoryId,p.Brand, u.FullName AS UserFullName
             FROM Sale s
             JOIN DetailSale ds ON s.SaleID = ds.SaleID
             JOIN Product p ON ds.ProductID = p.Id

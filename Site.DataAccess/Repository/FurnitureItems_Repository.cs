@@ -171,7 +171,7 @@ namespace Site.DataAccess.Repository
                     param.Add("@Quantity", obj.Quantity);
                     param.Add("@Brand", obj.Brand);
                     param.Add("@CategoryId", obj.CategoryId);
-                    //param.Add("@UploadFile", obj.UploadImage);
+                    param.Add("@UploadFile", obj.UploadImage);
                     string output = conn.ExecuteScalar<string>("USP_UpdateProductDetails", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
@@ -200,7 +200,7 @@ namespace Site.DataAccess.Repository
             }
         }
 
-        public Product GetProductDetailsById(int id)
+        public Product_VM GetProductDetailsById(int id)
         {
             try
             {
@@ -208,7 +208,7 @@ namespace Site.DataAccess.Repository
                 {
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@Id", id);
-                    Product output = conn.QueryFirstOrDefault<Product>("USP_GetProductDetailById", param, commandType: CommandType.StoredProcedure);
+                    Product_VM output = conn.QueryFirstOrDefault<Product_VM>("USP_GetProductDetailById", param, commandType: CommandType.StoredProcedure);
                     return output;
                 }
             }
@@ -243,7 +243,7 @@ namespace Site.DataAccess.Repository
             {
                 using (var conn = new SqlConnection(_connection.DbConnection))
                 {
-                    string sql = "SELECT COUNT(*) FROM Product";
+                    string sql = "SELECT COUNT(*) FROM Product Where isDeleted =0";
                     int total = await conn.ExecuteScalarAsync<int>(sql);
                     return total;
                 }
@@ -259,7 +259,7 @@ namespace Site.DataAccess.Repository
             {
                 using (var conn = new SqlConnection(_connection.DbConnection))
                 {
-                    string sql = "SELECT COUNT(*) FROM Category";
+                    string sql = "SELECT COUNT(*) FROM Category Where isDeleted=0";
                     int total = await conn.ExecuteScalarAsync<int>(sql);
                     return total;
                 }
