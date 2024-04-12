@@ -14,6 +14,7 @@ namespace Site.DataAccess.Interface
         Task<Sale> Register(Sale entity);
         Task<Sale> Detail(string SaleNumber);
         Task<List<Sale>> SaleHistory(string saleNumber, string startDate, string endDate);
+        IEnumerable<VMTypeDocumentSale> GetTypeDocument();
 
         //Task<List<Product>> GetProducts(string search);
     }

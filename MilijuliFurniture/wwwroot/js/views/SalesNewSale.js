@@ -3,23 +3,23 @@ let TaxValue = 0;
 let ProductsForSale = [];
 
 $(document).ready(function () {
-    //// This code is using the Fetch API to make a GET request to the "/Sales/ListTypeDocumentSale" endpoint and populate a HTML select element with the response data.
-    //fetch("/Sales/ListTypeDocumentSale")
-    //// Check if the response was successful using the "ok" property of the response object
-    //    // If successful, return the response data in JSON format, otherwise return a rejected Promise with the response object
-    //    .then(response => {
-    //        return response.ok ? response.json() : Promise.reject(response);
-    //    }).then(responseJson => {
-    //        // If the length of the responseJson array is greater than 0, iterate over each item in the array and append an option element to the HTML select element with id "cboTypeDocumentSale"
+    // This code is using the Fetch API to make a GET request to the "/Sales/ListTypeDocumentSale" endpoint and populate a HTML select element with the response data.
+    fetch("/Sales/ListTypeDocumentSale")
+    // Check if the response was successful using the "ok" property of the response object
+        // If successful, return the response data in JSON format, otherwise return a rejected Promise with the response object
+        .then(response => {
+            return response.ok ? response.json() : Promise.reject(response);
+        }).then(responseJson => {
+            // If the length of the responseJson array is greater than 0, iterate over each item in the array and append an option element to the HTML select element with id "cboTypeDocumentSale"
            
-    //        if (responseJson.length > 0) {
-    //            responseJson.forEach((item) => {
-    //                $("#cboTypeDocumentSale").append(
-    //                    $("<option>").val(item.idTypeDocumentSale).text(item.description)
-    //                )
-    //            });
-    //        }
-    //    })
+            if (responseJson.length > 0) {
+                responseJson.forEach((item) => {
+                    $("#cboTypeDocumentSale").append(
+                        $("<option>").val(item.idTypeDocumentSale).text(item.description)
+                    )
+                });
+            }
+        })
 
 
 
@@ -81,9 +81,9 @@ function formatResults(data) {
 }
 
 
-//$(document).on('select2:open', () => {
-//    cdocument.querySelector('.select2-search__field').focus();
-//});
+$(document).on('select2:open', () => {
+    cdocument.querySelector('.select2-search__field').focus();
+});
 
 $('#cboSearchProduct').on('select2:select', function (e) {
     var data = e.params.data;
@@ -219,7 +219,7 @@ $("#btnFinalizeSale").click(function () {
 
     const sale = {
         
-        idTypeDocumentSale: $("#cboTypeDocumentSale").val(),
+        TypeDocumentSaleId: $("#cboTypeDocumentSale").val(),
         customerDocument: $("#txtDocumentClient").val(),
         clientName: $("#txtNameClient").val(),
         subtotal: $("#txtSubTotal").val(),

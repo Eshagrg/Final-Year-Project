@@ -119,14 +119,15 @@ namespace Site.DataAccess.Repository
                             }
 
                             // Insert sale using SqlCommand
-                            string insertQuery = "INSERT INTO Sale (saleNumber,UserId, clientName, Subtotal, totalTaxes, total, registrationDate) VALUES (@SaleNumber, @UserId, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate); SELECT CAST(SCOPE_IDENTITY() as int)";
+                            string insertQuery = "INSERT INTO Sale (saleNumber,UserId, clientName, Subtotal, totalTaxes, total, registrationDate,TypeDocumentSaleId) VALUES (@SaleNumber, @UserId, @ClientName, @Subtotal, @TotalTaxes, @Total, @RegistrationDate,@TypeDocumentSaleId); SELECT CAST(SCOPE_IDENTITY() as int)";
                             int saleId;
 
                             using (var insertCmd = new SqlCommand(insertQuery, cn, tx))
                             {
+                                
                                 insertCmd.Parameters.AddWithValue("@SaleNumber", entity.SaleNumber);
                                 insertCmd.Parameters.AddWithValue("@userId", entity.UserId);
-
+                                insertCmd.Parameters.AddWithValue("@TypeDocumentSaleId", entity.TypeDocumentSaleId);
                                 insertCmd.Parameters.AddWithValue("@ClientName", entity.ClientName);
                                 insertCmd.Parameters.AddWithValue("@Subtotal", entity.Subtotal);
                                 insertCmd.Parameters.AddWithValue("@TotalTaxes", entity.TotalTaxes);
@@ -203,27 +204,7 @@ namespace Site.DataAccess.Repository
 
         }
 
-        //public async Task<List<Sale>> SaleHistory(string saleNumber, string startDate, string endDate)
-        //{
-        //    using IDbConnection db = new SqlConnection(_connection.DbConnection);
-        //    string query = "";
-        //    DateTime start_date = DateTime.ParseExact(startDate, "dd/MM/yyyy", new CultureInfo("es-PE"));
-        //    DateTime end_date = DateTime.ParseExact(endDate, "dd/MM/yyyy", new CultureInfo("es-PE"));
-        //    if (!string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
-        //    {
-        //        query = @"SELECT * FROM Sale 
-        //              WHERE RegistrationDate BETWEEN @StartDate AND @EndDate";
-        //    }
-        //    else
-        //    {
-        //        query = @"SELECT * FROM Sale 
-        //              WHERE SaleNumber = @SaleNumber";
-        //    }
-
-        //    var parameters = new {StartDate = start_date, EndDate = end_date };
-        //    var sales = await db.QueryAsync<Sale>(query, parameters);
-        //    return sales.AsList();
-        //}
+    
 
         public async Task<List<Sale>> SaleHistory(string salesNumber, string startDate, string endDate)
         {
@@ -326,14 +307,21 @@ namespace Site.DataAccess.Repository
             return salesDictionary.Values.FirstOrDefault();
         }
 
-
-
-
-
-
-
-
-
-
+        public IEnumerable<VMTypeDocumentSale> GetTypeDocument()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    
+                    IEnumerable<VMTypeDocumentSale> output = conn.Query<VMTypeDocumentSale>("USP_GetTypeDocument", commandType: CommandType.StoredProcedure);
+                    return output;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

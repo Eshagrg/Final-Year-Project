@@ -32,6 +32,7 @@ namespace Site.DataAccess.Domain
         public int SaleId { get; set; }
         public string? SaleNumber { get; set; }
         public int? UserId { get; set; }
+        public int? TypeDocumentSaleId { get; set; }
         public string? CustomerDocument { get; set; }
         public string? ClientName { get; set; }
         public decimal? Subtotal { get; set; }
@@ -74,5 +75,11 @@ namespace Site.DataAccess.Domain
         public int? QuantityDigits { get; set; }
         public string? Management { get; set; }
         public DateTime? DateUpdate { get; set; }
+    }
+
+    public class VMTypeDocumentSale
+    {
+        public int IdTypeDocumentSale { get; set; }
+        public string? Description { get; set; }
     }
 }

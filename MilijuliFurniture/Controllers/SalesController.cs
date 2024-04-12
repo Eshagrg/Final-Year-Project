@@ -40,6 +40,12 @@ namespace MilijuliFurniture.Controllers
             return StatusCode(StatusCodes.Status200OK,obj);
         }
 
+        public IActionResult ListTypeDocumentSale()
+        {
+            IEnumerable<VMTypeDocumentSale> vmListTypeDocumentSale = _salesService.GetTypeDocument();
+            return StatusCode(StatusCodes.Status200OK, vmListTypeDocumentSale);
+        }
+
         [HttpGet]
         public IActionResult CheckQuantity(int id, int quantity)
         {
@@ -67,6 +73,7 @@ namespace MilijuliFurniture.Controllers
                     CategoryProducty = vmDetailSale.CategoryProducty,
                     Total = decimal.Parse(vmDetailSale.Total)
 
+
                     // Map other properties as needed...
                 }).ToList();
                 Sale sale = new Sale
@@ -76,7 +83,10 @@ namespace MilijuliFurniture.Controllers
                     Subtotal = decimal.Parse(model.Subtotal),
                     TotalTaxes = decimal.Parse(model.TotalTaxes),
                     Total = decimal.Parse(model.Total),
-                    DetailSales = detailSales
+                    DetailSales = detailSales,
+                    TypeDocumentSaleId = model.TypeDocumentSaleId
+                    
+                    
 
                 };
                 // Set the user id in the model
