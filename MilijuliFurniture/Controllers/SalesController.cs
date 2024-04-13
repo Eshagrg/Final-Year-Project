@@ -132,6 +132,8 @@ namespace MilijuliFurniture.Controllers
                 ClientName = s.ClientName,
                 Total =s.Total.ToString(),
                 CustomerDocument = s.CustomerDocument,
+                TotalTaxes = s.TotalTaxes.ToString(),
+                
                 DetailSales = s.DetailSales.Select(ds => new VMDetailSale
                 {
                     // Map properties of VMDetailSale here
@@ -139,6 +141,8 @@ namespace MilijuliFurniture.Controllers
                     Quantity = ds.Quantity,
                     Price = ds.Price.ToString(),
                     Total = s.Total.ToString(),
+                    BrandProduct = ds.BrandProduct,
+            
                     
                 }).ToList()
 

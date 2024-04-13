@@ -218,17 +218,22 @@ namespace Site.DataAccess.Repository
 
             if (!string.IsNullOrEmpty(salesNumber))
             {
-                query = @"SELECT s.*, ds.*,ds.quantity As Quantity,p.Name,p.Price,p.CategoryId,p.Brand, u.FullName AS UserFullName
-            FROM Sale s
-            JOIN DetailSale ds ON s.SaleID = ds.SaleID
-            JOIN Product p ON ds.ProductID = p.Id
-            JOIN Portal_Users u ON s.UserID = u.Id
-            WHERE s.saleNumber = @SalesNumber";
+                query = @"SELECT s.*,ts.description AS CustomerDocument, 
+                        ds.*,ds.quantity As Quantity,
+                        p.Name,
+                        p.Price,p.CategoryId,p.Brand, u.FullName AS UserFullName
+                        FROM Sale s
+                        JOIN TypeDocumentSale ts ON s.TypeDocumentSaleId = ts.idTypeDocumentSale
+                        JOIN DetailSale ds ON s.SaleID = ds.SaleID
+                        JOIN Product p ON ds.ProductID = p.Id
+                        JOIN Portal_Users u ON s.UserID = u.Id
+                        WHERE s.saleNumber = @SalesNumber";
             }
             else
             {
-                query = @"SELECT s.*, ds.*,ds.quantity AS Quantity, p.Name,p.Price,p.CategoryId,p.Brand, u.FullName AS UserFullName
+                query = @"SELECT s.*,ts.description AS CustomerDocument, ds.*,ds.quantity As Quantity,p.Name,p.Price,p.CategoryId,p.Brand, u.FullName AS UserFullName
             FROM Sale s
+            JOIN TypeDocumentSale ts ON s.TypeDocumentSaleId = ts.idTypeDocumentSale
             JOIN DetailSale ds ON s.SaleID = ds.SaleID
             JOIN Product p ON ds.ProductID = p.Id
             JOIN Portal_Users u ON s.UserID = u.Id
@@ -253,9 +258,14 @@ namespace Site.DataAccess.Repository
 
                     detailSale.ProductId = product.Id; // Attach the product to the detail sale
                     detailSale.DescriptionProduct = product.Name;
+                    detailSale.Price = product.Price;
+                    detailSale.BrandProduct = userFullName;
                     detailSale.Quantity = (int)product.Quantity;
                     saleEntry.DetailSales.Add(detailSale);
-                    saleEntry.CustomerDocument = userFullName;
+                    saleEntry.CustomerDocument=saleEntry.CustomerDocument;
+                
+                   
+                
                     return null; // We don't need to return anything here
                 },
                 parameters,
@@ -270,14 +280,18 @@ namespace Site.DataAccess.Repository
         {
             using IDbConnection db = new SqlConnection(_connection.DbConnection);
             string query = "";
-           
 
-            query = @"SELECT s.*, ds.*, p.*,u.FullName AS UserFullName
-              FROM Sale s
-              JOIN DetailSale ds ON s.SaleID = ds.SaleID
-              JOIN Product p ON ds.ProductID = p.Id
-              JOIN Portal_Users u ON s.UserID = u.Id
-              WHERE s.SaleNumber = @SaleNumber";
+
+            query = @"SELECT s.*,ts.description AS CustomerDocument, 
+                        ds.*,ds.quantity As Quantity,
+                        p.Name,
+                        p.Price,p.CategoryId,p.Brand, u.FullName AS UserFullName
+                        FROM Sale s
+                        JOIN TypeDocumentSale ts ON s.TypeDocumentSaleId = ts.idTypeDocumentSale
+                        JOIN DetailSale ds ON s.SaleID = ds.SaleID
+                        JOIN Product p ON ds.ProductID = p.Id
+                        JOIN Portal_Users u ON s.UserID = u.Id
+                        WHERE s.saleNumber = @SaleNumber";
 
             var parameters = new { SaleNumber = salesNumber };
             var salesDictionary = new Dictionary<int, Sale>(); // Dictionary to store unique Sales by SaleID
@@ -295,6 +309,7 @@ namespace Site.DataAccess.Repository
 
                     detailSale.ProductId = product.Id; // Attach the product to the detail sale
                     detailSale.DescriptionProduct = product.Name;
+                    detailSale.Price = product.Price;
                     detailSale.Quantity = (int)product.Quantity;
                     saleEntry.DetailSales.Add(detailSale);
                     saleEntry.CustomerDocument = userFullName;

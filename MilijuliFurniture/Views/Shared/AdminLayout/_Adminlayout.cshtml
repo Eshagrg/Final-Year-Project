@@ -71,22 +71,28 @@
                             <div class="d-sm-none d-lg-inline-block">Hi, @User.Identity.Name </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-admin dropdown-menu-right">
+                             @if (@User.FindFirst("Role").Value == "Staff")
+                                {
+                            <a asp-controller="User" asp-action="Logout" class="dropdown-item has-icon text-danger">
+                                <i class="fas fa-sign-out-alt"></i> @Localizer["Logout"]
+                            </a>
+                                }
+                                 else
+                                {
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item has-icon text-information" href="#">
-                                @if (@User.FindFirst("Role").Value == "Staff")
-                                {
-                                    <i class="fas fa-duotone fa-key" onclick="openChangePasswordAdminModal('@User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value', '@User.Identity.Name')','@User.FindFirst("Email")'">@Localizer["Change Password"]</i>
-                                }
-                                else
-                                {
+                               
+                                
+                               
                                     <i class="fas fa-duotone fa-key" onclick="openChangePasswordAdminModal('@User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value', '@User.Identity.Name','@User.FindFirst("Email")')">&nbsp;&nbsp;@Localizer["Change Password"]</i>
-                                }
+                                
                             </a>
 
                             <div class="dropdown-divider" style="border-color: black;"></div>
                             <a asp-controller="User" asp-action="Logout" class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> @Localizer["Logout"]
                             </a>
+                            }
                         </div>
                     </li>
 

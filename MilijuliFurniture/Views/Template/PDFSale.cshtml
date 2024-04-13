@@ -23,7 +23,7 @@
         }
          p.title2{
            font-weight:bold;
-           color: #03A99F;
+            color: darkblue;
            font-size:20px;
         }
         p.text{
@@ -44,7 +44,7 @@
         }
 
         table.tbproductos thead tr th {
-           background-color: #03A99F;
+                background-color: darkblue;
            padding:10px;
            font-size:15px;
            color:white;
@@ -66,7 +66,7 @@
         .item-3{
            font-size:15px;
            font-weight:bold;
-           background-color:#03A99F;
+            background-color: darkblue;
            color:white;
         }
 
@@ -103,7 +103,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><p class="text">Address: Street:  Channauli, Chitwan</p></td>
+                            <td><p class="text">Address: Street:  Chanauli, Chitwan</p></td>
                         </tr>
                         <tr>
                             <td>
@@ -148,7 +148,7 @@
                             <td class="td-item"><p class="item">@item.DescriptionProduct</p></td>
                             <td class="td-item"><p class="item">@item.Quantity</p></td>
                             <td class="td-item"><p class="item">Rs @item.Price</p></td>
-                            <td style="background-color:#EDF6F9"><p class="item">Rs @item.Total</p></td>
+                            <td style="background-color:#EDF6F9"><p class="item">Rs@(item.Quantity * item.Price)</p></td>
                         </tr>
 
                     }
@@ -165,10 +165,10 @@
                 </tr>
                 <tr>
                     <td class="td-item">
-                        <p class="item-2" >Total Taxes</p>
+                        <p class="item-2" >Discount(%)</p>
                     </td>
                      <td class="item-3">
-                         <p>Rs @Model.TotalTaxes</p>
+                         <p> @Model.TotalTaxes</p>
                     </td>
                 </tr>
                  <tr>

@@ -21,7 +21,10 @@ $(document).ready(function () {
             }
         })
 
-
+    
+    $("#txtTotalTaxes").on('change', function () {
+        showProducts_Prices();
+    });
 
     $("#cboSearchProduct").select2({
         ajax: {
@@ -110,6 +113,11 @@ $('#cboSearchProduct').on('select2:select', function (e) {
             toastr.warning("", "You need to enter the amount");
             return false
         }
+        if (value === "" || parseFloat(value) <= 0 || isNaN(parseFloat(value))) {
+            toastr.warning("", "You need to enter a valid positive amount");
+            return false;
+        }
+
 
         if (isNaN(parseInt(value))) {
             toastr.warning("", "You must enter a numeric value");
@@ -165,9 +173,9 @@ async function checkQuantityAvailable(productId, quantity) {
 function showProducts_Prices() {
 
     let total = 0;
-    let tax = 0;
+    let tax = parseFloat($("#txtTotalTaxes").val()) || 0;
     let subtotal = 0;
-    let percentage = TaxValue / 100;
+    let percentage = tax / 100;
 
     $("#tbProduct tbody").html("")
 
@@ -191,8 +199,9 @@ function showProducts_Prices() {
 
     })
 
-    subtotal = total; /*/ (1 + percentage)*/
-    tax = total - subtotal;
+    subtotal = total;
+    total = total-(total * (tax / 100));
+
 
     $("#txtSubTotal").val(subtotal.toFixed(2))
     $("#txtTotalTaxes").val(tax.toFixed(2))

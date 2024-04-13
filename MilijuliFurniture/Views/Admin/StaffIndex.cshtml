@@ -11,7 +11,7 @@
 }
 
 <!-- The Modal -->
-<div id="changePasswordModal" class="modal fade">
+<div id="changePasswordStaffModal" class="modal fade">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,11 +19,11 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <input type="hidden" id="userId" name="userId" value="" />
-                <p><strong>@Localizer["User ID:"]</strong> <span id="userIdDisplay"></span></p>
-                <p><strong>@Localizer["User Name:"]:</strong> <span id="userNameDisplay"></span></p>
-                <p><strong>@Localizer["Email Address:"]:</strong> <span id="userEmailDisplay"></span></p>
-                <form id="changePasswordForm">
+                <input type="hidden" id="userId" name="staffId" value="" />
+                <p><strong>@Localizer["User ID:"]</strong> <span id="staffIdDisplay"></span></p>
+                <p><strong>@Localizer["User Name:"]:</strong> <span id="staffNameDisplay"></span></p>
+                <p><strong>@Localizer["Email Address:"]:</strong> <span id="staffEmailDisplay"></span></p>
+                <form id="changePasswordStaffForm">
                     <div class="form-group">
                         <label for="newPassword">@Localizer["New Password:"]</label>
                         <input type="password" id="newPassword" name="newPassword" class="form-control" required>
@@ -36,7 +36,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">@Localizer["Cancel"]</button>
-                <button type="submit" form="changePasswordForm" class="btn btn-primary">@Localizer["Change Password"]</button>
+                <button type="submit" form="changePasswordStaffForm" class="btn btn-primary">@Localizer["Change Password"]</button>
             </div>
         </div>
     </div>
@@ -133,7 +133,7 @@
 
                                         <td scope="col">@item.RoleName</td>
                                         
-                                     
+                           
                                             @if (item.RoleName == "Staff" && @User.FindFirst("Role").Value == "Staff")
                                         {
                                            
@@ -156,21 +156,16 @@
                                                 </span>
                                                     </td>
                                             }
-                                           
-
-                                    
-                                   
-                                      
-
+                                         
                                             <span class="btn-group">
                                                 @if (item.RoleName == "Staff" && @User.FindFirst("Role").Value == "Staff")
                                                 {
-                                                    <button class="btn btn-primary" onclick="openChangePasswordModal('@item.Id', '@item.FullName','@item.Email')" hidden>@Localizer["Change Password"]</button>
+                                                    <button class="btn btn-primary" onclick="openChangePasswordStaffModal('@item.Id', '@item.FullName','@item.Email')" hidden>@Localizer["Change Password"]</button>
                                                 }
                                                 else
                                                 {
                                                       <td scope="col">
-                                                    <button class="btn btn-primary" onclick="openChangePasswordModal('@item.Id', '@item.FullName','@item.Email')">@Localizer["Change Password"]</button>
+                                                    <button class="btn btn-primary" onclick="openChangePasswordStaffModal('@item.Id', '@item.FullName','@item.Email')">@Localizer["Change Password"]</button>
                                             </td>
                                                 }
                                             </span>
@@ -191,15 +186,15 @@
 
 @section Script {
     <script>
-        function openChangePasswordModal(userId, userName, email) {
+        function openChangePasswordStaffModal(staffId, staffName, staffEmail) {
             // Set the user ID and name in the respective spans of the modal
-            $('#userId').val(userId);
-            $('#userIdDisplay').text(userId);
-            $('#userNameDisplay').text(userName);
-            $('#userEmailDisplay').text(email)
+            $('#staffId').val(staffId);
+            $('#staffIdDisplay').text(staffId);
+            $('#staffNameDisplay').text(staffName);
+            $('#staffEmailDisplay').text(staffEmail)
 
             // Show the change password modal
-            $('#changePasswordModal').modal('show');
+            $('#changePasswordStaffModal').modal('show');
         }
 
         // Submit the form within the modal using AJAX
@@ -208,7 +203,7 @@
 
             // Get the form data
             var formData = {
-                userId: $('#userId').val(),
+                userId: $('#staffId').val(),
                 newPassword: $('#newPassword').val(),
                 confirmNewPassword: $('#confirmNewPassword').val()
             };
@@ -228,7 +223,7 @@
                     if (response.success) {
                         alert('Password changed successfully!');
                         // Close the modal after successful password change
-                        $('#changePasswordModal').modal('hide');
+                        $('#changePasswordStaffModal').modal('hide');
                     } else {
                         alert('Failed to change password. Please check your current password.');
                     }

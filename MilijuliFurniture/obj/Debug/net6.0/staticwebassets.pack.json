@@ -18549,12 +18549,32 @@
       "PackagePath": "staticwebassets\\img\\back.png.jpg"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\backg.png",
+      "PackagePath": "staticwebassets\\img\\backg.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\background.png",
+      "PackagePath": "staticwebassets\\img\\background.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\backgroundpic.jpg",
+      "PackagePath": "staticwebassets\\img\\backgroundpic.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\backgroundpic.png",
+      "PackagePath": "staticwebassets\\img\\backgroundpic.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\flag\\nepal-flag.png",
       "PackagePath": "staticwebassets\\img\\flag\\nepal-flag.png"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\flag\\usa-flag.png",
       "PackagePath": "staticwebassets\\img\\flag\\usa-flag.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\full.jpg",
+      "PackagePath": "staticwebassets\\img\\full.jpg"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\login.png",
@@ -18571,6 +18591,10 @@
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\milijuliLogo.png",
       "PackagePath": "staticwebassets\\img\\milijuliLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\img\\person.png",
+      "PackagePath": "staticwebassets\\img\\person.png"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\js\\site.js",
@@ -18817,8 +18841,16 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\00abe081-10fe-4a20-bf1f-c13a25745c36Twin Bed Frame.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\00abe081-10fe-4a20-bf1f-c13a25745c36Twin Bed Frame.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\022d6fb0-1316-4e2a-b95d-5a4fb51a476eCOFFEETABLE.jpg",
       "PackagePath": "staticwebassets\\uploadfiles\\022d6fb0-1316-4e2a-b95d-5a4fb51a476eCOFFEETABLE.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\04edbefb-aaa2-4e22-a637-273b7a70452estaffp.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\04edbefb-aaa2-4e22-a637-273b7a70452estaffp.jpg"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\0fa26e1e-ad53-4c68-8589-6cf6d6c6894dTwin Bed Frame.png",
@@ -18827,6 +18859,14 @@
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\101823fc-da87-492b-8aca-9c55d18aa8ecCOFFEETABLE.jpg",
       "PackagePath": "staticwebassets\\uploadfiles\\101823fc-da87-492b-8aca-9c55d18aa8ecCOFFEETABLE.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\11a901d3-00c3-43ee-94b9-2b88ee5bc178BOX SOFA.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\11a901d3-00c3-43ee-94b9-2b88ee5bc178BOX SOFA.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\13e56307-61db-4c7a-abaa-c602d62c1863COFFEETABLE.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\13e56307-61db-4c7a-abaa-c602d62c1863COFFEETABLE.jpg"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\144d3106-7d92-4c49-aa96-88e87803ae71image.png",
@@ -18839,6 +18879,10 @@
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\1738419b-3c67-4c7e-a31e-8b9794248af1staffp.jpg",
       "PackagePath": "staticwebassets\\uploadfiles\\1738419b-3c67-4c7e-a31e-8b9794248af1staffp.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\1a46a385-5e6b-4cbd-a527-a1d4a5ea0862Lovepik_com-401750078-wicker-chair-coffee-table-furniture.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\1a46a385-5e6b-4cbd-a527-a1d4a5ea0862Lovepik_com-401750078-wicker-chair-coffee-table-furniture.png"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\1da920c0-a73b-4eaf-a08d-b2e565346281COFFEETABLE.jpg",
@@ -18857,6 +18901,10 @@
       "PackagePath": "staticwebassets\\uploadfiles\\2b1fb5c1-a6dd-4b66-8ec3-86bc79cc9d06COFFEETABLE.jpg"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\307efee4-996b-44de-8ffd-7c74026b7ebaLovepik_com-401750078-wicker-chair-coffee-table-furniture.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\307efee4-996b-44de-8ffd-7c74026b7ebaLovepik_com-401750078-wicker-chair-coffee-table-furniture.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\329f7bbc-6c01-4933-a761-b4a0e148babaTwin Bed Frame.png",
       "PackagePath": "staticwebassets\\uploadfiles\\329f7bbc-6c01-4933-a761-b4a0e148babaTwin Bed Frame.png"
     },
@@ -18869,12 +18917,32 @@
       "PackagePath": "staticwebassets\\uploadfiles\\397518d4-44bf-440f-9863-69c75fe9dcddstaffp.jpg"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\3d1c11fd-848e-4010-8b4a-738835231320Lovepik_com-401750078-wicker-chair-coffee-table-furniture.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\3d1c11fd-848e-4010-8b4a-738835231320Lovepik_com-401750078-wicker-chair-coffee-table-furniture.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\3eb229f6-caed-401f-b222-0aaffde96355Lovepik_com-401054404-bedroom-solid-wood-bed.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\3eb229f6-caed-401f-b222-0aaffde96355Lovepik_com-401054404-bedroom-solid-wood-bed.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\42684089-6a41-4f69-a439-8ca4ebf8a9c8milijuliLogo.png",
       "PackagePath": "staticwebassets\\uploadfiles\\42684089-6a41-4f69-a439-8ca4ebf8a9c8milijuliLogo.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\45a5b602-1691-40cd-b275-f3b22f61783bCOFFEETABLE.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\45a5b602-1691-40cd-b275-f3b22f61783bCOFFEETABLE.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\47d01e1b-7ea3-4638-a3fa-741068c7ca80COFFEETABLE.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\47d01e1b-7ea3-4638-a3fa-741068c7ca80COFFEETABLE.jpg"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\48876624-86df-400c-bf29-55e4026834afstaffp.jpg",
       "PackagePath": "staticwebassets\\uploadfiles\\48876624-86df-400c-bf29-55e4026834afstaffp.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\4f1afb88-b573-46c9-b471-b4f882c56874COFFEETABLE.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\4f1afb88-b573-46c9-b471-b4f882c56874COFFEETABLE.jpg"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\51ff8031-3177-4bf7-bed5-2ca8abbce10estaffp.jpg",
@@ -18883,6 +18951,10 @@
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\55de9ad4-8672-474f-82bf-5fc0bcdb7c8emilijuliLogo.png",
       "PackagePath": "staticwebassets\\uploadfiles\\55de9ad4-8672-474f-82bf-5fc0bcdb7c8emilijuliLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\56a2d0eb-ef0c-4eb5-9d2a-e4a6a008a6e5COFFEETABLE.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\56a2d0eb-ef0c-4eb5-9d2a-e4a6a008a6e5COFFEETABLE.jpg"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\590eba34-cf26-4768-9ad0-fc5cf5be5de7logomilijuli.png",
@@ -18901,6 +18973,14 @@
       "PackagePath": "staticwebassets\\uploadfiles\\631b79f0-00c3-4be7-91a5-67153433e952staffp.jpg"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\666e007d-286c-429f-ae1e-6b4e17cd2158staffp.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\666e007d-286c-429f-ae1e-6b4e17cd2158staffp.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\6a8dfc4b-67b1-46cc-b8b3-39a0ca10f7c8COFFEETABLE.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\6a8dfc4b-67b1-46cc-b8b3-39a0ca10f7c8COFFEETABLE.jpg"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\6bac9f98-1f4b-4c03-94c2-dd30267f998dTwin Bed Frame.png",
       "PackagePath": "staticwebassets\\uploadfiles\\6bac9f98-1f4b-4c03-94c2-dd30267f998dTwin Bed Frame.png"
     },
@@ -18913,6 +18993,14 @@
       "PackagePath": "staticwebassets\\uploadfiles\\75189ff2-e60b-46d8-9cb9-b8d6789d34dbreport.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\756fc5fa-992b-42aa-aa12-60595fde05feBOX SOFA.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\756fc5fa-992b-42aa-aa12-60595fde05feBOX SOFA.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\77ce69d0-4d65-4676-bc32-1df77a1b509bperson.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\77ce69d0-4d65-4676-bc32-1df77a1b509bperson.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\7a39e7c9-4fc9-4638-8524-201c50566cb3Twin Bed Frame.png",
       "PackagePath": "staticwebassets\\uploadfiles\\7a39e7c9-4fc9-4638-8524-201c50566cb3Twin Bed Frame.png"
     },
@@ -18921,12 +19009,24 @@
       "PackagePath": "staticwebassets\\uploadfiles\\7bce6f35-9e15-497a-93f2-a084a141e6a5logomilijuli.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\8013edc5-9082-4ef2-9118-90adb71dfe2aTwin Bed Frame.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\8013edc5-9082-4ef2-9118-90adb71dfe2aTwin Bed Frame.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\817263ce-33ff-4bfd-be35-6a88aa389bdaTwin Bed Frame.png",
       "PackagePath": "staticwebassets\\uploadfiles\\817263ce-33ff-4bfd-be35-6a88aa389bdaTwin Bed Frame.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\81c75299-5e5a-498d-a769-abeeecdc0b14person.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\81c75299-5e5a-498d-a769-abeeecdc0b14person.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\8681e036-d7b9-447d-a85c-3ce6f4af9dc2logomilijuli.png",
       "PackagePath": "staticwebassets\\uploadfiles\\8681e036-d7b9-447d-a85c-3ce6f4af9dc2logomilijuli.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\8b954333-21a5-410e-a873-6112e07c3e28Lovepik_com-401054404-bedroom-solid-wood-bed.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\8b954333-21a5-410e-a873-6112e07c3e28Lovepik_com-401054404-bedroom-solid-wood-bed.png"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\8da785cd-66cf-42ba-a017-2fc59be3589aTwin Bed Frame.png",
@@ -18935,6 +19035,14 @@
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\94abd039-b83b-4788-a93d-553c04b14ea1Twin Bed Frame.png",
       "PackagePath": "staticwebassets\\uploadfiles\\94abd039-b83b-4788-a93d-553c04b14ea1Twin Bed Frame.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\959abdfa-6c0f-4dae-a3ed-215847d6c717BOX SOFA.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\959abdfa-6c0f-4dae-a3ed-215847d6c717BOX SOFA.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\982f97dd-a6ee-4c4a-9398-39fe1f5de33bLovepik_com-401054404-bedroom-solid-wood-bed.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\982f97dd-a6ee-4c4a-9398-39fe1f5de33bLovepik_com-401054404-bedroom-solid-wood-bed.png"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\a0fa0eb7-b1b6-4e72-96d9-4725a426adafTwin Bed Frame.png",
@@ -18961,12 +19069,24 @@
       "PackagePath": "staticwebassets\\uploadfiles\\bd1a693f-2a07-4723-96d9-e6efc23ded50logomilijuli.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\bdf260d1-a3d3-47fd-bc99-7446f5bcef9dCOFFEETABLE.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\bdf260d1-a3d3-47fd-bc99-7446f5bcef9dCOFFEETABLE.jpg"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\c0cb2871-1aca-4f10-93d4-23f1fe034700staffp.jpg",
       "PackagePath": "staticwebassets\\uploadfiles\\c0cb2871-1aca-4f10-93d4-23f1fe034700staffp.jpg"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\c1dfe917-61f4-4d9b-b47c-f14d12fd43feTwin Bed Frame.png",
       "PackagePath": "staticwebassets\\uploadfiles\\c1dfe917-61f4-4d9b-b47c-f14d12fd43feTwin Bed Frame.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\c2179397-da26-49fc-ad61-a223c55048f1COFFEETABLE.jpg",
+      "PackagePath": "staticwebassets\\uploadfiles\\c2179397-da26-49fc-ad61-a223c55048f1COFFEETABLE.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\c3711b91-11b5-4fc5-9333-ce309b40a74cTwin Bed Frame.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\c3711b91-11b5-4fc5-9333-ce309b40a74cTwin Bed Frame.png"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\c69abfd4-5641-4d5c-92c6-c86a71bd0b5ereport.png",
@@ -18979,6 +19099,10 @@
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\d6fe83d9-3b2d-42fa-948a-1069db264ba8table.jpg",
       "PackagePath": "staticwebassets\\uploadfiles\\d6fe83d9-3b2d-42fa-948a-1069db264ba8table.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\d866c8ab-c334-41e5-8291-9a3fedfdffcbperson.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\d866c8ab-c334-41e5-8291-9a3fedfdffcbperson.png"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\db11456f-b716-4866-9377-742fe2ebb986logomilijuli.png",
@@ -19005,20 +19129,40 @@
       "PackagePath": "staticwebassets\\uploadfiles\\e48c4dbb-e852-40ec-93e4-079f158af3c8background img.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\e535cd62-b871-47b1-9dbc-f1f07047ded4Lovepik_com-401750078-wicker-chair-coffee-table-furniture.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\e535cd62-b871-47b1-9dbc-f1f07047ded4Lovepik_com-401750078-wicker-chair-coffee-table-furniture.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\e690cb0b-b827-4f06-9759-ea0a1658dd58logomilijuli.png",
       "PackagePath": "staticwebassets\\uploadfiles\\e690cb0b-b827-4f06-9759-ea0a1658dd58logomilijuli.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\e9d5c66e-8e50-4fda-95c8-a3dfc3b00dffLovepik_com-401054404-bedroom-solid-wood-bed.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\e9d5c66e-8e50-4fda-95c8-a3dfc3b00dffLovepik_com-401054404-bedroom-solid-wood-bed.png"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\ebc1a239-8bb0-4f62-bd19-c2241da643c0staff.png",
       "PackagePath": "staticwebassets\\uploadfiles\\ebc1a239-8bb0-4f62-bd19-c2241da643c0staff.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\ee768b83-d20b-4037-9b24-121df54475daperson.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\ee768b83-d20b-4037-9b24-121df54475daperson.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\f00f8998-35f3-4467-b9ca-1bd1431e0711milijuliLogo.png",
       "PackagePath": "staticwebassets\\uploadfiles\\f00f8998-35f3-4467-b9ca-1bd1431e0711milijuliLogo.png"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\f173a185-7734-4f10-b08d-8241aaa2fa6eLovepik_com-401750078-wicker-chair-coffee-table-furniture.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\f173a185-7734-4f10-b08d-8241aaa2fa6eLovepik_com-401750078-wicker-chair-coffee-table-furniture.png"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\f1d5627b-7ee6-4338-a2d4-0c7456a6c851Twin Bed Frame.png",
       "PackagePath": "staticwebassets\\uploadfiles\\f1d5627b-7ee6-4338-a2d4-0c7456a6c851Twin Bed Frame.png"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\fba98a8a-ddf3-45b8-8d2c-0f966fc10b68Lovepik_com-401750078-wicker-chair-coffee-table-furniture.png",
+      "PackagePath": "staticwebassets\\uploadfiles\\fba98a8a-ddf3-45b8-8d2c-0f966fc10b68Lovepik_com-401750078-wicker-chair-coffee-table-furniture.png"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\uploadfiles\\staff.png",

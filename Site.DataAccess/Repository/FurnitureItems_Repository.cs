@@ -269,6 +269,7 @@ namespace Site.DataAccess.Repository
                 throw;
             }
         }
+
         public async Task<int> TotalUsers()
         {
             try
@@ -285,6 +286,37 @@ namespace Site.DataAccess.Repository
                 throw;
             }
         }
+        public async Task<int> TotalIncomes()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connection.DbConnection))
+                {
+                    string sql = @"
+                SELECT 
+                    SUM(TotalRevenue) AS Total
+                FROM (
+                    SELECT 
+                        SUM(ds.Quantity * p.Price) AS TotalRevenue
+                    FROM 
+                        Product p
+                    INNER JOIN 
+                        DetailSale ds ON p.Id = ds.ProductId
+                    INNER JOIN 
+                        Sale s ON ds.SaleId = s.SaleId
+                    GROUP BY 
+                        p.Name
+                ) AS ProductRevenue;";
+                    int total = await conn.ExecuteScalarAsync<int>(sql);
+                    return total;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         public async Task<IEnumerable<KeyValuePair<string, int>>> ProductsTopLastWeek()
         {
@@ -292,19 +324,28 @@ namespace Site.DataAccess.Repository
             {
                 using (var connection = new SqlConnection(_connection.DbConnection))
                 {
+                    DateTime startDate = DateTime.Today.AddDays(-7);
+
                     // Write the SQL query to retrieve top product sales data
                     string sql = @"
-                SELECT TOP 4 p.Name AS Product,
-                    COUNT(*) AS Total
-                    FROM Product p
-                    Inner JOIN DetailSale ds On p.Id = ds.ProductId
-                    INNER JOIN Sale s ON ds.SaleId = s.SaleId
-                    WHERE s.RegistrationDate >= 4/9/1
-                    GROUP BY p.Name
-                    ORDER BY COUNT(*) DESC";
+                 SELECT TOP 5
+      p.Name AS Product,
+     SUM(ds.Quantity) AS Total
+
+     FROM 
+     Product p
+     INNER JOIN 
+         DetailSale ds ON p.Id = ds.ProductId
+     INNER JOIN 
+         Sale s ON ds.SaleId = s.SaleId
+	WHERE s.RegistrationDate >= @StartDate
+     GROUP BY 
+         p.Name
+     ORDER BY 
+         SUM(ds.Quantity) DESC";
                     
                     // Execute the SQL query using Dapper
-                    var salesData = await connection.QueryAsync<dynamic>(sql, new { StartDate });
+                    var salesData = await connection.QueryAsync<dynamic>(sql, new { StartDate = startDate });
 
                     // Process the query result to create the dictionary
                     var resultado = salesData.ToDictionary(row => (string)row.Product, row => (int)row.Total);

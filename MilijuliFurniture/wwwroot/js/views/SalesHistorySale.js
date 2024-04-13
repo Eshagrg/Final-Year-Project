@@ -73,7 +73,7 @@ $("#btnSearch").click(function () {
                         $("<tr>").append(
                             $("<td>").text(sale.registrationDate),
                             $("<td>").text(sale.saleNumber),
-                            //$("<td>").text(sale.typeDocumentSale),
+                            $("<td>").text(sale.customerDocument),
                             //$("<td>").text(sale.customerDocument),
                             $("<td>").text(sale.clientName),
                             $("<td>").text(sale.total),
@@ -96,8 +96,8 @@ $("#tbsale tbody").on("click", ".btn-info", function () {
     console.log(d)
     $("#txtRegistrationDate").val(d.registrationDate)
     $("#txtSaleNumber").val(d.saleNumber)
-    $("#txtDocumentType").val(d.typeDocumentSale)
-    $("#txtRegisterUser").val(d.customerDocument)
+    $("#txtDocumentType").val(d.customerDocument)
+
     $("#txtClientName").val(d.clientName)
     $("#txtSubTotal").val(d.subtotal)
     $("#txtTaxes").val(d.totalTaxes)
@@ -106,11 +106,13 @@ $("#tbsale tbody").on("click", ".btn-info", function () {
     $("#tbProducts tbody").html("")
 
     d.detailSales.forEach((item) => {
+        $("#txtRegisterUser").val(item.brandProduct)
         $("#tbProducts tbody").append(
             $("<tr>").append(
                 $("<td>").text(item.descriptionProduct),
                 $("<td>").text(item.quantity),
                 $("<td>").text(item.price),
+                $("<td>").text(d.totalTaxes),
                 $("<td>").text(item.total)
             )
         )

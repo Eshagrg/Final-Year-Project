@@ -41,7 +41,8 @@ namespace MilijuliFurniture.Controllers
                 vmDashboard.TotalProducts = await _furnitureItems.TotalProducts();
                 vmDashboard.TotalCategories = await _furnitureItems.TotalCategories();
                 vmDashboard.TotalUsers = await _furnitureItems.TotalUsers();
-                
+                vmDashboard.TotalIncomes = await _furnitureItems.TotalIncomes();
+
 
 
 

@@ -15,6 +15,7 @@
                 $("#totalSale").text(d.totalSales);
                 $("#totalUsers").text(d.totalUsers)
                 $("#totalProducts").text(d.totalProducts)
+                $("#totalIncomes").text(d.totalIncomes)
                 $("#totalCategories").text(d.totalCategories)
 
                 let barchart_labels;

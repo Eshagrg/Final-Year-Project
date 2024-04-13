@@ -1020,3 +1020,5 @@ C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug
 C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug\net6.0\MilijuliFurniture.pdb
 C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug\net6.0\MilijuliFurniture.genruntimeconfig.cache
 C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug\net6.0\ref\MilijuliFurniture.dll
+C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug\net6.0\MilijuliFurniture.Resources.Views.Admin.Index.np-NP.resources
+C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug\net6.0\MilijuliFurniture.Resources.Views.Admin.Index.en-US.resources

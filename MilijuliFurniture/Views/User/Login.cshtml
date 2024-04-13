@@ -3,73 +3,124 @@
     Layout = "AdminLayout/_AdminLoginLayout";
 }
 
+  <style>
     <style >
-    .login-brand {
-        max-width: 150px; 
-        max-height: 200px;
+    /* Remove default margin and padding from the body and other elements */
+    body, html {
+        margin: 0;
+        padding: 0;
     }
+
+    .row {
+        height: 100vh;
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+    }
+
+    .login-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0; /* Adjust this value if necessary */
+        background-image: url("/img/backgroundpic.jpg");
+        background-size: cover; /* Make sure the background image covers the entire container */
+        background-position: center; /* Center the background image */
+        position: relative; /* Set position to relative to allow positioning of child elements */
+        z-index: 0; /* Ensure the container stays behind other elements */
+        height: 100vh; /* Ensure the container stretches to cover the viewport height */
+    }
+
+    .login-card {
+        background-color: rgba(255, 255, 255, 0.8); /* Add opacity to make the container more readable */
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        max-width: 400px;
+        width: 100%;
+        position: relative; /* Ensure the card stays above the background image */
+        z-index: 1; /* Ensure the card stays above the background image */
+    }
+
+    .login-brand {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+        .login-brand img {
+            max-width: 150px;
+            max-height: 200px;
+        }
+
+    .login-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .login-form .form-control {
+        font-size: 16px;
+        padding: 12px 16px;
+        border-radius: 6px;
+        transition: border-color 0.3s ease;
+    }
+
+        .login-form .form-control:hover {
+            border-color: #6c757d;
+        }
+
+    .login-form .btn-primary {
+        background-image: linear-gradient(to right, #007bff, #0056b3);
+        border: none;
+        font-size: 16px;
+        padding: 12px 24px;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+    }
+
+        .login-form .btn-primary:hover {
+            background-image: linear-gradient(to right, #0056b3, #004b99);
+        }
+
     .simple-footer {
         text-align: center;
+        margin-top: 20px;
     }
 </style>
 
-
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 ">
-            <div class="login-brand">
-                <img src="~/img/logo.png" alt="Milijuli Furniture Logo">@*  Milijuli Furniture *@
-            </div>
-
-            <div class="card card-primary">
-                <div class="card-header"><h4>Login</h4></div>
-
-                <div class="card-body">
-                    <form method="POST" class="needs-validation" novalidate="">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input id="email" asp-for="Email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
-                            <div class="invalid-feedback">
-                                Please fill in your email
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="d-block">
-                                <label for="password" class="control-label">Password</label>
-                                <div class="float-right">
-                                    @* <a asp-controller="User" asp-action="Signup">Signup</a> *@
-                                </div>
-                            </div>
-                            <input id="password" asp-for="Password" type="password" class="form-control" name="password" tabindex="2" required>
-                            <div class="invalid-feedback">
-                                please fill in your password
-                            </div>
-                        </div>
+</style>
 
 
-
-                        <div class="form-group text-center">
-                            <div class="mx-auto" style="width: 200px;">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                    Login
-                                </button>
-                            </div>
-                        </div>
-
-
-
-
-
-                    </form>
-
-
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-brand">
+            <img src="~/img/logo.png" alt="Milijuli Furniture Logo">
+        </div>
+        <div class="card-body">
+            <form method="POST" class="login-form needs-validation" novalidate="">
+                <div class="form-group">
+                  
+                    <label for="email">Email</label>
+                    <input id="email" asp-for="Email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                    <div class="invalid-feedback">
+                        Please fill in your email
+                    </div>
                 </div>
-            </div>
-
-            <div class="simple-footer">
-                Copyright &copy; MilijuliFurniture
-            </div>
+                <div class="form-group">
+                    <label for="password" class="control-label">Password</label>
+                    <input id="password" asp-for="Password" type="password" class="form-control" name="password" tabindex="2" required>
+                    <div class="invalid-feedback">
+                        Please fill in your password
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary btn-block" tabindex="4">
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="simple-footer">
+            Copyright &copy; MilijuliFurniture
         </div>
     </div>
 </div>
+

@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     Layout = "AdminLayout/_AdminLayout";
     ViewData["Title"] = "Home Page";
 }
@@ -23,14 +25,15 @@
 <div class="row">
 
 
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow" style="background-color: peachpuff; height: 120px;">
+    <div class="col-xl-3 col-md-4 mb-4">
+        <div class="card border-left-primary shadow" style="background-color: darkslateblue; height: 120px;">
       <div class="card-body" >
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Total 
-                            <br />sales
+                            @Localizer["Total"]
+                            <br />
+                            @Localizer["Sales"]
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-white" id="totalSale"></div>
                     </div>
@@ -42,15 +45,15 @@
         </div>
     </div>
 
-
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow" style="background-color: mediumpurple; height: 120px;">
+    <div class="col-xl-2 col-md-4 mb-4">
+        <div class="card border-left-success shadow" style="background-color: darkcyan; height: 120px;">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Total 
-                            <br />Users
+                            @Localizer["Total"]
+                            <br />
+                            @Localizer["Users"]
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-white" id="totalUsers"></div>
                     </div>
@@ -63,14 +66,17 @@
     </div>
 
 
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow" style="background-color: lightpink; height: 120px;">
+
+
+    <div class="col-xl-2 col-md-4 mb-4">
+        <div class="card border-left-info shadow" style="background-color: darkslategrey; height: 120px;">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            Total
-                            <br />Products
+                            @Localizer["Total"]
+                            <br />
+                            @Localizer["Products"]
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-white" id="totalProducts"></div>
                     </div>
@@ -85,19 +91,41 @@
 
 
 
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow" style="background-color: cadetblue; height: 120px;">
+    <div class="col-xl-2 col-md-4 mb-4">
+        <div class="card border-left-warning shadow" style="background-color: steelblue; height: 120px;">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Total
-                            <br />Categories
+                            @Localizer["Total"]
+                            <br />
+                            @Localizer["Categories"]
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-white" id="totalCategories"></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-chair fa-2x text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-4 mb-4">
+        <div class="card border-left-success shadow" style="background-color: #46648c; height: 120px;">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            @Localizer["Total"]
+                            <br />
+                            @Localizer["Incomes"]
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-white">Rs <span id="totalIncomes"></span></div>
+
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-rupee-sign fa-2x text-white"></i>
+
                     </div>
                 </div>
             </div>
