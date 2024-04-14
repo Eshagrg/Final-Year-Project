@@ -86,7 +86,7 @@ namespace Site.DataAccess.Repository
                                     DateTime dateUpdate = DateTime.Now;
                                     string ceros = new string('0', (int)reader["QuantityDigits"]);
                                     string saleNumber = ceros + lastNumber.ToString();
-                                    saleNumber = saleNumber.Substring((int)(saleNumber.Length - (int)reader["QuantityDigits"]));
+                                    //saleNumber = saleNumber.Substring((int)(saleNumber.Length - (int)reader["QuantityDigits"]));
                                     // Close the reader before executing another query
                                     reader.Close();
                                     // Generate sale number

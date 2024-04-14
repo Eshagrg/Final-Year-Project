@@ -97,18 +97,23 @@
         <div class="card-body">
             <form method="POST" class="login-form needs-validation" novalidate="">
                 <div class="form-group">
-                  
                     <label for="email">Email</label>
                     <input id="email" asp-for="Email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
-                    <div class="invalid-feedback">
-                        Please fill in your email
+                    <div class="invalid-feedback" style="display: none; color: red; font-size: 0.9em;" >
+                        Please fill in a valid email address
+                    </div>
+                    <div class="empty-feedback" style="display: none; color: red; font-size: 0.9em;">
+                        Please do not leave the email field empty.
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="control-label">Password</label>
                     <input id="password" asp-for="Password" type="password" class="form-control" name="password" tabindex="2" required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback" style="display: none; color: red; font-size: 0.9em;">
                         Please fill in your password
+                    </div>
+                    <div class="empty-feedback" style="display: none; color: red; font-size: 0.9em;">
+                        Please do not leave the password field empty.
                     </div>
                 </div>
                 <div class="form-group text-center">
@@ -117,6 +122,48 @@
                     </button>
                 </div>
             </form>
+
+            <script>
+                document.querySelector('.login-form').addEventListener('submit', function (event) {
+                    var emailInput = document.getElementById('email');
+                    var passwordInput = document.getElementById('password');
+
+                    if (emailInput.value === '') {
+                        showEmptyFeedback(emailInput);
+                        event.preventDefault(); // Prevent form submission
+                    } else if (!emailInput.checkValidity()) {
+                        showInvalidFeedback(emailInput);
+                        event.preventDefault(); // Prevent form submission
+                    } else {
+                        hideEmptyFeedback(emailInput);
+                    }
+
+                    if (passwordInput.value === '') {
+                        showEmptyFeedback(passwordInput);
+                        event.preventDefault(); // Prevent form submission
+                    } else {
+                        hideEmptyFeedback(passwordInput);
+                    }
+                });
+
+                function showEmptyFeedback(input) {
+                    input.classList.add('is-invalid');
+                    input.nextElementSibling.style.display = 'none';
+                    input.nextElementSibling.nextElementSibling.style.display = 'block';
+                }
+
+                function showInvalidFeedback(input) {
+                    input.classList.add('is-invalid');
+                    input.nextElementSibling.style.display = 'block';
+                    input.nextElementSibling.nextElementSibling.style.display = 'none';
+                }
+
+                function hideEmptyFeedback(input) {
+                    input.classList.remove('is-invalid');
+                    input.nextElementSibling.nextElementSibling.style.display = 'none';
+                }
+            </script>
+
         </div>
         <div class="simple-footer">
             Copyright &copy; MilijuliFurniture

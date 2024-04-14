@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     ViewData["Title"] = "SalesHistory";
     Layout = "AdminLayout/_AdminLayout";
 }
@@ -17,24 +19,24 @@
             <div class="form-group col-sm-3">
                 <label for="cboSearchBy">Search by</label>
                 <select class="form-control" id="cboSearchBy">
-                    <option value="date">Dates</option>
-                    <option value="number">Sale Number</option>
+                    <option value="date">@Localizer["Dates"]</option>
+                    <option value="number">@Localizer["Sale Number"]</option>
                 </select>
             </div>
             <div class="form-group col-sm-3 search-date">
-                <label for="txtStartDate">Start Date</label>
+                <label for="txtStartDate">@Localizer["Start Date"]</label>
                 <input type="text" class="form-control" id="txtStartDate">
             </div>
             <div class="form-group col-sm-3 search-date">
-                <label for="txtEndDate">End Date</label>
+                <label for="txtEndDate">@Localizer["End Date"]</label>
                 <input type="text" class="form-control" id="txtEndDate">
             </div>
             <div class="form-group col-sm-3 search-sale">
-                <label for="txtSaleNumberSearch">Sale Number</label>
+                <label for="txtSaleNumberSearch">@Localizer["Sale Number"]</label>
                 <input type="text" class="form-control" id="txtSaleNumberSearch">
             </div>
             <div class="form-group col-sm-3">
-                <button class="btn btn-success btn-block" type="button" id="btnSearch"><i class="fas fa-search"></i> Search</button>
+                <button class="btn btn-success btn-block" type="button" id="btnSearch"><i class="fas fa-search"></i>@Localizer["Search"]</button>
             </div>
         </div>
 
@@ -44,13 +46,11 @@
                 <table class="table table-striped" id="tbsale">
                     <thead>
                         <tr>
-                            <th>Registration date</th>
-                            <th>Sale Number</th>
-                            <th>Document Type</th>
-                        @* 
-                            <th>Client Document</th> *@
-                            <th>Customer name</th>
-                            <th>Total</th>
+                            <th>@Localizer["Registration Date"]</th>
+                            <th>@Localizer["Sale Number"]</th>
+                            <th>@Localizer["Document Type"]</th>
+                            <th>@Localizer["Customer Name"]</th>
+                            <th>@Localizer["Total"]</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -79,56 +79,54 @@
                         <div class="col-sm-12">
                             <div class="form-row">
                                 <div class="form-group col-sm-4">
-                                    <label for="txtRegistrationDate">Registration date</label>
+                                    <label for="txtRegistrationDate">@Localizer["Registration Date"]</label>
                                     <input type="text" class="form-control form-control-sm" id="txtRegistrationDate" disabled>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for="txtSaleNumber">Sale Number</label>
+                                    <label for="txtSaleNumber">@Localizer["Sale Number"]</label>
                                     <input type="text" class="form-control form-control-sm" id="txtSaleNumber" disabled>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for="txtRegisterUser">Register User</label>
+                                    <label for="txtRegisterUser">@Localizer["Register User"]</label>
                                     <input type="text" class="form-control form-control-sm" id="txtRegisterUser" disabled>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-sm-4">
-                                    <label for="txtDocumentType">Document Type</label>
+                                    <label for="txtDocumentType">@Localizer["Document Type"]</label>
                                     <input type="text" class="form-control form-control-sm" id="txtDocumentType" disabled>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for="txtClientDocument">Client Document</label>
-                                    <input type="text" class="form-control form-control-sm" id="txtClientDocument" disabled>
+                                    <label for="txtClientName">@Localizer["Customer Name"]</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtClientName" disabled>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for="txtClientName">Customer name</label>
-                                    <input type="text" class="form-control form-control-sm" id="txtClientName" disabled>
+                                    <label for="txtSubTotal">@Localizer["Sub Total"]</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtSubTotal" disabled>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-sm-4">
-                                    <label for="txtSubTotal">Sub Total</label>
-                                    <input type="text" class="form-control form-control-sm" id="txtSubTotal" disabled>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label for="txtTaxes">Taxes</label>
+                                    <label for="txtTaxes">@Localizer["Discount(%)"]</label>
                                     <input type="text" class="form-control form-control-sm" id="txtTaxes" disabled>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for="txtTotal">Total</label>
+                                    <label for="txtTotal">@Localizer["Total"]</label>
                                     <input type="text" class="form-control form-control-sm" id="txtTotal" disabled>
                                 </div>
+                               
+                             
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <table id="tbProducts" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Product</th>
-                                                <th>Quantity</th>
-                                                <th>Price</th>
-                                                <th>Discount(%)</th>
-                                                <th>Total</th>
+                                                <th>@Localizer["Product"]</th>
+                                                <th>@Localizer["Quantity"]</th>
+                                                <th>@Localizer["Price"]</th>
+                                                <th>@Localizer["Discount(%)"]</th>
+                                                <th>@Localizer["Total"]</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -141,8 +139,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <a href="#" class="btn btn-primary" target="_blank" id="linkPrint">Print</a>
-                <button class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary" target="_blank" id="linkPrint">@Localizer["Print"]</a>
+                <button class="btn btn-danger" type="button" data-dismiss="modal">@Localizer["Close"]</button>
             </div>
         </div>
     </div>

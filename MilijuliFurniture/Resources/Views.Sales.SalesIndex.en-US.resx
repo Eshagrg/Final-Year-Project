@@ -132,6 +132,9 @@
   <data name="Detail" xml:space="preserve">
     <value>विवरण</value>
   </data>
+  <data name="Discount(%)" xml:space="preserve">
+    <value>छुट (%)</value>
+  </data>
   <data name="document number" xml:space="preserve">
     <value>कागजात नम्बर</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="full name" xml:space="preserve">
     <value>पुरा नाम</value>
+  </data>
+  <data name="New Sale" xml:space="preserve">
+    <value>नयाँ बिक्री</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>मूल्य</value>

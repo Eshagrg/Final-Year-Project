@@ -80,6 +80,7 @@ builder.Services.Configure<ConnectionStrings>(builder.Configuration.GetSection("
 builder.Services.AddScoped<IUserAuth, UserAuth_Repository>();
 builder.Services.AddScoped<IFurnitureItems, FurnitureItems_Repository>();
 builder.Services.AddScoped<ISales, SalesService_Repository>();
+builder.Services.AddScoped<IReport, ReportService_Repository>();
 
 var context = new CustomAssemblyLoadContext();
 context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "Utilities/LibraryPDF/libwkhtmltox.dll"));

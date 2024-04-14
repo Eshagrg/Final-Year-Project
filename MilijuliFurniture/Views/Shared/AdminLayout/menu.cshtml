@@ -33,6 +33,17 @@
         height: 60px;
         width: 80px;
     }
+
+    .dropdown:hover > a.nav-link span {
+        font-weight: bold;
+        color: black; /* Bold black color */
+    }
+
+    .dropdown .dropdown-menu .nav-link:focus span,
+    .dropdown .dropdown-menu .nav-link:active span {
+        color: #888; /* Faded color on click */
+    }
+
 </style>
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
@@ -86,6 +97,16 @@
                     <i class="fa fa-file"></i>
                     <span>@Localizer["Sales History"]</span>
                 </a>
+            </li>
+           
+            <li class="menu-header">@Localizer["Reports"]</li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-file"></i> <span>Sales Reports</span></a>
+                <ul class="dropdown-menu" style="display: none">
+                    <li><a class="nav-link" asp-controller="Report" asp-action="SalesTypeHistory">Sales By Type</a></li>
+                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
+                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
+                </ul>
             </li>
         </ul>
     </aside>

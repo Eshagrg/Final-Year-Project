@@ -110,30 +110,39 @@ $('#cboSearchProduct').on('select2:select', function (e) {
         if (value === false) return false;
 
         if (value === "") {
-            toastr.warning("", "You need to enter the amount");
+           
+            toastr.warning("","You need to enter the amount", {
+                positionClass: "toast-bottom-right"
+            });
             return false
         }
         if (value === "" || parseFloat(value) <= 0 || isNaN(parseFloat(value))) {
-            toastr.warning("", "You need to enter a valid positive amount");
+            toastr.warning("", "You need to enter a valid positive amount", {
+                positionClass:"toast-bottom-right"
+            });
             return false;
         }
 
 
         if (isNaN(parseInt(value))) {
-            toastr.warning("", "You must enter a numeric value");
+            toastr.warning("", "You must enter a numeric value", {
+                positionClass:"toast-bottom-right"
+            });
             return false
         }
    
         let quantityAvailable = await checkQuantityAvailable(data.id, parseInt(value))
         if (!quantityAvailable) {
-            toastr.warning("", "The entered quantity is not available");
+            toastr.warning("", "The entered quantity is not available", {
+                positionClass:"toast-bottom-right"
+            });
             return false;
         }
 
         let product = {
             ProductId: data.id,
             nameProduct: data.name,
-            descriptionProduct: data.text,
+            descriptionProduct: data.name,
             categoryProducty: data.category,
             brandProduct: data.brand,
             quantity: parseInt(value),
@@ -220,7 +229,9 @@ $(document).on("click", "button.btn-delete", function () {
 $("#btnFinalizeSale").click(function () {
 
     if (ProductsForSale.length < 1) {
-        toastr.warning("", "You must enter products");
+        toastr.warning("You must enter products", "", {
+            positionClass: "toast-bottom-right"
+        });
         return;
     }
 
@@ -259,7 +270,7 @@ $("#btnFinalizeSale").click(function () {
 
             swal("Registered!", `Sale Number : ${responseJson.saleNumber}`, "success");
            
-
+           
 
                     
         } else {
@@ -268,6 +279,8 @@ $("#btnFinalizeSale").click(function () {
     }).catch((error) => {
         $("#btnFinalizeSale").closest("div.card-body").LoadingOverlay("hide")
     })
-
+    setTimeout(function () {
+        window.location.reload(); // you can pass true to reload function to ignore the client cache and reload from the server
+    }, 2000);
 
 })
