@@ -4,7 +4,7 @@
 
         $("#txtStartDate").val("");
         $("#txtEndDate").val("");
-        $("#txtSaleNumber").val("");
+        $("#txtSaleNumberSearch").val("");
 
         $(".search-date").show()
         $(".search-sale").hide()
@@ -13,7 +13,7 @@
 
         $("#txtStartDate").val("");
         $("#txtEndDate").val("");
-        $("#txtSaleNumber").val("");
+        $("#txtSaleNumberSearch").val("");
 
         $(".search-sale").show()
         $(".search-date").hide()

@@ -5,7 +5,7 @@
         $("#txtStartDate").val("");
         $("#txtEndDate").val("");
         $("#txtSaleNumber").val("");
-
+        $("#txtSaleNumberSearch").val($("#txtSaleNumberSearch option:first").val());
         $(".search-date").show()
         $(".search-sale").hide()
     },
@@ -20,12 +20,34 @@
     }
 
 }
+let tableData;
 
 $(document).ready(function () {
+    
     SEARCH_VIEW["searchDate"]();
 
     $("#txtStartDate").datepicker({ dateFormat: 'dd/mm/yy' });
     $("#txtEndDate").datepicker({ dateFormat: 'dd/mm/yy' });
+
+    tableData = $('#tbsale').DataTable({
+        "processing": true,
+        "columns": [
+            { "data": "saleNumber" },
+            { "data": "clientName" },
+            { "data": "total" },
+            { "data": "registrationDate" }
+        ],
+        dom: "Bfrtip",
+        buttons: [
+            {
+                text: 'Export Excel',
+                extend: 'excelHtml5',
+                title: '',
+                filename: 'Sales Report',
+            }, 'pageLength'
+        ]
+    });
+
 })
 
 $("#cboSearchBy").change(function () {
@@ -68,18 +90,14 @@ $("#btnSearch").click(function () {
             if (responseJson.length > 0) {
 
                 responseJson.forEach((sale) => {
-                    $("#tbsale tbody").append(
-                        $("<tr>").append(
-                            
-                            $("<td>").text(sale.saleNumber),
-                            $("<td>").text(sale.clientName),
-                            $("<td>").text(sale.total)
-                            $("<td>").text(sale.registrationDate),
-                      
-                        )
-                    )
+                    // Clear existing DataTables data
+                    tableData.clear().draw();
+
+                    // Add new data to DataTables
+                    tableData.rows.add(responseJson).draw();
 
                 });
             }
         })
 })
+

@@ -6,8 +6,11 @@
 }
 
 
-@section page_js {
+@section plugins_css {
+    <link href="~/vendors/datatables.net/datatables.bootstrap4.min.css" rel="stylesheet" />
     <link href="~/vendors/jquery-ui/jquery-ui.css" rel="stylesheet">
+    <link href="~/vendors/datatables.net/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/vendors/datatables.net/responsive.datatables.min.css" rel="stylesheet" />
 }
 
 <div class="card shadow mb-4">
@@ -53,10 +56,10 @@
                         <tr>
                            
                             <th>@Localizer["Sale Number"]</th>
-                            <th>@Localizer["Document Type"]</th>
+                            <th>@Localizer["Client Name"]</th>
                               <th>@Localizer["Total"]</th>
                             <th>@Localizer["Registration Date"]</th>
-                            <th></th>
+                 
                         </tr>
                     </thead>
                     <tbody>
@@ -71,8 +74,17 @@
 
 
 @section Script {
-
+    <script src="~/vendors/datatables.net/jquery.datatables.js"></script>
+    <script src="~/vendors/datatables.net/datatables.bootstrap4.min.js"></script>
+    <script src="~/vendors/datatables.net/datatables.responsive.min.js"></script>
+    <script src="~/vendors/datatables.net/jquery.datatables.min.js"></script>
+    <script src="~/vendors/datatables.net/datatables.buttons.min.js"></script>
+    <script src="~/vendors/datatables.net/buttons.html5.min.js"></script>
+    <script src="~/vendors/datatables.net/buttons.print.min.js"></script>
+    <script src="~/vendors/datatables.net/buttons.bootstrap4.min.js"></script>
     <script src="~/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="~/vendors/datatables.net/datatables.buttons.min.js"></script>
+    <script src="~/vendors/datatables.net/jszip.min.js"></script>
 
     <script src="~/js/views/SalesTypeHistory.js"></script>
 }

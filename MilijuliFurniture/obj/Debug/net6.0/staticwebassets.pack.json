@@ -19217,8 +19217,56 @@
       "PackagePath": "staticwebassets\\vendors\\datatables.net-bs4\\dataTables.bootstrap4.js"
     },
     {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\buttons.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\buttons.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\buttons.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\buttons.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\buttons.html5.min.js",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\buttons.html5.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\buttons.print.min.js",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\buttons.print.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\dataTables.buttons.min.js",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\dataTables.buttons.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\datatables.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\datatables.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\datatables.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\datatables.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\datatables.responsive.min.js",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\datatables.responsive.min.js"
+    },
+    {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\jquery.dataTables.js",
       "PackagePath": "staticwebassets\\vendors\\datatables.net\\jquery.dataTables.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\jquery.datatables.min.css",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\jquery.datatables.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\jquery.datatables.min.js",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\jquery.datatables.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\jszip.min.js",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\jszip.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\datatables.net\\responsive.datatables.min.css",
+      "PackagePath": "staticwebassets\\vendors\\datatables.net\\responsive.datatables.min.css"
     },
     {
       "Id": "C:\\Users\\Rumrail\\Documents\\GitHub\\Final-Year-Project\\MilijuliFurniture\\wwwroot\\vendors\\jquery-ui\\idioma\\datepicker-es.js",
