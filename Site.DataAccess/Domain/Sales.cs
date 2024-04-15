@@ -39,6 +39,7 @@ namespace Site.DataAccess.Domain
         public decimal? TotalTaxes { get; set; }
         public decimal? Total { get; set; }
         public DateTime? RegistrationDate { get; set; }
+        public virtual TypeDocumentSale? TypeDocumentSaleNavigationId { get; set; }
         public virtual Users? UsersNavigationId { get; set; }
         public virtual ICollection<DetailSale> DetailSales { get; set; }
     }
@@ -82,4 +83,20 @@ namespace Site.DataAccess.Domain
         public int IdTypeDocumentSale { get; set; }
         public string? Description { get; set; }
     }
+
+    public partial class TypeDocumentSale
+    {
+        public TypeDocumentSale()
+        {
+            Sales = new HashSet<Sale>();
+        }
+
+        public int IdTypeDocumentSale { get; set; }
+        public string? Description { get; set; }
+        public bool? IsActive { get; set; }
+        public DateTime? RegistrationDate { get; set; }
+
+        public virtual ICollection<Sale> Sales { get; set; }
+    }
 }
+

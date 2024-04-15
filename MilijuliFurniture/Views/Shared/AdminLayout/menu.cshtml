@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
-
+@{
+    var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+}
 <link rel="stylesheet" href="~/admin/css/custom.css">
 
 <style>
@@ -55,15 +57,22 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">@Localizer["Dashboard"]</li>
+
             <li class="active">
                 <a asp-controller="Admin" asp-action="Index" class="nav-link">
                     <i class="fas fa-tachometer-alt"></i>
                     <span>@Localizer["Dashboard"]</span>
                 </a>
             </li>
-
+            <li class="active">
+                <a asp-controller="Admin" asp-action="UpdateStaff" asp-route-id="@userIdClaim" class="nav-link">
+                    <i class="fas fa-user-cog"></i>
+                    <span>@Localizer["Profile"]</span>
+                </a>
             </li>
-            <li class="menu-header">@Localizer["INVENTORY"]</li>
+            </li>
+            <li class="menu-header">@Localizer["Inventory"]</li>
+
          
             <li class="active">
                 <a asp-controller="Admin" asp-action="StaffIndex" class="nav-link">
@@ -83,7 +92,7 @@
                     <span>@Localizer["Products"]</span>
                 </a>
             </li>
-            <li class="menu-header">SALES</li>
+            <li class="menu-header">@Localizer["Sale"]</li>
         
 
             <li class="active">
@@ -95,16 +104,20 @@
             <li class="active">
                 <a asp-controller="Sales" asp-action="SalesHistory" class="nav-link">
                     <i class="fa fa-file"></i>
-                    <span>@Localizer["Sales History"]</span>
+                    <span>@Localizer["Sales Record"]</span>
                 </a>
             </li>
            
             <li class="menu-header">@Localizer["Reports"]</li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-file"></i> <span>Sales Reports</span></a>
+            <li class="dropdown active">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-chart-bar"></i>
+                    <span style="color: black; font-size: 13px;">@Localizer["Sale Report"]</span>
+                </a>
+
                 <ul class="dropdown-menu" style="display: none">
+                    <li><a class="nav-link" asp-controller="Report" asp-action="SaleReportSale">Sales Report</a></li>
                     <li><a class="nav-link" asp-controller="Report" asp-action="SalesTypeHistory">Sales By Type</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
             </li>

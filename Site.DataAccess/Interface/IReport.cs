@@ -9,6 +9,7 @@ namespace Site.DataAccess.Interface
 {
     public interface IReport
     {
+        Task<List<Sale>> SaleHistory(string startDate, string endDate);
         Task<List<Sale>> SaleTypeHistoryData(string saleNumber, string startDate, string endDate);
     }
 }

@@ -1030,3 +1030,5 @@ C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\bin\Debug
 C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\bin\Debug\net6.0\xunit.assert.dll
 C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\bin\Debug\net6.0\xunit.core.dll
 C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\bin\Debug\net6.0\xunit.execution.dotnet.dll
+C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug\net6.0\MilijuliFurniture.Resources.Views.Report.SalesTypeHistory.np-NP.resources
+C:\Users\Rumrail\Documents\GitHub\Final-Year-Project\MilijuliFurniture\obj\Debug\net6.0\MilijuliFurniture.Resources.Views.Report.SalesTypeHistory.en-US.resources

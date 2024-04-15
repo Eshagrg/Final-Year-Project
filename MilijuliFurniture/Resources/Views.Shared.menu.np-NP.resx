@@ -135,8 +135,17 @@
   <data name="My Profile" xml:space="preserve">
     <value>My Profile</value>
   </data>
-  <data name="Sales History" xml:space="preserve">
-    <value>Sales History</value>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Sale History" xml:space="preserve">
+    <value>Sale History</value>
+  </data>
+  <data name="Sale Report" xml:space="preserve">
+    <value>Sale Report</value>
+  </data>
+  <data name="Sales Record" xml:space="preserve">
+    <value>Sales Record</value>
   </data>
   <data name="Sidemenu" xml:space="preserve">
     <value>Sidemenu</value>

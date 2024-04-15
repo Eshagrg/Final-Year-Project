@@ -9,13 +9,13 @@ namespace MilijuliFurniture.Controllers
     [Authorize(Policy = "MustBelongToAdminStaff")]
     public class ReportController : Controller
     {
- 
+
         private readonly IReport _reportService;
         private readonly INotyfService _toastNotificationHero;
 
-        public ReportController(IReport reportService,INotyfService toastHeroNotification)
+        public ReportController(IReport reportService, INotyfService toastHeroNotification)
         {
-           
+
             _reportService = reportService;
             _toastNotificationHero = toastHeroNotification;
         }
@@ -27,7 +27,7 @@ namespace MilijuliFurniture.Controllers
         [HttpGet]
         public async Task<IActionResult> SaleTypeHistoryData(string saleNumber, string startDate, string endDate)
         {
-            if(!string.IsNullOrEmpty(saleNumber))
+            if (!string.IsNullOrEmpty(saleNumber))
             {
                 var sales = await _reportService.SaleTypeHistoryData(saleNumber, startDate, endDate);
                 List<VMSale> vmHistorySale = sales.Select(s => new VMSale
@@ -56,7 +56,7 @@ namespace MilijuliFurniture.Controllers
                 }).ToList();
                 return StatusCode(StatusCodes.Status200OK, vmHistorySale);
             }
-            else if(!string.IsNullOrEmpty(startDate))
+            else if (!string.IsNullOrEmpty(startDate))
             {
                 var sales = await _reportService.SaleTypeHistoryData(saleNumber, startDate, endDate);
                 List<VMSale> vmHistorySale = sales.Select(s => new VMSale
@@ -91,7 +91,47 @@ namespace MilijuliFurniture.Controllers
                 _toastNotificationHero.Error("Select one Sales Type");
                 return BadRequest("Please select one Sales Type");
             }
-            
+
+
+
+        }
+
+        public IActionResult SaleReportSale()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ReportSale(string startDate, string endDate)
+        {
+            var sales = await _reportService.SaleHistory(startDate, endDate);
+
+            List<VMSale> vmHistorySale = sales.Select(s => new VMSale
+            {
+                // Map properties manually here
+                SaleNumber = s.SaleNumber,
+                RegistrationDate = s.RegistrationDate.ToString(),
+                ClientName = s.ClientName,
+                Total = s.Total.ToString(),
+                CustomerDocument = s.CustomerDocument,
+                TotalTaxes = s.TotalTaxes.ToString(),
+                Subtotal= s.Subtotal.ToString(),
+
+                DetailSales = s.DetailSales.Select(ds => new VMDetailSale
+                {
+                    // Map properties of VMDetailSale here
+                    DescriptionProduct = ds.DescriptionProduct,
+                    Quantity = ds.Quantity,
+                    Price = ds.Price.ToString(),
+                    Total = s.Total.ToString(),
+                    BrandProduct = ds.BrandProduct,
+
+
+                }).ToList()
+
+                // Map other properties as needed
+            }).ToList();
+            return StatusCode(StatusCodes.Status200OK, new { data = vmHistorySale });
         }
     }
 }

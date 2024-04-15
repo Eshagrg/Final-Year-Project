@@ -132,11 +132,17 @@
   <data name="Discount(%)" xml:space="preserve">
     <value>छुट (%)</value>
   </data>
-  <data name="Document Type" xml:space="preserve">
-    <value>कागजात प्रकार</value>
-  </data>
   <data name="End Date" xml:space="preserve">
     <value>अन्त्य मिति</value>
+  </data>
+  <data name="Offline Payment" xml:space="preserve">
+    <value>अफलाइन भुक्तानी</value>
+  </data>
+  <data name="Online Payment" xml:space="preserve">
+    <value>अनलाइन भुक्तानी</value>
+  </data>
+  <data name="Payment Type" xml:space="preserve">
+    <value>भुक्तानी प्रकार</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>मूल्य</value>
@@ -150,20 +156,26 @@
   <data name="Quantity" xml:space="preserve">
     <value>मात्रा</value>
   </data>
-  <data name="Register User" xml:space="preserve">
-    <value>प्रयोगकर्ता दर्ता</value>
-  </data>
   <data name="Registration Date" xml:space="preserve">
     <value>दर्ता मिति</value>
   </data>
   <data name="Sale Number" xml:space="preserve">
     <value>बिक्री नम्बर</value>
   </data>
+  <data name="Sale Record" xml:space="preserve">
+    <value>बिक्री रेकर्ड</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>खोज्नुहोस्...</value>
   </data>
+  <data name="Search by" xml:space="preserve">
+    <value>द्वारा खोज्नुहोस्</value>
+  </data>
+  <data name="Select From Here..." xml:space="preserve">
+    <value>यहाँबाट चयन गर्नुहोस्...</value>
+  </data>
   <data name="Start Date" xml:space="preserve">
-    <value>Start Date</value>
+    <value>सुरू मिति</value>
   </data>
   <data name="Sub Total" xml:space="preserve">
     <value>उप कुल</value>
@@ -173,5 +185,8 @@
   </data>
   <data name="Total" xml:space="preserve">
     <value>कुल</value>
+  </data>
+  <data name="User Name" xml:space="preserve">
+    <value>प्रयोगकर्ता नाम</value>
   </data>
 </root>

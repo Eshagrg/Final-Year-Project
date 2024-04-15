@@ -129,11 +129,17 @@
   <data name="Dashboard" xml:space="preserve">
     <value>ड्यासबोर्ड</value>
   </data>
+  <data name="Inventory" xml:space="preserve">
+    <value>इन्भेन्टरी</value>
+  </data>
   <data name="New Sale" xml:space="preserve">
     <value>नयाँ बिक्री</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>प्रोडक्टहरू</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>प्रोफाइल</value>
   </data>
   <data name="Quota Summary Report" xml:space="preserve">
     <value>कोटा सारांश रिपोर्ट</value>
@@ -141,8 +147,17 @@
   <data name="Report" xml:space="preserve">
     <value>रिपोर्ट</value>
   </data>
-  <data name="Sales History" xml:space="preserve">
-    <value>बिक्री इतिहास</value>
+  <data name="Reports" xml:space="preserve">
+    <value>रिपोर्टहरू</value>
+  </data>
+  <data name="Sale" xml:space="preserve">
+    <value>बिक्री</value>
+  </data>
+  <data name="Sale Report" xml:space="preserve">
+    <value>बिक्री रिपोर्ट</value>
+  </data>
+  <data name="Sales Record" xml:space="preserve">
+    <value>बिक्री रेकर्ड</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>सेटिङहरू</value>

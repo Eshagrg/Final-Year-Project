@@ -23,6 +23,62 @@ namespace Site.DataAccess.Repository
             _connection = connection.Value;
         }
 
+        public async Task<List<Sale>> SaleHistory(string startDate, string endDate)
+        {
+            using IDbConnection db = new SqlConnection(_connection.DbConnection);
+            string query = "";
+
+            //DateTime start_date = DateTime.ParseExact(startDate, "dd/MM/yyyy", new CultureInfo("es-PE"));
+            //DateTime end_date = DateTime.ParseExact(endDate, "dd/MM/yyyy", new CultureInfo("es-PE"));
+            DateTime start_date = startDate != null ? DateTime.ParseExact(startDate, "dd/MM/yyyy", new CultureInfo("es-PE")) : DateTime.MinValue;
+            DateTime end_date = endDate != null ? DateTime.ParseExact(endDate, "dd/MM/yyyy", new CultureInfo("es-PE")) : DateTime.MinValue;
+
+            if (!string.IsNullOrEmpty(startDate))
+            {
+            query = @"SELECT s.*,ts.description AS CustomerDocument, ds.*,ds.quantity As Quantity,p.Name,p.Price,p.CategoryId,p.Brand, u.FullName AS UserFullName
+            FROM Sale s
+            JOIN TypeDocumentSale ts ON s.TypeDocumentSaleId = ts.idTypeDocumentSale
+            JOIN DetailSale ds ON s.SaleID = ds.SaleID
+            JOIN Product p ON ds.ProductID = p.Id
+            JOIN Portal_Users u ON s.UserID = u.Id
+            WHERE s.RegistrationDate BETWEEN @StartDate AND @EndDate";
+            }
+
+
+
+            var parameters = new { StartDate = start_date, EndDate = end_date};
+            var salesDictionary = new Dictionary<int, Sale>(); // Dictionary to store unique Sales by SaleID
+
+            await db.QueryAsync<Sale, DetailSale, Product, string, Sale>(
+                query,
+                (sale, detailSale, product, userFullName) =>
+                {
+                    if (!salesDictionary.TryGetValue(sale.SaleId, out Sale saleEntry))
+                    {
+                        saleEntry = sale;
+                        saleEntry.DetailSales = new List<DetailSale>();
+                        salesDictionary.Add(saleEntry.SaleId, saleEntry);
+                    }
+
+                    detailSale.ProductId = product.Id; // Attach the product to the detail sale
+                    detailSale.DescriptionProduct = product.Name;
+                    detailSale.Price = product.Price;
+                    detailSale.BrandProduct = userFullName;
+                    detailSale.Quantity = (int)product.Quantity;
+                    saleEntry.DetailSales.Add(detailSale);
+                    saleEntry.CustomerDocument = saleEntry.CustomerDocument;
+
+
+
+                    return null; // We don't need to return anything here
+                },
+                parameters,
+                splitOn: "SaleID, ProductID,UserFullName" // Assuming "SaleID" and "ProductID" are the columns separating Sale and Product
+            );
+
+            return salesDictionary.Values.ToList();
+        }
+
         public async Task<List<Sale>> SaleTypeHistoryData(string salesNumber, string startDate, string endDate)
         {
             using IDbConnection db = new SqlConnection(_connection.DbConnection);

@@ -22,9 +22,9 @@
            font-weight:bold;
         }
          p.title2{
-           font-weight:bold;
-            color: darkblue;
-           font-size:20px;
+          
+            color: black;
+           font-size:15px;
         }
         p.text{
            font-size:15px;
@@ -78,18 +78,14 @@
 <body >
 
     <div class="contenedor">
-
+       
         <table style="width:100%">
             <tr>
                 <td>
                     <img src="~/img/logomilijuli.png" style="width: 160px;height:120px"/>
-                </td>
-                <td style="text-align:right">
-                    <table style="margin-right:0;margin-left:auto">
-                        <tr><td><p class="title2">SALE NUMBER</p></td></tr>
-                        <tr><td>@Model.SaleNumber</td></tr>
-                    </table>
-                </td>
+                </td> 
+
+                
             </tr>
         </table>
         <br />
@@ -113,21 +109,39 @@
                     </table>
                 </td>
                 <td style="text-align:right">
-                    <table style="margin-right:0;margin-left:auto">
+                  
+                                <table style="margin-right:0;margin-left:auto">
+                               
+                                    <tr>
+                                 
+                                        <td><p class="title2">Sale Number: </p></td>
+                                        <td><span style="font-weight: bold; ">@Model.SaleNumber</span></td>
+                                    </tr>
+                                </table>
+
+                                <table style="margin-right:0;margin-left:auto">
+                                    <tr>
+                                        <td><p class="title2">Date: </p></td>
+                                        <td><span style="font-weight: bold;">@Model.RegistrationDate</span></td>
+                                    </tr>
+                                </table>
+                                <table style="margin-right:0;margin-left:auto">
                         <tr>
-                           @*  <td><p class="title">CLIENT</p></td> *@
+                            <td><p class="title2">Bill To:</p></td>
+                            <td><span style="font-weight: bold;">@Model.ClientName</span></td>
+                            @*  <td><p class="title">CLIENT</p></td> *@
                         </tr>
-                        <tr>
-                           
-                            <td>Customer Name: <span class="text">@Model.ClientName</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sold By: <span class="text">@Model.CustomerDocument</span></td>
+
+
+                                    @*  <tr>
+                                    <td>Sold By: <span class="text">@Model.CustomerDocument</span></td>
+                                    </tr> *@
+                                </table>
+
+                            </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-        </table>
+         
         <br />
         <br />
 
@@ -148,7 +162,7 @@
                             <td class="td-item"><p class="item">@item.DescriptionProduct</p></td>
                             <td class="td-item"><p class="item">@item.Quantity</p></td>
                             <td class="td-item"><p class="item">Rs @item.Price</p></td>
-                            <td style="background-color:#EDF6F9"><p class="item">Rs@(item.Quantity * item.Price)</p></td>
+                            <td style="background-color:#EDF6F9"><p class="item">Rs @(item.Quantity * item.Price)</p></td>
                         </tr>
 
                     }

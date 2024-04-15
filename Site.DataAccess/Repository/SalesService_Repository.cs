@@ -263,6 +263,7 @@ namespace Site.DataAccess.Repository
                     detailSale.Quantity = (int)product.Quantity;
                     saleEntry.DetailSales.Add(detailSale);
                     saleEntry.CustomerDocument=saleEntry.CustomerDocument;
+
                 
                    
                 

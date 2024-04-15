@@ -141,6 +141,9 @@
   <data name="Document Type" xml:space="preserve">
     <value>Document Type</value>
   </data>
+  <data name="Finaliz" xml:space="preserve">
+    <value />
+  </data>
   <data name="Finalize Sale" xml:space="preserve">
     <value>Finalize Sale</value>
   </data>
@@ -149,6 +152,12 @@
   </data>
   <data name="New Sale" xml:space="preserve">
     <value>New Sale</value>
+  </data>
+  <data name="Offline Payment" xml:space="preserve">
+    <value>Offline Payment</value>
+  </data>
+  <data name="Online Payments" xml:space="preserve">
+    <value>Online Payments</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>

@@ -120,14 +120,26 @@
   <data name="Categories" xml:space="preserve">
     <value>वर्गहरू</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>ड्यासबोर्ड</value>
+  </data>
   <data name="Incomes" xml:space="preserve">
     <value>आम्दानी</value>
+  </data>
+  <data name="Last Week Sales" xml:space="preserve">
+    <value>गत हप्ता बिक्री</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>प्रोडक्टहरू</value>
   </data>
   <data name="Sales" xml:space="preserve">
     <value>बिक्री</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Top 5 selling products" xml:space="preserve">
+    <value>शीर्ष 5 बिक्री प्रोडक्टहरू</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>कुल </value>

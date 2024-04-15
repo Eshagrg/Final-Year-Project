@@ -148,7 +148,7 @@ namespace MilijuliFurniture.Controllers
                     string depatment = "";
                     if (msg == "SUCCESS")
                     {
-                        Portal_User usr = _userAuth.GetUserData(newlog);
+                        var usr = _userAuth.GetUserData(newlog);
 
 
                         if (usr.RoleName == "Admin" || usr.RoleName == "Staff")

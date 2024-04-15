@@ -136,7 +136,7 @@
     <value>ड्यासबोर्ड</value>
   </data>
   <data name="Email Address:" xml:space="preserve">
-    <value>इ - मेल ठेगाना</value>
+    <value>इ - मेल ठेगाना:</value>
   </data>
   <data name="Full Name" xml:space="preserve">
     <value>पुरा नाम</value>
@@ -169,7 +169,7 @@
     <value>प्रयोगकर्ता ID:</value>
   </data>
   <data name="User Name:" xml:space="preserve">
-    <value>प्रयोगकर्ता नाम</value>
+    <value>प्रयोगकर्ता नाम:</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>हेर्नु</value>

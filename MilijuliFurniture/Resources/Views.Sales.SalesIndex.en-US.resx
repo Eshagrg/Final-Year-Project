@@ -141,11 +141,20 @@
   <data name="Document Type" xml:space="preserve">
     <value>कागजात प्रकार</value>
   </data>
+  <data name="Finalize Sale" xml:space="preserve">
+    <value>बिक्री अन्तिमीकरण</value>
+  </data>
   <data name="full name" xml:space="preserve">
     <value>पुरा नाम</value>
   </data>
   <data name="New Sale" xml:space="preserve">
     <value>नयाँ बिक्री</value>
+  </data>
+  <data name="Offline Payment" xml:space="preserve">
+    <value>अफलाइन भुक्तानी</value>
+  </data>
+  <data name="Online Payments" xml:space="preserve">
+    <value>अनलाइन भुक्तानी</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>मूल्य</value>

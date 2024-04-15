@@ -135,8 +135,17 @@
   <data name="My Profile" xml:space="preserve">
     <value>मेरो प्रोफाइल</value>
   </data>
-  <data name="Sales History" xml:space="preserve">
-    <value>बिक्री इतिहास</value>
+  <data name="Reports" xml:space="preserve">
+    <value>रिपोर्टहरू</value>
+  </data>
+  <data name="Sale History" xml:space="preserve">
+    <value>इतिहास</value>
+  </data>
+  <data name="Sale Report" xml:space="preserve">
+    <value>बिक्री रिपोर्ट</value>
+  </data>
+  <data name="Sales Record" xml:space="preserve">
+    <value>बिक्री रिकर्ड</value>
   </data>
   <data name="Sidemenu" xml:space="preserve">
     <value>साइडमेनु</value>

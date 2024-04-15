@@ -12,12 +12,14 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6>Sale History</h6>
+        <h6>@Localizer["Sale Record"]</h6>
+
+
     </div>
     <div class="card-body">
         <div class="form-row align-items-end">
             <div class="form-group col-sm-3">
-                <label for="cboSearchBy">Search by</label>
+                <label for="cboSearchBy">@Localizer["Search by"]</label>
                 <select class="form-control" id="cboSearchBy">
                     <option value="date">@Localizer["Dates"]</option>
                     <option value="number">@Localizer["Sale Number"]</option>
@@ -48,7 +50,7 @@
                         <tr>
                             <th>@Localizer["Registration Date"]</th>
                             <th>@Localizer["Sale Number"]</th>
-                            <th>@Localizer["Document Type"]</th>
+                            <th>@Localizer["Payment Type"]</th>
                             <th>@Localizer["Customer Name"]</th>
                             <th>@Localizer["Total"]</th>
                             <th></th>
@@ -87,13 +89,13 @@
                                     <input type="text" class="form-control form-control-sm" id="txtSaleNumber" disabled>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for="txtRegisterUser">@Localizer["Register User"]</label>
+                                    <label for="txtRegisterUser">@Localizer["User Name"]</label>
                                     <input type="text" class="form-control form-control-sm" id="txtRegisterUser" disabled>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-sm-4">
-                                    <label for="txtDocumentType">@Localizer["Document Type"]</label>
+                                    <label for="txtDocumentType">@Localizer["Payment Type"]</label>
                                     <input type="text" class="form-control form-control-sm" id="txtDocumentType" disabled>
                                 </div>
                                 <div class="form-group col-sm-4">

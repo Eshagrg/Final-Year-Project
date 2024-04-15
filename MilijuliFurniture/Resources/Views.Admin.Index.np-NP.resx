@@ -120,14 +120,23 @@
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
   <data name="Incomes" xml:space="preserve">
     <value>Incomes</value>
+  </data>
+  <data name="Last Week Sales" xml:space="preserve">
+    <value>Last Week Sales</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>Products</value>
   </data>
   <data name="Sales" xml:space="preserve">
     <value>Sales</value>
+  </data>
+  <data name="Top 5 selling products" xml:space="preserve">
+    <value>Top 5 selling products</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
