@@ -67,6 +67,8 @@ namespace Site.DataAccess.Domain
         public string Brand { get; set; }
         public int? Quantity { get; set; }
 
+        public DateTime? DeletedAt { get; set; }
+
     }
 
     public class VMDashBoard

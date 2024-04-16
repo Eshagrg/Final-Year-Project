@@ -1,5 +1,71 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "SalesReport";
+    Layout = "AdminLayout/_AdminLayout";
 }
+
+
+@section plugins_css {
+    <link href="~/vendors/datatables.net/datatables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/vendors/jquery-ui/jquery-ui.css" rel="stylesheet">
+    <link href="~/vendors/datatables.net/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/vendors/datatables.net/responsive.datatables.min.css" rel="stylesheet" />
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6>Delete Product Report</h6>
+    </div>
+    <div class="card-body">
+        <div class="form-row align-items-end">
+
+            <div class="form-group col-sm-3">
+                <label for="txtStartDate">Start Date</label>
+                <input type="text" class="form-control" id="txtStartDate">
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="txtEndDate">End Date</label>
+                <input type="text" class="form-control" id="txtEndDate">
+            </div>
+            <div class="form-group col-sm-3">
+                <button type="button" class="btn btn-primary btn-block" id="btnSearch"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+
+        <hr />
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="tbdata" class="table table-striped" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Deleted Date</th>
+                            <th scope="col">Deleted By</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Script {
+
+    <script src="~/vendors/datatables.net/jquery.datatables.js"></script>
+    <script src="~/vendors/datatables.net/datatables.bootstrap4.min.js"></script>
+    <script src="~/vendors/datatables.net/datatables.responsive.min.js"></script>
+    <script src="~/vendors/datatables.net/jquery.datatables.min.js"></script>
+    <script src="~/vendors/datatables.net/datatables.buttons.min.js"></script>
+    <script src="~/vendors/datatables.net/buttons.html5.min.js"></script>
+    <script src="~/vendors/datatables.net/buttons.print.min.js"></script>
+    <script src="~/vendors/datatables.net/buttons.bootstrap4.min.js"></script>
+    <script src="~/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="~/vendors/datatables.net/datatables.buttons.min.js"></script>
+    <script src="~/vendors/datatables.net/jszip.min.js"></script>
+    <script src="~/js/views/SalesDeleteProduct.js"></script>
+
+}
+

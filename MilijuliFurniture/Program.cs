@@ -22,7 +22,7 @@ builder.Services.AddControllersWithViews().AddViewLocalization(LanguageViewLocat
 builder.Services.AddLocalization(o => { o.ResourcesPath = "Resources"; });
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
-    const string culture = "np-NP";
+    const string culture = "en-US";
     List<CultureInfo> supportedCultures = new List<CultureInfo> {
         new CultureInfo("en-US"),
         new CultureInfo("np-NP"),

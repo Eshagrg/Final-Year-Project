@@ -133,5 +133,41 @@ namespace MilijuliFurniture.Controllers
             }).ToList();
             return StatusCode(StatusCodes.Status200OK, new { data = vmHistorySale });
         }
+
+        public IActionResult DeleteProductHistory()
+        { return View(); }
+
+        [HttpGet]
+        public async Task<IActionResult> ReportDeleteSale(string startDate, string endDate)
+        {
+            var sales = await _reportService.SaleDeleteHistory(startDate, endDate);
+
+            List<VMSale> vmHistorySale = sales.Select(s => new VMSale
+            {
+                // Map properties manually here
+                SaleNumber = s.SaleNumber,
+                RegistrationDate = s.RegistrationDate.ToString(),
+                ClientName = s.ClientName,
+                Total = s.Total.ToString(),
+                CustomerDocument = s.CustomerDocument,
+                TotalTaxes = s.TotalTaxes.ToString(),
+                Subtotal = s.Subtotal.ToString(),
+
+                DetailSales = s.DetailSales.Select(ds => new VMDetailSale
+                {
+                    // Map properties of VMDetailSale here
+                    DescriptionProduct = ds.DescriptionProduct,
+                    Quantity = ds.Quantity,
+                    Price = ds.Price.ToString(),
+                    Total = s.Total.ToString(),
+                    BrandProduct = ds.BrandProduct,
+
+
+                }).ToList()
+
+                // Map other properties as needed
+            }).ToList();
+            return StatusCode(StatusCodes.Status200OK, new { data = vmHistorySale });
+        }
     }
 }

@@ -141,7 +141,10 @@
   <data name="Staff" xml:space="preserve">
     <value>कर्मचारी</value>
   </data>
-  <data name="Update Staff" xml:space="preserve">
-    <value>कर्मचारी अपडेट गर्नुहोस्</value>
+  <data name="Update the profile" xml:space="preserve">
+    <value>प्रोफाइल अपडेट गर्नुहोस्</value>
+  </data>
+  <data name="Update User" xml:space="preserve">
+    <value>प्रयोगकर्ता अपडेट गर्नुहोस्</value>
   </data>
 </root>

@@ -141,7 +141,10 @@
   <data name="Staff" xml:space="preserve">
     <value>Staff</value>
   </data>
-  <data name="Update Staff" xml:space="preserve">
-    <value>Update Staff</value>
+  <data name="Update the profile" xml:space="preserve">
+    <value>Update the profile</value>
+  </data>
+  <data name="Update User" xml:space="preserve">
+    <value>Update User</value>
   </data>
 </root>
